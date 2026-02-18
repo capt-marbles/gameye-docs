@@ -8,11 +8,13 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "migrate:archbee": "node scripts/migrate-archbee-docs.mjs"
+    "migrate:archbee": "node scripts/migrate-archbee-docs.mjs",
+    "sync:openapi": "node scripts/sync-openapi-schema.mjs --version=v1"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",
     "astro": "^5.6.1",
-    "sharp": "^0.34.2"
+    "sharp": "^0.34.2",
+    "starlight-openapi": "^0.22.0"
   }
 }

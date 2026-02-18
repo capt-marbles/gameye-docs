@@ -1,29 +1,25 @@
 ---
 title: 'Open API spec'
-description: 'Migrated from legacy Archbee docs path /open-api-spec.'
+description: Canonical OpenAPI schema access and generated API reference entry points.
 ---
 
-_GAM-15 curated migration page._
+_GAM-16 canonical integration page._
 
-> Migrated from legacy URL: [/open-api-spec](https://docs.gameye.com/open-api-spec)
->
-> Source last updated: 2023-06-22T16:03:27.000Z
+Use these entry points for API contract consumption:
 
-Use the OpenAPI definition for typed client generation and endpoint contract review.
+- Latest alias: [/openapi/openapi.yaml](/openapi/openapi.yaml)
+- Versioned schema: [/openapi/gameye-session-api-v1.yaml](/openapi/gameye-session-api-v1.yaml)
+- Generated reference docs: [/api/reference](/api/reference)
 
-## OpenAPI File
+## Authentication
 
-- [Download `openapi.yaml`](https://api.gameye.io/openapi.yaml)
-
-## Authentication Model
-
-All endpoints use bearer token authentication.
+All endpoints require bearer token authentication.
 
 ```txt
 Authorization: Bearer YOUR_TOKEN_HERE
 ```
 
-## Example Request
+## Example
 
 ```bash
 curl \
@@ -35,4 +31,4 @@ curl \
 
 - [API overview](/api)
 - [Authentication details](/api/authentication)
-- [Session endpoint](/api/session)
+- [OpenAPI versioning flow](/api/versioning-and-openapi-flow)

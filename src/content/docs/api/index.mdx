@@ -1,22 +1,26 @@
 ---
 title: API Overview
-description: High-level guide to Gameye API domains, auth model, and endpoint families.
+description: Canonical API docs entry point backed by versioned OpenAPI schema artifacts.
 ---
 
-This section defines the API surface area and where each endpoint family is documented.
+The API section is now anchored to a canonical OpenAPI source and generated reference pages.
 
-## API Domains
+## Canonical Sources
 
-- Control plane operations for session orchestration.
-- Provisioning operations for infrastructure lifecycle.
-- Telemetry operations for metrics and diagnostics.
+- Versioned schema artifact: `/openapi/gameye-session-api-v1.yaml`
+- Latest schema alias: `/openapi/openapi.yaml`
+- Generated reference root: [/api/reference](/api/reference)
 
-## Authentication Model
+## Core Guides
 
-- Token-based API authentication.
-- Role-scoped access to environment-specific operations.
-- Audit logging for security-sensitive calls.
+- [Authentication](/api/authentication)
+- [Session Lifecycle](/api/session-lifecycle)
+- [Session Management](/api/session-management)
+- [Open API Spec](/api/open-api-spec)
+- [OpenAPI Versioning Flow](/api/versioning-and-openapi-flow)
 
-## Next Step
+## Integration Notes
 
-Open [Session Lifecycle](/api/session-lifecycle) for an end-to-end request flow.
+- The schema file in `schemas/openapi/` is treated as the canonical docs input.
+- Starlight reference pages are generated from that schema during docs build.
+- Future major API versions are published as additional versioned schema artifacts and mounted under dedicated reference paths.

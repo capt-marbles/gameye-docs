@@ -1,0 +1,50 @@
+---
+title: OpenAPI Versioning Flow
+description: How canonical OpenAPI sources are synced, versioned, and published in docs.
+---
+
+This page defines the versioned OpenAPI docs flow introduced in GAM-16.
+
+## Source of Truth
+
+Canonical schema sync is performed via:
+
+```bash
+npm run sync:openapi
+```
+
+The sync script pulls from the configured source and writes:
+
+- `schemas/openapi/gameye-session-api-v1.yaml`
+- `public/openapi/gameye-session-api-v1.yaml`
+- `public/openapi/openapi.yaml` (latest alias)
+- `schemas/openapi/manifest.json` (source + checksum + versions)
+
+## Reference Generation
+
+Starlight reference pages are generated from:
+
+- `schemas/openapi/gameye-session-api-v1.yaml`
+
+Mounted route:
+
+- `/api/reference`
+
+## Future Major Versions
+
+For a new major API version:
+
+1. Sync with a new version label (for example `--version=v2`).
+2. Add a second OpenAPI schema config in `astro.config.mjs` with base `api/v2/reference`.
+3. Keep `/api/reference` pointing to the latest stable version.
+4. Preserve older docs and schema artifacts for support continuity.
+
+## Validation
+
+Run after every schema sync:
+
+```bash
+npm run build
+```
+
+This ensures generated reference pages, sidebar groups, and links remain valid.

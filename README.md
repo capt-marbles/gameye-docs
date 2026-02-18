@@ -2,7 +2,7 @@
 
 Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
 
-## Scope (GAM-14 + GAM-15)
+## Scope (GAM-14 to GAM-18)
 
 - Starlight docs app scaffolded and runnable locally.
 - Top-level information architecture implemented:
@@ -30,6 +30,11 @@ Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
   - syncs versioned OpenAPI schema artifacts into `schemas/openapi` and `public/openapi`
   - generates `/api/reference` from the canonical schema via `starlight-openapi`
   - supports future versioned reference mounts (e.g. `/api/v2/reference`)
+- Docs search UX + SEO hardening:
+  - enhanced search modal with shortcut guidance, quick query chips, and direct links
+  - supports `/` keyboard shortcut to open docs search quickly
+  - dynamic route metadata middleware adds twitter metadata and JSON-LD per page
+  - canonical verification and SEO assertions via `npm run check:seo`
 
 ## Local Development
 
@@ -44,6 +49,7 @@ Open `http://localhost:4321`.
 
 ```bash
 npm run build
+npm run check:seo
 npm run preview
 ```
 
@@ -72,6 +78,19 @@ Generated outputs:
 - `/schemas/openapi/manifest.json`
 - `/public/openapi/gameye-session-api-v1.yaml`
 - `/public/openapi/openapi.yaml`
+
+## SEO Verification Workflow
+
+```bash
+npm run build
+npm run check:seo
+```
+
+Checks include:
+
+- canonical URL presence and expected value per route
+- required meta tags (`description`, Open Graph, Twitter)
+- route-level JSON-LD script validation (`#gameye-docs-structured-data`)
 
 ## Repository Conventions
 

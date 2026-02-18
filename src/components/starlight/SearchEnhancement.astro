@@ -1,0 +1,238 @@
+---
+import Search from '@astrojs/starlight/components/Search.astro';
+---
+
+<Search />
+
+<script is:inline>
+  (() => {
+    const quickQueries = [
+      'launch session',
+      'available locations',
+      'session lifecycle',
+      'tag verification',
+      'artifact download',
+    ];
+
+    const quickLinks = [
+      { href: '/getting-started/quickstart', label: 'Quickstart' },
+      { href: '/api', label: 'API Overview' },
+      { href: '/api/reference', label: 'OpenAPI Reference' },
+      { href: '/troubleshooting', label: 'Troubleshooting' },
+    ];
+
+    const isTypingContext = (target) => {
+      if (!(target instanceof HTMLElement)) return false;
+      const tagName = target.tagName;
+      return (
+        tagName === 'INPUT' ||
+        tagName === 'TEXTAREA' ||
+        tagName === 'SELECT' ||
+        target.isContentEditable
+      );
+    };
+
+    const applyQuery = (siteSearch, query) => {
+      const input = siteSearch.querySelector('#starlight__search input');
+      if (!(input instanceof HTMLInputElement)) return false;
+
+      input.focus();
+      input.value = query;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+      return true;
+    };
+
+    const queueQuery = (siteSearch, query, retries = 14) => {
+      if (applyQuery(siteSearch, query) || retries <= 0) return;
+      window.setTimeout(() => queueQuery(siteSearch, query, retries - 1), 80);
+    };
+
+    const ensureHelperUI = (siteSearch) => {
+      const dialog = siteSearch.querySelector('dialog');
+      const dialogFrame = siteSearch.querySelector('.dialog-frame');
+      const searchContainer = siteSearch.querySelector('.search-container');
+      if (!(dialog instanceof HTMLDialogElement)) return;
+      if (!(dialogFrame instanceof HTMLElement) || !(searchContainer instanceof HTMLElement)) return;
+      if (dialogFrame.querySelector('[data-gy-search-helper]')) return;
+
+      const helper = document.createElement('section');
+      helper.setAttribute('data-gy-search-helper', 'true');
+      helper.className = 'gy-search-helper';
+      helper.innerHTML = `
+        <p class="gy-search-helper-label">Search tips</p>
+        <p class="gy-search-helper-copy">Use <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>K</kbd> or press <kbd>/</kbd> to search from anywhere in docs.</p>
+        <div class="gy-search-helper-chips"></div>
+        <div class="gy-search-helper-links"></div>
+      `;
+
+      const chips = helper.querySelector('.gy-search-helper-chips');
+      const links = helper.querySelector('.gy-search-helper-links');
+
+      if (chips instanceof HTMLElement) {
+        quickQueries.forEach((query) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'gy-search-chip';
+          button.textContent = query;
+          button.addEventListener('click', () => {
+            if (!dialog.open) {
+              const openBtn = siteSearch.querySelector('button[data-open-modal]');
+              if (openBtn instanceof HTMLButtonElement) {
+                openBtn.click();
+              }
+            }
+            queueQuery(siteSearch, query);
+          });
+          chips.appendChild(button);
+        });
+      }
+
+      if (links instanceof HTMLElement) {
+        quickLinks.forEach((item) => {
+          const anchor = document.createElement('a');
+          anchor.className = 'gy-search-link';
+          anchor.href = item.href;
+          anchor.textContent = item.label;
+          links.appendChild(anchor);
+        });
+      }
+
+      dialogFrame.insertBefore(helper, searchContainer);
+    };
+
+    const enhanceSearchButton = (siteSearch) => {
+      const openBtn = siteSearch.querySelector('button[data-open-modal]');
+      if (!(openBtn instanceof HTMLButtonElement)) return;
+
+      if (!openBtn.querySelector('[data-gy-search-context]')) {
+        const context = document.createElement('span');
+        context.className = 'gy-search-context';
+        context.textContent = 'Docs + API';
+        context.setAttribute('data-gy-search-context', 'true');
+
+        const keyboardHint = openBtn.querySelector('kbd');
+        if (keyboardHint) {
+          openBtn.insertBefore(context, keyboardHint);
+        } else {
+          openBtn.appendChild(context);
+        }
+      }
+
+      openBtn.title = 'Search docs (Ctrl/⌘ + K or /)';
+    };
+
+    const bindSlashShortcut = () => {
+      if (document.documentElement.dataset.gySearchSlashBound === 'true') return;
+      document.documentElement.dataset.gySearchSlashBound = 'true';
+
+      window.addEventListener('keydown', (event) => {
+        if (event.defaultPrevented) return;
+        if (event.key !== '/') return;
+        if (event.metaKey || event.ctrlKey || event.altKey) return;
+        if (isTypingContext(event.target)) return;
+
+        const openBtn = document.querySelector('site-search button[data-open-modal]');
+        if (!(openBtn instanceof HTMLButtonElement)) return;
+
+        event.preventDefault();
+        openBtn.click();
+      });
+    };
+
+    const init = () => {
+      document.querySelectorAll('site-search').forEach((siteSearch) => {
+        if (!(siteSearch instanceof HTMLElement)) return;
+        if (siteSearch.dataset.gySearchEnhanced === 'true') return;
+        siteSearch.dataset.gySearchEnhanced = 'true';
+
+        enhanceSearchButton(siteSearch);
+        ensureHelperUI(siteSearch);
+      });
+
+      bindSlashShortcut();
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+      init();
+    }
+  })();
+</script>
+
+<style is:global>
+  @layer starlight.user {
+    .gy-search-context {
+      display: none;
+      color: var(--sl-color-gray-3);
+      font-size: var(--sl-text-2xs);
+      white-space: nowrap;
+    }
+
+    @media (min-width: 64rem) {
+      .gy-search-context {
+        display: inline;
+      }
+    }
+
+    .gy-search-helper {
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 0.5rem;
+      background: color-mix(in srgb, var(--sl-color-gray-6) 94%, var(--sl-color-accent-high));
+      padding: 0.85rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .gy-search-helper-label {
+      margin: 0;
+      color: var(--sl-color-white);
+      font-weight: 600;
+      font-size: var(--sl-text-xs);
+    }
+
+    .gy-search-helper-copy {
+      margin: 0;
+      color: var(--sl-color-gray-2);
+      font-size: var(--sl-text-2xs);
+    }
+
+    .gy-search-helper-copy kbd {
+      border: 1px solid var(--sl-color-gray-4);
+      border-radius: 0.35rem;
+      padding: 0.06rem 0.34rem;
+      font-size: var(--sl-text-3xs);
+      background: var(--sl-color-black);
+    }
+
+    .gy-search-helper-chips,
+    .gy-search-helper-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .gy-search-chip,
+    .gy-search-link {
+      border-radius: 999px;
+      border: 1px solid var(--sl-color-gray-4);
+      background: var(--sl-color-black);
+      color: var(--sl-color-gray-2);
+      font-size: var(--sl-text-3xs);
+      padding: 0.32rem 0.58rem;
+      text-decoration: none;
+      line-height: 1.15;
+    }
+
+    .gy-search-chip {
+      cursor: pointer;
+    }
+
+    .gy-search-chip:hover,
+    .gy-search-link:hover {
+      border-color: var(--sl-color-accent);
+      color: var(--sl-color-white);
+    }
+  }
+</style>

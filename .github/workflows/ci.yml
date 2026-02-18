@@ -26,6 +26,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Validate docs SEO metadata
+        run: npm run check:seo
+
       - name: Upload preview artifact
         uses: actions/upload-artifact@v4
         with:

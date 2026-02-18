@@ -1,0 +1,218 @@
+.gy-chatbot-root {
+  --gy-chatbot-accent: #026286;
+  --gy-chatbot-accent-alt: #3dffcf;
+  --gy-chatbot-text: #063548;
+  --gy-chatbot-panel: #ffffff;
+  --gy-chatbot-user: #dcfff4;
+  --gy-chatbot-assistant: #f3fbff;
+  --gy-chatbot-border: rgba(2, 98, 134, 0.22);
+  --gy-chatbot-shadow: 0 24px 70px rgba(5, 54, 74, 0.24);
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1200;
+  font-family: 'Kanit', 'Segoe UI', sans-serif;
+}
+
+.gy-chatbot-launcher {
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(110deg, #3dffcf, #0097d4);
+  color: #033145;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.1rem;
+  box-shadow: 0 14px 36px rgba(1, 99, 136, 0.32);
+  cursor: pointer;
+}
+
+.gy-chatbot-panel {
+  width: min(24rem, calc(100vw - 1.5rem));
+  max-height: min(70vh, 36rem);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  border: 1px solid var(--gy-chatbot-border);
+  border-radius: 0.85rem;
+  background: var(--gy-chatbot-panel);
+  box-shadow: var(--gy-chatbot-shadow);
+  color: var(--gy-chatbot-text);
+  overflow: hidden;
+}
+
+.gy-chatbot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.8rem 0.95rem;
+  border-bottom: 1px solid var(--gy-chatbot-border);
+}
+
+.gy-chatbot-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gy-chatbot-accent);
+}
+
+.gy-chatbot-close {
+  border: 1px solid var(--gy-chatbot-border);
+  border-radius: 999px;
+  background: #fff;
+  color: #063a50;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
+
+.gy-chatbot-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0 0.9rem;
+  overflow-y: auto;
+  min-height: 10rem;
+}
+
+.gy-chatbot-message {
+  display: flex;
+}
+
+.gy-chatbot-message--user {
+  justify-content: flex-end;
+}
+
+.gy-chatbot-message--assistant {
+  justify-content: flex-start;
+}
+
+.gy-chatbot-bubble {
+  border: 1px solid var(--gy-chatbot-border);
+  border-radius: 0.75rem;
+  padding: 0.62rem 0.72rem;
+  max-width: 92%;
+  font-size: 0.86rem;
+  line-height: 1.42;
+  background: var(--gy-chatbot-assistant);
+}
+
+.gy-chatbot-message--user .gy-chatbot-bubble {
+  background: var(--gy-chatbot-user);
+}
+
+.gy-chatbot-bubble p {
+  margin: 0;
+}
+
+.gy-chatbot-citations {
+  margin: 0.58rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.gy-chatbot-citations a {
+  color: #005a7e;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 0.82rem;
+}
+
+.gy-chatbot-citations small {
+  display: block;
+  font-size: 0.74rem;
+  opacity: 0.88;
+  margin-top: 0.12rem;
+}
+
+.gy-chatbot-fallback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.62rem;
+}
+
+.gy-chatbot-fallback-link {
+  border: 1px solid var(--gy-chatbot-accent);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--gy-chatbot-accent);
+  text-decoration: none;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.4rem 0.62rem;
+}
+
+.gy-chatbot-form {
+  padding: 0 0.9rem 0.1rem;
+}
+
+.gy-chatbot-label {
+  display: block;
+  font-size: 0.73rem;
+  font-weight: 500;
+  color: #16556f;
+  margin-bottom: 0.35rem;
+}
+
+.gy-chatbot-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+}
+
+.gy-chatbot-input {
+  border: 1px solid var(--gy-chatbot-border);
+  border-radius: 0.62rem;
+  font: inherit;
+  font-size: 0.86rem;
+  padding: 0.56rem 0.64rem;
+  color: #053649;
+  background: #fff;
+}
+
+.gy-chatbot-input:focus {
+  outline: 2px solid rgba(61, 255, 207, 0.35);
+  outline-offset: 1px;
+}
+
+.gy-chatbot-submit {
+  border: 0;
+  border-radius: 0.62rem;
+  background: var(--gy-chatbot-accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.56rem 0.8rem;
+  cursor: pointer;
+}
+
+.gy-chatbot-footnote {
+  margin: 0;
+  padding: 0 0.9rem 0.8rem;
+  font-size: 0.68rem;
+  color: #285f77;
+}
+
+@media (max-width: 720px) {
+  .gy-chatbot-root {
+    right: 0.6rem;
+    bottom: 0.6rem;
+  }
+
+  .gy-chatbot-launcher {
+    font-size: 0.9rem;
+    padding: 0.68rem 0.95rem;
+  }
+
+  .gy-chatbot-panel {
+    width: min(22rem, calc(100vw - 1.2rem));
+    max-height: min(72vh, 33rem);
+  }
+}

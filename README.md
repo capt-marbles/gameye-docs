@@ -2,7 +2,7 @@
 
 Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
 
-## Scope (GAM-14 to GAM-19)
+## Scope (GAM-14 to GAM-20)
 
 - Starlight docs app scaffolded and runnable locally.
 - Top-level information architecture implemented:
@@ -40,6 +40,20 @@ Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
   - stale migration boilerplate removed from docs content pages
   - writing and publishing standards page added under guides
   - docs quality assertions via `npm run check:quality`
+- AI chatbot integration slice:
+  - shared chatbot launcher included on docs pages
+  - citation rendering + confidence-gated fallback routing
+  - analytics event emission via `window.dataLayer`
+
+## AI Chatbot Configuration
+
+The docs site injects `/public/chatbot/chatbot-loader.js` through Starlight `head` config.
+
+Environment variables:
+
+- `PUBLIC_CHATBOT_ENABLED` (default: `true`)
+- `PUBLIC_CHATBOT_API_ENDPOINT` (optional; if empty, local fallback knowledge mode is used)
+- `PUBLIC_CHATBOT_MIN_CONFIDENCE` (default: `0.62`)
 
 ## Local Development
 

@@ -6,6 +6,9 @@ import { legacyRedirects } from './redirects/legacy-redirects.mjs';
 import { qualityRedirects } from './redirects/quality-redirects.mjs';
 
 const canonicalOpenAPISidebarGroup = createOpenAPISidebarGroup();
+const chatbotEnabled = (process.env.PUBLIC_CHATBOT_ENABLED ?? 'true').toLowerCase() === 'true';
+const chatbotApiEndpoint = process.env.PUBLIC_CHATBOT_API_ENDPOINT ?? '';
+const chatbotMinConfidence = process.env.PUBLIC_CHATBOT_MIN_CONFIDENCE ?? '0.62';
 
 // https://astro.build/config
 export default defineConfig({
@@ -102,6 +105,36 @@ export default defineConfig({
             content: 'Gameye Docs',
           },
         },
+        ...(chatbotEnabled
+          ? [
+              {
+                tag: 'link',
+                attrs: {
+                  rel: 'stylesheet',
+                  href: '/chatbot/chatbot.css',
+                  'data-gy-chatbot-style': 'true',
+                },
+              },
+              {
+                tag: 'script',
+                attrs: {
+                  src: '/chatbot/chatbot-loader.js',
+                  defer: true,
+                  'data-gy-chatbot-loader': 'true',
+                  'data-enabled': 'true',
+                  'data-site': 'docs',
+                  'data-title': 'Gameye Docs Assistant',
+                  'data-api-endpoint': chatbotApiEndpoint,
+                  'data-min-confidence': chatbotMinConfidence,
+                  'data-primary-label': 'Open troubleshooting',
+                  'data-primary-url': '/troubleshooting',
+                  'data-secondary-label': 'Contact support',
+                  'data-secondary-url': 'https://gameye.com/contact-us/',
+                  'data-stylesheet': '/chatbot/chatbot.css',
+                },
+              },
+            ]
+          : []),
       ],
     }),
   ],

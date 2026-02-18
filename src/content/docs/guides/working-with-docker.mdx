@@ -1,12 +1,35 @@
 ---
 title: 'Working with Docker'
-description: 'Migrated from legacy Archbee docs path /working-with-docker.'
+description: "Build, tag, and publish Docker images for Gameye session workloads."
 ---
 
-_Legacy migration generated file._
+Gameye runs your dedicated game servers as Docker images. A reliable image workflow is the foundation of stable runtime behavior.
 
-> Migrated from legacy URL: [/working-with-docker](https://docs.gameye.com/working-with-docker)
->
-> Source last updated: 2023-05-17T15:51:31.000Z
+## Build Checklist
 
-Legacy content could not be extracted automatically for this page.
+- Start from a versioned base image.
+- Keep runtime dependencies explicit and pinned.
+- Expose required game/server ports in the image definition.
+- Add a health check where possible for faster diagnostics.
+
+## Tagging Strategy
+
+Use two tag types:
+
+- Immutable release tags: `game-server:v1.8.4`
+- Environment tags: `game-server:staging`, `game-server:production`
+
+Use immutable tags for session launches in production. Keep environment tags for convenience, not for strict rollout guarantees.
+
+## Publish and Validate
+
+1. Push the image to your registry.
+2. Confirm the tag exists with [Tag verification](/api/tag-verification).
+3. Run a canary session in one location.
+4. Promote to full rollout after log and status checks pass.
+
+## Related Guides
+
+- [Docker](/guides/docker)
+- [Image Registry](/guides/image-registry)
+- [Selecting the correct build](/guides/selecting-the-correct-build)

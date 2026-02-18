@@ -1,24 +1,22 @@
 ---
 title: 'Regions'
-description: 'Migrated from legacy Archbee docs path /regions.'
+description: "Region model and practical rollout guidance for Gameye deployments."
 ---
 
-_Legacy migration generated file._
+Regions are the primary topology layer for placing sessions close to players while maintaining operational resilience.
 
-> Migrated from legacy URL: [/regions](https://docs.gameye.com/regions)
->
-> Source last updated: 2026-01-05T22:28:22.989Z
+## What a Region Represents
 
-### Purpose
+A region is a geographic routing boundary that can include one or more concrete locations/providers. You usually select region first, then Gameye resolves to an available location within that region.
 
-Regions represent geographic or logical locations where nodes/containers run.
+## Common Workflows
 
-### What you see
+- Start rollout in one primary region.
+- Add a secondary region for fallback capacity.
+- Route users by latency or geography from matchmaking.
 
-A table of regions.
+## Operational Guidance
 
-![Legacy documentation image](https://archbee-image-uploads.s3.amazonaws.com/_em5a3TH-KfZcBHkdKiWt/7QJa8UbzO_Wc4CzeiHpdI_image.png)
-
-### Common actions
-
-View-only.
+- Keep at least one fallback region for major player populations.
+- Validate image availability in each target region before rollout.
+- Monitor session health and failure rates region-by-region during launches.

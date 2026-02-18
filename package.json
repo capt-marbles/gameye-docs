@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check:seo": "node scripts/check-docs-seo.mjs",
+    "check:quality": "node scripts/check-docs-quality.mjs",
     "astro": "astro",
     "migrate:archbee": "node scripts/migrate-archbee-docs.mjs",
     "sync:openapi": "node scripts/sync-openapi-schema.mjs --version=v1"

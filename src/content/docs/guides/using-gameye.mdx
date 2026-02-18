@@ -1,12 +1,28 @@
 ---
 title: 'Using Gameye'
-description: 'Migrated from legacy Archbee docs path /using-gameye.'
+description: "Practical workflow for launching, operating, and iterating multiplayer sessions with Gameye."
 ---
 
-_Legacy migration generated file._
+This guide gives a practical day-to-day workflow for teams running multiplayer server sessions on Gameye.
 
-> Migrated from legacy URL: [/using-gameye](https://docs.gameye.com/using-gameye)
->
-> Source last updated: 2023-05-17T15:52:15.000Z
+## Standard Workflow
 
-Legacy content could not be extracted automatically for this page.
+1. Build and push a container image for your server.
+2. Verify image tags and available locations.
+3. Launch sessions through API or dashboard.
+4. Observe status/logs and troubleshoot unhealthy sessions.
+5. Stop sessions and collect artifacts when complete.
+
+## Operational Recommendations
+
+- Use labels for `environment`, `game_mode`, and `build` to simplify filtering.
+- Use stable version tags for production rollouts (`v1.2.3`) instead of mutable tags.
+- Keep at least one fallback location configured for each primary region.
+- Capture `identifier` values from API errors for support escalation.
+
+## Related Guides
+
+- [Session management](/api/session-management)
+- [Available locations](/api/available-locations)
+- [Tag verification](/api/tag-verification)
+- [Getting support](/guides/getting-support)

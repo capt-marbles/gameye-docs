@@ -2,7 +2,7 @@
 
 Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
 
-## Scope (GAM-14 to GAM-20)
+## Scope (GAM-14 to GAM-21)
 
 - Starlight docs app scaffolded and runnable locally.
 - Top-level information architecture implemented:
@@ -44,6 +44,10 @@ Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
   - shared chatbot launcher included on docs pages
   - citation rendering + confidence-gated fallback routing
   - analytics event emission via `window.dataLayer`
+- Unified navigation + cross-linking:
+  - custom docs header includes shared global links to key `gameye.com` routes
+  - docs entry pages include reciprocal links back to marketing paths
+  - bidirectional navigation pattern aligns with the marketing site header/footer docs links
 
 ## AI Chatbot Configuration
 

@@ -1,0 +1,149 @@
+---
+import config from 'virtual:starlight/user-config';
+
+import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+
+interface NavLink {
+  label: string;
+  href: string;
+  activePrefixes?: string[];
+}
+
+const currentPath = Astro.url.pathname;
+
+const navLinks: NavLink[] = [
+  { label: 'Platform', href: 'https://gameye.com/platform/' },
+  { label: 'Pricing', href: 'https://gameye.com/pricing/' },
+  { label: 'Docs', href: '/', activePrefixes: ['/'] },
+  { label: 'API', href: '/api/reference', activePrefixes: ['/api/'] },
+  {
+    label: 'Support',
+    href: '/guides/getting-support',
+    activePrefixes: ['/guides/getting-support', '/troubleshooting/'],
+  },
+  { label: 'Contact', href: 'https://gameye.com/contact-us/' },
+];
+
+const matchesPrefix = (path: string, prefix: string) =>
+  prefix === '/' ? path === '/' : path === prefix || path.startsWith(prefix);
+
+const isActive = (link: NavLink) =>
+  link.activePrefixes?.some((prefix) => matchesPrefix(currentPath, prefix)) ?? false;
+
+const shouldRenderSearch =
+  config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+---
+
+<div class="header">
+  <div class="title-wrapper sl-flex">
+    <SiteTitle />
+  </div>
+  <div class="sl-flex print:hidden">
+    {shouldRenderSearch && <Search />}
+  </div>
+  <div class="sl-hidden xl:sl-flex print:hidden right-group">
+    <nav class="cross-links" aria-label="Global navigation">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          aria-current={isActive(link) ? 'page' : undefined}
+          rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+    <div class="sl-flex social-icons">
+      <SocialIcons />
+    </div>
+    <ThemeSelect />
+    <LanguageSelect />
+  </div>
+</div>
+
+<style>
+  @layer starlight.core {
+    .header {
+      display: flex;
+      gap: var(--sl-nav-gap);
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .title-wrapper {
+      overflow: clip;
+      padding: 0.25rem;
+      margin: -0.25rem;
+      min-width: 0;
+    }
+
+    .right-group,
+    .social-icons,
+    .cross-links {
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .cross-links {
+      display: flex;
+    }
+
+    .cross-links a {
+      color: var(--sl-color-text-accent);
+      text-decoration: none;
+      font-size: 0.75rem;
+      line-height: 1;
+      white-space: nowrap;
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 999px;
+      padding: 0.32rem 0.55rem;
+      transition: 160ms ease;
+    }
+
+    .cross-links a:hover,
+    .cross-links a[aria-current='page'] {
+      color: var(--sl-color-white);
+      background: var(--sl-color-gray-6);
+      border-color: var(--sl-color-gray-4);
+    }
+
+    .social-icons::after {
+      content: '';
+      height: 2rem;
+      border-inline-end: 1px solid var(--sl-color-gray-5);
+    }
+
+    @media (min-width: 50rem) {
+      :global(:root[data-has-sidebar]) {
+        --__sidebar-pad: calc(2 * var(--sl-nav-pad-x));
+      }
+      :global(:root:not([data-has-toc])) {
+        --__toc-width: 0rem;
+      }
+      .header {
+        --__sidebar-width: max(0rem, var(--sl-content-inline-start, 0rem) - var(--sl-nav-pad-x));
+        --__main-column-fr: calc(
+          (
+              100% + var(--__sidebar-pad, 0rem) - var(--__toc-width, var(--sl-sidebar-width)) -
+                (2 * var(--__toc-width, var(--sl-nav-pad-x))) - var(--sl-content-inline-start, 0rem) -
+                var(--sl-content-width)
+            ) / 2
+        );
+        display: grid;
+        grid-template-columns:
+          minmax(
+            calc(var(--__sidebar-width) + max(0rem, var(--__main-column-fr) - var(--sl-nav-gap))),
+            auto
+          )
+          1fr
+          auto;
+        align-content: center;
+      }
+    }
+  }
+</style>

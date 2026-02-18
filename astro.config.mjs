@@ -21,6 +21,10 @@ export default defineConfig({
         { icon: 'external', label: 'Gameye Website', href: 'https://gameye.com' },
       ],
       pagefind: true,
+      routeMiddleware: ['./src/starlightRouteData.ts'],
+      components: {
+        Search: './src/components/starlight/SearchEnhancement.astro',
+      },
       editLink: {
         baseUrl: 'https://github.com/capt-marbles/gameye-docs/edit/main/',
       },

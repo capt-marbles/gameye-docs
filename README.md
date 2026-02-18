@@ -26,6 +26,10 @@ Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
   - generates canonical route mappings + redirect rules
   - writes migrated MDX pages into Starlight section folders
   - emits migration CSV artifacts under `/migration`
+- Canonical OpenAPI integration:
+  - syncs versioned OpenAPI schema artifacts into `schemas/openapi` and `public/openapi`
+  - generates `/api/reference` from the canonical schema via `starlight-openapi`
+  - supports future versioned reference mounts (e.g. `/api/v2/reference`)
 
 ## Local Development
 
@@ -55,6 +59,19 @@ Generated outputs:
 - `/migration/gam-15-url-normalization-map.csv`
 - `/migration/gam-15-generation-results.csv`
 - `/redirects/legacy-redirects.mjs`
+
+## OpenAPI Sync Workflow
+
+```bash
+npm run sync:openapi
+```
+
+Generated outputs:
+
+- `/schemas/openapi/gameye-session-api-v1.yaml`
+- `/schemas/openapi/manifest.json`
+- `/public/openapi/gameye-session-api-v1.yaml`
+- `/public/openapi/openapi.yaml`
 
 ## Repository Conventions
 

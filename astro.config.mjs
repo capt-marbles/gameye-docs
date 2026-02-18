@@ -1,7 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightOpenAPI, { createOpenAPISidebarGroup } from 'starlight-openapi';
 import { legacyRedirects } from './redirects/legacy-redirects.mjs';
+
+const canonicalOpenAPISidebarGroup = createOpenAPISidebarGroup();
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +25,26 @@ export default defineConfig({
         baseUrl: 'https://github.com/capt-marbles/gameye-docs/edit/main/',
       },
       lastUpdated: true,
+      plugins: [
+        starlightOpenAPI([
+          {
+            base: 'api/reference',
+            schema: './schemas/openapi/gameye-session-api-v1.yaml',
+            sidebar: {
+              label: 'Canonical OpenAPI (v1)',
+              group: canonicalOpenAPISidebarGroup,
+              operations: {
+                badges: true,
+                labels: 'summary',
+                sort: 'document',
+              },
+              tags: {
+                sort: 'document',
+              },
+            },
+          },
+        ]),
+      ],
       sidebar: [
         {
           label: 'Getting Started',
@@ -33,7 +56,15 @@ export default defineConfig({
         },
         {
           label: 'API',
-          autogenerate: { directory: 'api' },
+          items: [
+            { label: 'API Overview', slug: 'api' },
+            { label: 'Authentication', slug: 'api/authentication' },
+            { label: 'Session Lifecycle', slug: 'api/session-lifecycle' },
+            { label: 'Session Management', slug: 'api/session-management' },
+            { label: 'Open API Spec', slug: 'api/open-api-spec' },
+            { label: 'OpenAPI Versioning Flow', slug: 'api/versioning-and-openapi-flow' },
+            canonicalOpenAPISidebarGroup,
+          ],
         },
         {
           label: 'FAQ',

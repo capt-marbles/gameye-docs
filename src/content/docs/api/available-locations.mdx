@@ -1,0 +1,131 @@
+---
+title: 'Available Locations'
+description: 'Migrated from legacy Archbee docs path /available-locations.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/available-locations](https://docs.gameye.com/available-locations)
+>
+> Source last updated: 2026-01-05T11:48:53.541Z
+
+The available locations endpoint helps you determine which regions are currently able to host your game image. This is particularly useful for:
+
+Finding the best location for a new game session
+
+Checking server availability in different regions
+
+Measuring latency to different hosting locations
+
+## Getting Available Locations
+
+### Endpoint
+
+```txt
+GET /available-location/{image}
+```
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| image | string | Yes | The ID of the game image you want to check locations for |
+
+### Example Request
+
+```http
+GET /available-location/my-game-server HTTP/1.1
+Host: api.gameye.io
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+### Success Response
+
+On success, you'll receive a 200 OK response with a list of available locations. Regions use standardized names for clearer geographic understanding:
+
+```json
+{
+  "locations": [
+    {
+      "id": "eu-west-1",
+      "ips": [
+        "203.0.113.42"
+      ]
+    },
+    {
+      "id": "eu-central-1",
+      "ips": [
+        "198.51.100.24"
+      ]
+    },
+    {
+      "id": "us-east-1",
+      "ips": [
+        "192.0.2.15"
+      ]
+    }
+  ]
+}
+```
+
+### Error Responses
+
+| Status Code | Description |
+| --- | --- |
+| 401 | Unauthorized - Invalid bearer token |
+| 404 | Not Found - Image not found or you're not authorized to use it |
+
+## Using Location Information
+
+### IP Addresses for Latency Testing
+
+Each location in the response includes a pingable IP address that you can use to test network latency. These IPs accept ICMP ping messages, allowing you to determine which location will provide the best performance for your players.
+
+### Example: Ping Test
+
+```bash
+# Testing latency to EU West region
+ping 203.0.113.42
+
+# Testing latency to EU Central region
+ping 198.51.100.24
+```
+
+## Best Practices
+
+Here are some recommended practices when working with location data:
+
+- **Don't Cache Location Data **: The list of available locations may change, so it's best to request fresh data when needed rather than caching it
+- ** Latency-Based Location Selection **: Test latency to each location to determine the best one for your players
+- ** Fallback Locations **: Have backup locations in case your preferred location is unavailable
+- ** Regular Availability Checks**: If your application needs to create sessions frequently, periodically check location availability
+
+## Common Usage Patterns
+
+### Player-Optimized Location Selection
+
+Retrieve the list of available locations
+
+Test latency from your player's location to each available location
+
+Select the location with the lowest latency
+
+Create a new session in that location
+
+### Geographic Distribution
+
+If you have players from different regions:
+
+Group players by geographic proximity
+
+Find the best available location for each group
+
+Create sessions in multiple locations to minimize latency for all players
+
+### Availability Monitoring
+
+For applications that need high availability:
+
+Regularly check which locations are available
+
+If a previously available location becomes unavailable, redirect new sessions to alternative locations

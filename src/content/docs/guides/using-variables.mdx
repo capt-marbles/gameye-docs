@@ -1,0 +1,25 @@
+---
+title: 'Using variables'
+description: 'Migrated from legacy Archbee docs path /using-variables.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/using-variables](https://docs.gameye.com/using-variables)
+>
+> Source last updated: 2023-09-19T17:08:37.818Z
+
+We have some built-in environment variables that you can use.
+
+| Name | Description | Example value |
+| --- | --- | --- |
+| GAMEYE_SESSION_ID | Returns the UUID we used to start the session on Gameye. | MatchServerijsrr1fklsc5alpa3nvr20 |
+| GAMEYE_HOST | Returns the session host IP. | 196.235.141.34 |
+| GAMEYE_PORT\{PROTOCOL\}_\{NUMBER\} | The port number(s) used to start the container. | GAMEYE_PORT_UDP_7777":"39345GAMEYE_PORT_TCP_8080":"36913 |
+
+You can also create your own tags, which you can add to the sessions you create. This is included in the labels property of the APIs.
+
+| Name | Description | Example Value |
+| --- | --- | --- |
+| MY_CUSTOM_VAR | Your own custom variable. | value |
+| Labels | Added through the API call. | tag 1, tag 2, tag 3 |

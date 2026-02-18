@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { legacyRedirects } from './redirects/legacy-redirects.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.gameye.com',
   trailingSlash: 'never',
+  redirects: legacyRedirects,
   integrations: [
     starlight({
       title: 'Gameye Docs',
@@ -23,39 +25,27 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Getting Started',
-          items: [
-            { label: 'Overview', slug: 'getting-started' },
-            { label: 'Quickstart', slug: 'getting-started/quickstart' },
-          ],
+          autogenerate: { directory: 'getting-started' },
         },
         {
           label: 'Guides',
-          items: [
-            { label: 'Migration from Archbee', slug: 'guides/migration-from-archbee' },
-            { label: 'Versioning and Release Policy', slug: 'guides/versioning-and-release-policy' },
-          ],
+          autogenerate: { directory: 'guides' },
         },
         {
           label: 'API',
-          items: [
-            { label: 'API Overview', slug: 'api' },
-            { label: 'Session Lifecycle', slug: 'api/session-lifecycle' },
-          ],
+          autogenerate: { directory: 'api' },
         },
         {
           label: 'FAQ',
-          items: [{ label: 'Frequently Asked Questions', slug: 'faq' }],
+          autogenerate: { directory: 'faq' },
         },
         {
           label: 'Troubleshooting',
-          items: [{ label: 'Operational Troubleshooting', slug: 'troubleshooting' }],
+          autogenerate: { directory: 'troubleshooting' },
         },
         {
           label: 'Changelog',
-          items: [
-            { label: 'Changelog Index', slug: 'changelog' },
-            { label: '2026-02-18 Scaffold Release', slug: 'changelog/2026-02-18-scaffold-release' },
-          ],
+          autogenerate: { directory: 'changelog' },
         },
       ],
       head: [

@@ -1,0 +1,185 @@
+---
+title: 'Log Streaming'
+description: 'Migrated from legacy Archbee docs path /log-streaming.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/log-streaming](https://docs.gameye.com/log-streaming)
+>
+> Source last updated: 2025-10-30T16:57:44.265Z
+
+The log streaming endpoint allows you to access the stdout and stderr output from your game server containers. This is invaluable for debugging issues, monitoring game server behavior, and gathering runtime information.
+
+## Streaming Logs
+
+### Endpoint
+
+```txt
+GET /logs
+```
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| id | string | Yes | The unique ID of the session you want logs from |
+| follow | boolean | No | Whether to keep the stream open for new log entries (default: false) |
+
+### Example Request
+
+```http
+GET /logs?id=c595bc6f-8522-4a62-95cd-8742136643ea&follow=true HTTP/1.1
+Host: api.gameye.io
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+### Success Response
+
+On success, you'll receive a 200 OK response with the log output as a text stream:
+
+```txt
+2023-04-01T12:00:00Z [INFO] Game server starting...
+2023-04-01T12:00:01Z [INFO] Loading map: de_dust2
+2023-04-01T12:00:02Z [INFO] Waiting for players to connect...
+2023-04-01T12:01:15Z [INFO] Player connected: Player1
+2023-04-01T12:01:30Z [INFO] Player connected: Player2
+...
+```
+
+### Error Responses
+
+| Status Code | Description |
+| --- | --- |
+| 401 | Unauthorized - Invalid bearer token |
+| 404 | Not Found - Session doesn't exist |
+
+### Error Response Example
+
+```json
+{
+  "statusCode": 404,
+  "code": "RESOURCE_NOT_FOUND",
+  "message": "That session doesn't seem to exist.",
+  "details": "Double-check the ID.",
+  "identifier": "3bc545b7-4750-47e6-a918-c93debc58663",
+  "path": "/logs",
+  "timestamp": "2023-04-01T12:00:00Z"
+}
+```
+
+> 🔍 **Tip**: Always include the identifier when contacting support about errors. This helps us quickly trace the exact issue in our systems.
+
+## Usage Modes
+
+### Historical Logs
+
+To get all available logs up to the current moment:
+
+```http
+GET /logs?id=c595bc6f-8522-4a62-95cd-8742136643ea HTTP/1.1
+```
+
+This will return all logs that the container has written to stdout/stderr so far and then close the connection.
+
+### Live Log Streaming
+
+To keep the connection open and receive new log entries as they occur:
+
+```http
+GET /logs?id=c595bc6f-8522-4a62-95cd-8742136643ea&follow=true HTTP/1.1
+```
+
+This is useful for real-time monitoring of game server activity.
+
+## Enhanced Logging Options
+
+Two options are available for accessing logs:**Session logs API endpoint**(standard method)
+
+Described in this document
+
+Simple streaming of container logs
+
+Suitable for most use cases **Elastic-based solution**(advanced)
+
+Real-time log access with advanced search capabilities
+
+Indexed and searchable logs
+
+Advanced filtering and analysis options
+
+Contact support for access to this feature
+
+## Use Cases
+
+### Debugging Issues
+
+When players report problems, you can stream logs to:
+
+Identify error messages
+
+See warning signs
+
+Track down the source of the issue
+
+### Monitoring Game Activity
+
+Real-time log streaming can help you:
+
+See player connections and disconnections
+
+Monitor match progress
+
+Track game events
+
+### Operational Insights
+
+Logs can provide insights about:
+
+Server performance
+
+Resource usage
+
+Configuration issues
+
+## Best Practices 
+- **Stream Management**: For long-running streams with follow=true, implement proper timeout and reconnection logic in your client 
+- ** Log Parsing**: Consider implementing a log parser to extract structured data from the log stream 
+- ** Sequential Analysis**: For debugging complex issues, first get historical logs, then keep the stream open for follow-up activities 
+- ** Log Retention**: Remember that logs are only available while the session is running and shortly after it stops 
+- ** Consider Elastic Logging**: For advanced use cases, ask about our Elastic-based logging solution
+
+## Implementation Examples
+
+### Simple HTTP Client
+
+```python
+import requests
+
+# Stream logs with follow mode
+response = requests.get(
+    "https://api.gameye.io/logs",
+    params={"id": "c595bc6f-8522-4a62-95cd-8742136643ea", "follow": True},
+    headers={"Authorization": "Bearer YOUR_TOKEN_HERE"},
+    stream=True  # Important for handling streaming responses
+)
+
+# Process the log stream
+for line in response.iter_lines():
+    if line:
+        decoded_line = line.decode('utf-8')
+        print(decoded_line)
+        # Process log line here
+```
+
+### Web Dashboard Integration
+
+For web applications, you might want to:
+
+Fetch logs on demand when an admin views a session
+
+Display logs in a scrollable, searchable interface
+
+Highlight errors and warnings
+
+Allow filtering by log level or keywords

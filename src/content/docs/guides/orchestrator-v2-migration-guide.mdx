@@ -1,0 +1,251 @@
+---
+title: 'Orchestrator V2 Migration Guide'
+description: 'Migrated from legacy Archbee docs path /orchestrator-v2-migration-guide.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/orchestrator-v2-migration-guide](https://docs.gameye.com/orchestrator-v2-migration-guide)
+>
+> Source last updated: 2025-03-03T17:32:34.943Z
+
+## What's New? 🚀
+
+We're excited to announce our completely rebuilt orchestration platform! After months of development and successful testing with our larger customers, V2 brings significant improvements to every aspect of our service:
+
+### Performance & Reliability
+
+- **Performance**: Tested with hundreds of session-run requests per second, a major leap forward in throughput
+-**Reliability**: Improved reliability of session operations, more graceful handling of edge cases leading to a reduced number of errors
+-**Scalability**: Better horizontal scaling capabilities to handle your growing needs
+-**Maintainability**: Rebuilt from the ground up, making it easier for us to add features and respond to your needs
+
+### New Features
+
+-**Enhanced Session Management**: New filtering options and detailed container states
+-**Improved Error Handling**: Detailed error responses with correlation IDs for better debugging
+-**AWS-Aligned Regions**: Standardized region names for better geographical understanding
+-**Resolved Port Conflicts**: New dedicated port range for more reliable game server startup
+-**Build Verification**: New endpoint to check if your builds are ready in specific regions
+-**Better Logging**: Elastic-based solution for real-time log access and analysis
+
+## Making the Switch
+
+### Quick Start
+
+1. Contact our support team to receive your V2 credentials and endpoints
+2. Update your integration with the new endpoints
+3. Add a new webhook for your repositories in DockerHub pointing to the URL we'll provide
+4. Test your integration in the sandbox environment first
+
+> 💡**Good News**: V2 maintains backwards compatibility with V1's API contract, making migration straightforward. You can migrate at your own pace, and your existing integrations will continue to work.
+
+### Infrastructure Changes
+
+V2 runs on a separate infrastructure from V1, allowing for a smooth transition period. This separation ensures stability during migration and lets you test V2 thoroughly before fully switching over.
+
+## Key Changes
+
+### Region Names
+
+We've simplified our infrastructure model to align with industry standards:
+
+- Now using AWS-aligned region names (e.g., eu-west-1, us-east-1)
+- The location field in POST /session only accepts these standardized region names
+- This change brings several benefits:
+  - Clearer geographic understanding of where your servers are deployed
+  - Consistency with widely-used cloud infrastructure naming
+  - Simplified latency calculations and region selection
+
+The GET /available-location endpoint has been updated to reflect these changes:
+
+- Now returns only region information
+- Each region includes a single pingable IP for latency testing
+- Example response:
+
+```json
+{
+    "locations": [
+        {
+            "id": "eu-west-1",
+            "ips": ["{{IPV4_ADDRESS}}"]
+        },
+        {
+            "id": "eu-central-1",
+            "ips": ["{{IPV4_ADDRESS}}"]
+        }
+    ]
+}
+```
+
+### Port Range Update
+
+We've resolved a long-standing issue with port conflicts:
+
+-**Previous Range**: 32768 - 60999
+  - Caused conflicts with Linux kernel's ephemeral port range
+  - Led to occasional game server startup failures
+-**New Range**: 20000 - 30000
+  - Eliminates port conflicts entirely
+  - Provides dedicated range for game servers
+  - Improves reliability of server startup
+
+### Session Management Updates
+
+### Deprecated Features
+
+We've made changes to simplify the platform:
+
+- ❌ advantages field (Removed)
+  - Completely removed from the API
+  - Replaced by our improved region-based deployment model
+
+### New Session List Features
+
+The enhanced GET /session endpoint now provides more control and visibility:**New Query Parameters**:
+
+| Parameter | Description |
+| --- | --- |
+| all | Include non-running sessions in the results |
+| filterNot ✨ | NEW! Exclude sessions matching specific criteria |**New Response Fields**:
+
+| Field | Description |
+| --- | --- |
+| tag | Build tag of the container image |
+| status | Container state (see states table below) |**Container States**:
+
+| Status | Description |
+| --- | --- |
+| created | Initial container creation |
+| running | Actively running and healthy |
+| restarting | Currently restarting |
+| exited | Gracefully stopped |
+| dead | Terminated unexpectedly |
+| draining | Preparing for shutdown |
+| shuttingdown | Currently shutting down |
+| server_unreachable | Host communication lost |**Filtering Capabilities**:
+
+1.**Include Filter**(filter):Returns sessions matching ALL specified criteria.
+2.**NEW! Exclude Filter**(filterNot):A powerful new way to exclude sessions that match specific criteria. This complements the existing filter parameter by allowing you to define what you don't want to see in the results.
+3.**Historical Sessions**(all):Include non-running sessions (like exited ones) in the results.
+
+You can combine these filters for precise querying:
+
+```txt
+GET /session?all=true&filter[region]=eu-west-1&filterNot[status]=dead
+```
+
+This would return all sessions (including exited ones) in eu-west-1, excluding dead sessions.
+
+### Session Creation Enhancements
+
+We've made improvements to the session creation process:
+
+-**Optional Session ID**: The id field in POST /session is now optional
+  - You can provide your own UUID or let the system generate one
+  - System-generated IDs use Google's RFC4122-compliant implementation
+  - Provides flexibility while maintaining unique identification
+
+### Improved Error Handling
+
+We've completely revamped our error reporting to help you quickly identify and resolve issues:
+
+```json
+{
+    "statusCode": 404,
+    "code": "RESOURCE_NOT_FOUND",
+    "message": "Unable to start session.",
+    "details": "Please make sure the correct image is specified.",
+    "identifier": "3bc545b7-4750-47e6-a918-c93debc58663",
+    "path": "/session",
+    "timestamp": "2025-01-16T07:51:49Z"
+}
+```
+
+> 🔍**Tip**: Always include the identifier when contacting support about errors. This helps us quickly trace the exact issue in our systems.
+
+### Logging Changes
+
+We've enhanced our logging system with robust new capabilities:
+
+-**Available logging options**:
+  1. Use our Elastic-based solution
+    - Real-time log access
+    - Advanced search capabilities
+    - Contact support for access
+  2. Session logs API endpoint
+    - Standard access to container logs
+    - Streaming capabilities
+
+### Build Tag Verification
+
+We've added a new endpoint to help you verify when your builds are ready to use in our fleet:
+
+```txt
+GET /tag/{region}/{image}/{version}
+```
+
+This endpoint lets you check if a specific version of your game server is available in a region before attempting to use it:
+
+-**Parameters**:
+  - region: The AWS region name (e.g., eu-west-1)
+  - image: Your game server image name
+  - version: The Docker tag of your build
+-**Response**: Returns \{"exists": true\} if the build is ready to use
+-**Use cases**:
+  - Verify builds are propagated before deployment
+  - Validate CI/CD pipelines
+  - Troubleshoot missing or failed builds
+
+Example request:
+
+```sh
+curl -H 'Authorization: Bearer {{API_TOKEN}}' \
+     https://api.{{DOMAIN}}/tag/eu-west-1/my-game-server/1.0.0
+```
+
+Example responses:
+
+Success - build is available:
+
+```json
+{
+    "exists": true
+}
+```
+
+Build not found:
+
+```json
+{
+    "statusCode": 404,
+    "code": "RESOURCE_NOT_FOUND",
+    "message": "Image not found or you are not authorized to use this image.",
+    "details": "Please verify the image name and tag are correct.",
+    "identifier": "3bc545b7-4750-47e6-a918-c93debc58663",
+    "path": "/tag/eu-west-1/my-game-server/1.0.0",
+    "timestamp": "2025-01-16T07:51:49Z"
+}
+```
+
+## Coming Soon
+
+We're actively working on exciting new features:
+
+- V2 API with improved naming conventions
+- Sidecar support for auxiliary services
+- Lifecycle webhooks for better integration
+- Container draining tracking for graceful shutdowns
+- Enhanced monitoring and metrics
+- Self-service admin dashboard (planned for 2025)
+
+## Need Help?
+
+Our technical support team is ready to assist with your migration:
+
+- Get help with migration planning
+- Troubleshoot integration issues
+- Access to our Elastic logging solution
+- Best practices consultation
+
+Contact us if you have any questions or need guidance. We're committed to making your migration to V2 as smooth as possible.

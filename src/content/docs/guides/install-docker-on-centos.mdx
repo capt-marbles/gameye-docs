@@ -1,0 +1,83 @@
+---
+title: 'Install Docker on CentOS'
+description: 'Migrated from legacy Archbee docs path /install-docker-on-centos.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/install-docker-on-centos](https://docs.gameye.com/install-docker-on-centos)
+>
+> Source last updated: 2023-05-26T09:35:09.000Z
+
+Installing Docker on CentOS is fairly straightforward and only takes a few commands. So let's go through it step by step.
+
+## 1. Remove Docker
+
+Before we start, we need to remove any Docker dependencies. If you've never installed Docker, don't worry. You can skip this step.
+
+```bash
+$ sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+```
+
+## 2. Set up the repository
+
+We need to install the yum-utils package. yum-utils gives us the yum-config-manager that we need to set up the repository.
+
+```bash
+$ sudo yum install -y yum-utils
+
+$ sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+## 3. Install Docker
+
+With yum-utils installed, we can go ahead and install Docker.
+
+```bash
+$ sudo yum install docker-ce docker-ce-cli containerd.io
+```
+
+## 4. Test its working
+
+Now everything is installed, we should test if it's working. So start Docker.
+
+```bash
+$ sudo systemctl start docker
+```
+
+Now, start a container to check that Docker is installed correctly.
+
+```bash
+$ sudo docker run hello-world
+```
+
+## 5. Add non-root users
+
+You'll notice that if you want to start Docker as a non-root user, you'll probably run into this error.
+
+```bash
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied
+```
+
+Don't worry. There's an easy fix for that. First, let's create the Docker group.
+
+```bash
+$ sudo groupadd docker
+```
+
+Then add the non-root user to the group.
+
+```bash
+$ sudo usermod -aG docker $USER
+```
+
+With all that done, you've got Docker set up and ready to use.

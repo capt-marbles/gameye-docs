@@ -1,0 +1,85 @@
+---
+title: 'Session Management'
+description: 'Migrated from legacy Archbee docs path /session-management.'
+---
+
+_GAM-15 curated migration page._
+
+> Migrated from legacy URL: [/session-management](https://docs.gameye.com/session-management)
+>
+> Source last updated: 2026-01-05T11:48:54.970Z
+
+Session management covers create, list, filter, and stop operations for game server containers.
+
+## Create a Session
+
+`POST /session`
+
+Required payload fields:
+
+- `location` (string)
+- `image` (string)
+
+Common optional fields:
+
+- `id` (UUID)
+- `env` (object)
+- `args` (array)
+- `labels` (object)
+- `restart` (boolean)
+- `version` (string)
+
+```json
+{
+  "location": "eu-central-1",
+  "image": "my-game-server",
+  "args": ["--tickrate=128"],
+  "restart": false
+}
+```
+
+## List Sessions
+
+`GET /session`
+
+Supported filters include:
+
+- `all=true` to include non-running sessions.
+- `filter[...]` to include matching sessions.
+- `filterNot[...]` to exclude matching sessions.
+
+```txt
+GET /session?all=true&filter[location]=eu-central-1&filterNot[status]=dead
+```
+
+## Stop a Session
+
+`DELETE /session/{id}`
+
+Use this when the match/server lifecycle is complete.
+
+## Status Values
+
+Typical status values returned by list operations:
+
+- `created`
+- `running`
+- `restarting`
+- `exited`
+- `dead`
+- `draining`
+- `shuttingdown`
+- `server_unreachable`
+
+## Best Practices
+
+- Let Gameye generate IDs unless your workflow requires custom IDs.
+- Apply labels for fleet filtering and analytics.
+- Stop inactive sessions promptly.
+- Capture `identifier` from error payloads for support escalation.
+
+## Related
+
+- [Launch a session](/api/launch-a-session)
+- [Stop a session](/api/stop-a-session)
+- [List current sessions](/api/list-current-sessions)

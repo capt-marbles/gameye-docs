@@ -1,0 +1,127 @@
+---
+title: 'Tag Verification'
+description: 'Migrated from legacy Archbee docs path /tag-verification.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/tag-verification](https://docs.gameye.com/tag-verification)
+>
+> Source last updated: 2025-10-30T16:57:46.175Z
+
+The tag verification endpoint allows you to check if a specific version (tag) of your game image is available in a particular region of the Gameye fleet. This is useful when you need to ensure that a specific version of your game server is ready to be deployed.
+
+## Checking Tag Availability
+
+### Endpoint
+
+```txt
+GET /tag/{region}/{image}/{version}
+```
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| region | string | Yes | The region name to check (e.g., "eu-west-1", "eu-central-1") |
+| image | string | Yes | The ID of your game image |
+| version | string | Yes | The image version (Docker tag) you want to check |
+
+### Example Request
+
+```http
+GET /tag/eu-central-1/my-game-server/v1.2.3 HTTP/1.1
+Host: api.gameye.io
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+### Success Response
+
+On success, you'll receive a 200 OK response with a simple JSON object indicating whether the tag exists:
+
+```json
+{
+  "exists": true
+}
+```
+
+If the tag doesn't exist, the response will be:
+
+```json
+{
+  "exists": false
+}
+```
+
+### Error Responses
+
+| Status Code | Description |
+| --- | --- |
+| 400 | Bad Request - Invalid request format |
+| 401 | Unauthorized - Invalid bearer token |
+| 404 | Not Found - Image not found or you're not authorized to use it |
+
+### Error Response Example
+
+```json
+{
+  "statusCode": 404,
+  "code": "RESOURCE_NOT_FOUND",
+  "message": "Image not found or you are not authorized to use this image.",
+  "details": "Please verify the image name and tag are correct.",
+  "identifier": "3bc545b7-4750-47e6-a918-c93debc58663",
+  "path": "/tag/eu-central-1/my-game-server/1.0.0",
+  "timestamp": "2023-04-01T12:00:00Z"
+}
+```
+
+## Use Cases
+
+### Version Validation
+
+Before creating a session with a specific version, you can verify that the version is available in your target region:
+
+Call the tag verification endpoint
+
+If exists is true, proceed with creating the session
+
+If exists is false, fall back to another version or notify administrators
+
+### Rolling Updates
+
+When rolling out a new version of your game server:
+
+Deploy the new version to your container registry
+
+Use the tag verification endpoint to monitor when the new version becomes available across regions
+
+Begin creating new sessions with the new version once it's available
+
+### Availability Monitoring
+
+For operations monitoring:
+
+Regularly check critical versions of your game server
+
+Alert operations staff if a required version becomes unavailable
+
+## Best Practices
+
+- **Version Strategy **: Use a clear versioning strategy for your game server images (e.g., semantic versioning)
+- ** Pre-Flight Checks **: Before creating a session with a specific version, verify its availability
+- ** Fallback Mechanisms **: Have a fallback strategy if your preferred version is unavailable
+- ** Multiple Regions**: Remember that image availability can vary by region
+
+## Example: Version Rollout Process
+
+```txt
+1. Build new game server version v1.2.3
+2. Push to container registry
+3. Wait for distribution (may take some time)
+4. Check availability in each region:
+   GET /tag/eu-west-1/my-game-server/v1.2.3
+   GET /tag/eu-central-1/my-game-server/v1.2.3
+   GET /tag/us-east-1/my-game-server/v1.2.3
+5. When available in all regions, update session creation process
+   to use the new version
+```

@@ -1,0 +1,37 @@
+---
+title: '/session'
+description: 'Migrated from legacy Archbee docs path /session.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/session](https://docs.gameye.com/session)
+>
+> Source last updated: 2025-04-08T15:47:35.702Z
+
+## API Endpoint
+
+```http
+
+POST https://api.sandbox-gameye.gameye.net/session
+
+```
+
+Allocate a new game session in a specific region. Each session is to be identified by a unique identifier that is provided by the caller. It is recommended to use a UUID.
+
+### Body Parameters
+- `body` (object, required)
+
+### Responses
+
+- `201`: A session has successfully been started on a machine in the provided location.
+
+- `401`: You are not authorized to start a session. Please make sure that the included bearer token is correct.
+
+- `404`: The request contains a location, image or organization that does not exist.
+
+- `409`: Cannot start a session with the provided id. Please use a unique identifier for your session. It is recommended to use a UUID.
+
+- `420`: This session can not be started in the provided location currently. This could also be the result of starting too many sessions in a short period of time. Please try again later!
+
+- `422`: Bad request. This may imply that the given request has invalid syntax.

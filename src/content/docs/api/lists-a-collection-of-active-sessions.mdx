@@ -1,0 +1,35 @@
+---
+title: 'Lists a collection of active sessions.'
+description: 'Migrated from legacy Archbee docs path /lists-a-collection-of-active-sessions.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/lists-a-collection-of-active-sessions](https://docs.gameye.com/lists-a-collection-of-active-sessions)
+>
+> Source last updated: 2025-04-08T15:45:41.886Z
+
+## Lists a collection of active sessions.
+
+```http
+
+GET https://api.sandbox-gameye.gameye.net/session
+
+```
+
+Lists all of the active sessions that are tied to your API token. Note that it only returns sessions that are active. Those that have already been stopped, will not be included.
+
+### Query Parameters
+- `all` (boolean, optional): Whether to return all sessions regardless of status in the response. The default value for this is 'false', which would only return running sessions.
+- `location` (string, optional): Filter results by location.
+- `image` (string, optional): Filter results by image.
+- `tag` (string, optional): Filter results by tag.
+- `host` (string, optional): Filter results by host IP address.
+- `playerCount` (object, optional): Filter results by player count. The following keys are available: - 'lt': Less than - 'gt': Greater than Combined with the 'location' filter above, this would for example allow users to search for specific sessions within a specific region and with less than X amount of players which is good to have for backfill purposes.
+- `filter` (object, optional): A list or record of tags to filter a list of sessions on. If none of the sessions meet the provided filter criteria, naturally an empty list of sessions is returned.
+
+### Responses
+
+- `200`: Successfully looked up all of the active sessions that are tied to your API token.
+
+- `401`: You are not authorized to fetch a list of active sessions. Please make sure that the included bearer token is correct.

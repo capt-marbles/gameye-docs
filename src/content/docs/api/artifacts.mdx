@@ -1,0 +1,112 @@
+---
+title: 'Artifacts'
+description: 'Migrated from legacy Archbee docs path /artifacts.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/artifacts](https://docs.gameye.com/artifacts)
+>
+> Source last updated: 2025-10-30T16:59:13.150Z
+
+The artifacts endpoint allows you to download files from game session containers after they've been terminated. This is useful for retrieving logs, save files, or any other data generated during the session.
+
+## Downloading Artifacts
+
+### Endpoint
+
+```txt
+GET /artifacts
+```
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| session | string | Yes | The ID of the session to download artifacts from |
+| path | string | Yes | The absolute path inside the container to the file or folder you want to download |
+
+### Example Request
+
+```http
+GET /artifacts?session=c595bc6f-8522-4a62-95cd-8742136643ea&path=/home/gameserver/logs/server.log HTTP/1.1
+Host: api.gameye.io
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+### Response
+
+When successful, the response will be a 200 OK with the artifact file in .tar.gz format. The content type will be application/x-tar.
+
+### Error Responses
+
+| Status Code | Description |
+| --- | --- |
+| 401 | Unauthorized - Invalid bearer token |
+| 404 | Not Found - Session doesn't exist or has been removed from the host machine |
+
+### Error Response Example
+
+```json
+{
+  "statusCode": 404,
+  "code": "RESOURCE_NOT_FOUND",
+  "message": "Could not find a session with the given session id.",
+  "details": "It is possible that either the session has never existed at all or the container's lifespan on the machine has expired.",
+  "identifier": "3bc545b7-4750-47e6-a918-c93debc58663",
+  "path": "/artifacts",
+  "timestamp": "2023-04-01T12:00:00Z"
+}
+```
+
+> 🔍 **Tip**: Always include the identifier when contacting support about errors. This helps us quickly trace the exact issue in our systems.
+
+## Important Notes
+
+Here are some key things to know about downloading artifacts:
+
+- **Session Must Be Stopped **: Artifacts are only available after a session has been terminated
+- ** Size Limit **: Please limit your download size to a maximum of 100MB
+- ** Limited Availability **: Artifacts are only available until the container is removed from its host machine. This means your logs may not be available indefinitely after termination.
+- ** Path Format **: Use absolute Unix paths (starting with /) when specifying the path to the artifact
+- ** Downloading Folders**: You can specify a folder path to download all of its contents
+
+## Common Use Cases
+
+Downloading game server logs for debugging purposes
+
+Retrieving player statistics or match results
+
+Collecting crash dumps for analysis
+
+Backing up save files or game state
+
+## Best Practices
+
+Download important artifacts as soon as possible after stopping a session
+
+Use specific paths to download only what you need
+
+Consider implementing automatic artifact collection in your workflow
+
+Parse and process the downloaded data to extract useful information
+
+## Example Applications
+
+### Downloading Server Logs
+
+```http
+GET /artifacts?session=c595bc6f-8522-4a62-95cd-8742136643ea&path=/home/gameserver/logs HTTP/1.1
+```
+
+### Retrieving a Specific Match Report
+
+```http
+GET /artifacts?session=c595bc6f-8522-4a62-95cd-8742136643ea&path=/home/gameserver/matches/match_123.json HTTP/1.1
+```
+
+### Getting a Crash Dump
+
+```http
+GET /artifacts?session=c595bc6f-8522-4a62-95cd-8742136643ea&path=/home/gameserver/crashdump.log HTTP/1.1
+```

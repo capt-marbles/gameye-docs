@@ -1,0 +1,32 @@
+---
+title: 'Generating logs'
+description: 'Migrated from legacy Archbee docs path /generating-logs.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/generating-logs](https://docs.gameye.com/generating-logs)
+>
+> Source last updated: 2023-06-14T16:22:08.000Z
+
+There are two types of logs you can get about your containers.
+
+### Getting Docker logs
+
+Show information from a running container related to your game binary. In some cases, [docker logs](https://docs.docker.com/config/containers/logging/) might not show useful information unless you take a few extra steps.
+
+You can use our platform to query these logs through our endpoint:
+
+https://api.gameye.io/query/log
+
+### Getting artifact logs
+
+Starts downloading an artifact. This could be a file or a folder inside the container. The path should be an absolute Unix path to a specific file or folder.
+
+You’ll get the artifact in a .tar.gz archive with your file or folder.
+
+> **INFO:** Please limit your download size to a maximum of 100 MB.
+
+You can use our platform to query this folder or file through the endpoint:
+
+https://api.gameye.io/artifacts

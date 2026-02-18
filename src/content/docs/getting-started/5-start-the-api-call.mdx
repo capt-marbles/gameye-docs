@@ -1,0 +1,35 @@
+---
+title: '5. Start the API call'
+description: 'Migrated from legacy Archbee docs path /5-start-the-api-call.'
+---
+
+_GAM-15 curated migration page._
+
+> Migrated from legacy URL: [/5-start-the-api-call](https://docs.gameye.com/5-start-the-api-call)
+>
+> Source last updated: 2023-06-22T16:26:00.000Z
+
+After your image is available in Gameye, create a session using the Session API.
+
+## Call the Session Endpoint
+
+Use the session endpoint and include your bearer token:
+
+```bash
+curl \
+ -X POST https://api.gameye.io/session \
+ -H "Authorization: Bearer $ACCESS_TOKEN" \
+ -H "Content-Type: application/json" \
+ -d '{"id":"f7965a22-e327-4541-a30e-8262890d3a29","location":"europe","image":"my-very-special-game","env":{"my-secret":"<my_secret_value>"},"args":["--max-players=8"],"labels":{"my-example-tag":"1","another-example-tag":"3"},"restart":false}'
+```
+
+## Confirm It Started
+
+A successful response should include host and port allocation for the containerized session. Use that response data to connect players.
+
+If startup fails, contact support on [Discord](https://bit.ly/3oZZaGR) with the error payload and identifier.
+
+## Next
+
+- [Session endpoint reference](/api/session)
+- [Session management guide](/api/session-management)

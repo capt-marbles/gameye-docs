@@ -1,0 +1,31 @@
+---
+title: '/session/player/join'
+description: 'Migrated from legacy Archbee docs path /sessionplayerjoin.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/sessionplayerjoin](https://docs.gameye.com/sessionplayerjoin)
+>
+> Source last updated: 2025-04-08T15:45:41.886Z
+
+## API Endpoint
+
+```http
+
+PUT https://api.sandbox-gameye.gameye.net/session/player/join
+
+```
+
+### Body Parameters
+- `body` (object, required)
+
+### Responses
+
+- `200`: One or more player IDs have been registered as having joined this session.
+
+- `401`: You are not authorized to start a session. Please make sure that the included bearer token is correct.
+
+- `404`: The provided session does not exist.
+
+- `422`: Bad request. This may imply that the given request has invalid syntax.

@@ -1,0 +1,10 @@
+# Gameye Docs AI Context Map
+site: https://docs.gameye.com
+sitemap: https://docs.gameye.com/sitemap-index.xml
+docs_home: https://docs.gameye.com/
+api_reference: https://docs.gameye.com/api/reference
+marketing_hub: https://gameye.com/docs/
+platform: https://gameye.com/platform/
+pricing: https://gameye.com/pricing/
+comparison: https://gameye.com/comparison/
+contact: https://gameye.com/contact-us/

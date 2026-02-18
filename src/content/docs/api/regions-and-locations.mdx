@@ -1,0 +1,44 @@
+---
+title: 'Regions and locations'
+description: 'Migrated from legacy Archbee docs path /regions-and-locations.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/regions-and-locations](https://docs.gameye.com/regions-and-locations)
+>
+> Source last updated: 2024-08-15T10:54:18.078Z
+
+By default, we have ten regions you can use. Speak with your account manager to check whether you have access to them all.
+
+Here are the codes that we use to refer to each region:
+
+| **Region **|** Locations**|
+| --- | --- |
+| eu-west | e.g. London, Paris, Amsterdam & Frankfurt |
+| eu-east | e.g. Warsaw |
+| na-east | e.g. Washington DC, Ashburn, Manassas, Miami & New York |
+| na-central | e.g. Dallas & Chicago |
+| na-west | e.g. San Jose, Los Angeles, Seattle & Santa Clara |
+| sa-east | e.g. Sao Paulo |
+| asia-east | e.g. Singapore & Hong Kong |
+| asia-northeast | e.g. Tokyo & Seoul |
+| oce-east | e.g. Sydney |
+
+Locations can vary within a region as we constantly look for the best sites and providers, check with our support team if you'd like to know what specific locations are available.
+
+>**INFO:** If you want a location that's not on this list, let us know, and we will do what we can to accommodate your needs. The regional breakdown can also depend on the matchmaker you choose to use, please inform the support team of any nuances that may not match what we have above as there might be things that can be done to aid your custom scenarios
+
+### How to make a region-specific request
+
+```json
+"location": "eu-west",
+```
+
+## What's the difference between regions and locations?
+
+A region is just a collection of different geographical locations. However, each location might have different (or multiple) providers. By default, we automatically pick the best location inside a region to create your session based on availability.
+
+For example, if you pick **eu-west** we launch sessions in Amsterdam, London, Paris or Frankfurt instead depending on what is available. But we wouldn't scale across regions. So, in this example, we wouldn't launch in Hong Kong. This ensures that the session will be a good experience for the player while letting us scale to meet your demand.
+
+And, if there's a problem, we can switch off individual locations or providers. This stops us from trying to spin up more sessions in a location that might be having problems, like a denial of service (DDoS) attack. Instead, we can deploy sessions on healthy providers or locations.

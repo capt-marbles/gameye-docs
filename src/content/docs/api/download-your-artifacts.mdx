@@ -1,0 +1,30 @@
+---
+title: 'Download your artifacts'
+description: 'Migrated from legacy Archbee docs path /download-your-artifacts.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/download-your-artifacts](https://docs.gameye.com/download-your-artifacts)
+>
+> Source last updated: 2024-09-10T14:48:40.020Z
+
+Starts downloading an artifact. This could be a file or a folder inside the underlying container. So make sure the path is an absolute Unix path to a specific file or folder.
+
+Note: You can only download the artifact after you've stopped the session. You'll then download it directly from the container itself. The artifact will be a .tar.gz archive containing your file or folder.
+
+We'll remove the artifacts when we remove the container from the host machine. That means you could lose them if you don't grab them in time, container data is held on the machine for a duration of 4 hours before being cleared to retain space.
+
+> **INFO:** Please limit your download to 100mb.
+
+## Download artifact
+
+```http
+
+GET https://api.gameye.io/artifacts
+
+```
+
+### Path Parameters
+- `session` (string, required): The unique ID of the session you're downloading the artifact from.
+- `path` (string, required): The local path inside the container for the target file or folder that you want to download.

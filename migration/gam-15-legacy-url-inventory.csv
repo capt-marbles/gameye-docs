@@ -1,0 +1,95 @@
+legacy_url,legacy_path,legacy_slug,legacy_title,legacy_lastmod,source_root,canonical_path
+https://docs.gameye.com/api,/api,api,API,2023-05-16T14:07:05.000Z,api,/api
+https://docs.gameye.com/faqs,/faqs,faqs,FAQs,2023-05-16T14:12:15.000Z,faqs,/faq
+https://docs.gameye.com/creating-a-dockerhub-account,/creating-a-dockerhub-account,creating-a-dockerhub-account,Creating a Dockerhub account,2023-06-22T17:25:15.000Z,guides,/guides/creating-a-dockerhub-account
+https://docs.gameye.com/install-docker-on-centos,/install-docker-on-centos,install-docker-on-centos,Install Docker on CentOS,2023-05-26T09:35:09.000Z,guides,/guides/install-docker-on-centos
+https://docs.gameye.com/install-docker-on-ubuntu-or-debian,/install-docker-on-ubuntu-or-debian,install-docker-on-ubuntu-or-debian,Install Docker on Ubuntu or Debian,2023-05-17T15:51:35.000Z,guides,/guides/install-docker-on-ubuntu-or-debian
+https://docs.gameye.com/download-your-artifacts,/download-your-artifacts,download-your-artifacts,Download your artifacts,2024-09-10T14:48:40.020Z,api,/api/download-your-artifacts
+https://docs.gameye.com/troubleshooting,/troubleshooting,troubleshooting,Troubleshooting,2023-05-16T14:12:21.000Z,troubleshooting,/troubleshooting
+https://docs.gameye.com/list-current-sessions,/list-current-sessions,list-current-sessions,List current sessions,2023-06-22T20:31:25.000Z,api,/api/list-current-sessions
+https://docs.gameye.com/untitled,/untitled,untitled,Untitled,2025-04-08T15:48:58.508Z,untitled,/api
+https://docs.gameye.com/list-available-locations,/list-available-locations,list-available-locations,List available locations,2023-06-22T21:15:36.000Z,api,/api/list-available-locations
+https://docs.gameye.com/selecting-the-correct-build,/selecting-the-correct-build,selecting-the-correct-build,Selecting the correct build,2024-08-02T13:40:18.921Z,guides,/guides/selecting-the-correct-build
+https://docs.gameye.com/orchestrator-v2-migration-guide,/orchestrator-v2-migration-guide,orchestrator-v2-migration-guide,Orchestrator V2 Migration Guide,2025-03-03T17:32:34.943Z,guides,/guides/orchestrator-v2-migration-guide
+https://docs.gameye.com/bare-metal,/bare-metal,bare-metal,Bare metal,2023-07-04T16:04:09.457Z,glossary,/guides/bare-metal
+https://docs.gameye.com/get-all-logs,/get-all-logs,get-all-logs,Get all logs,2023-09-06T18:32:59.386Z,api,/api/get-all-logs
+https://docs.gameye.com/api-reference,/api-reference,api-reference,API Reference,2023-05-17T11:48:53.000Z,api,/api/api-reference
+https://docs.gameye.com/get-real-time-logs,/get-real-time-logs,get-real-time-logs,Get real-time logs,2023-06-22T20:50:49.000Z,api,/api/get-real-time-logs
+https://docs.gameye.com/error-handling,/error-handling,error-handling,Error handling,2023-07-06T11:56:30.746Z,api,/api/error-handling
+https://docs.gameye.com/gameye-session-api,/gameye-session-api,gameye-session-api,Gameye Session API,2026-01-08T10:28:04.119Z,untitled,/api/gameye-session-api
+https://docs.gameye.com/download-an-artifact-file-from-the-underlying-container,/download-an-artifact-file-from-the-underlying-container,download-an-artifact-file-from-the-underlying-container,Download an artifact file from the underlying container.,2025-04-08T15:45:41.886Z,untitled,/api/download-an-artifact-file-from-the-underlying-container
+https://docs.gameye.com/17ED-untitled,/17ED-untitled,17ed-untitled,Untitled,2026-01-08T10:27:49.375Z,17ed-untitled,/guides/user-manual
+https://docs.gameye.com/user-manual,/user-manual,user-manual,User Manual,2026-01-08T12:19:12.096Z,17ed-untitled,/guides/user-manual
+https://docs.gameye.com/nodes,/nodes,nodes,Nodes,2026-01-08T12:05:11.209Z,17ed-untitled,/guides/nodes
+https://docs.gameye.com/applications,/applications,applications,Applications,2026-01-27T11:23:10.896Z,17ed-untitled,/guides/applications
+https://docs.gameye.com/stop-a-session,/stop-a-session,stop-a-session,Stop a session,2023-12-04T17:59:53.654Z,api,/api/stop-a-session
+https://docs.gameye.com/getting-started,/getting-started,getting-started,Getting started,2023-07-05T10:17:53.791Z,getting-started,/getting-started
+https://docs.gameye.com/lists-a-collection-of-active-sessions,/lists-a-collection-of-active-sessions,lists-a-collection-of-active-sessions,Lists a collection of active sessions.,2025-04-08T15:45:41.886Z,untitled,/api/lists-a-collection-of-active-sessions
+https://docs.gameye.com/available-locations,/available-locations,available-locations,Available Locations,2026-01-05T11:48:53.541Z,untitled,/api/available-locations
+https://docs.gameye.com/log-streaming,/log-streaming,log-streaming,Log Streaming,2025-10-30T16:57:44.265Z,untitled,/api/log-streaming
+https://docs.gameye.com/describes-a-single-session,/describes-a-single-session,describes-a-single-session,Describes a single session.,2025-04-08T15:45:41.886Z,untitled,/api/describes-a-single-session
+https://docs.gameye.com/tag-verification,/tag-verification,tag-verification,Tag Verification,2025-10-30T16:57:46.175Z,untitled,/api/tag-verification
+https://docs.gameye.com/get-a-list-of-available-locations,/get-a-list-of-available-locations,get-a-list-of-available-locations,Get a list of available locations,2025-04-08T15:45:41.886Z,untitled,/api/get-a-list-of-available-locations
+https://docs.gameye.com/authentication,/authentication,authentication,Authentication,2025-10-30T16:13:36.977Z,untitled,/api/authentication
+https://docs.gameye.com/gameye-session-api-overview,/gameye-session-api-overview,gameye-session-api-overview,Gameye Session API Overview,2025-10-30T16:16:30.796Z,untitled,/api/gameye-session-api-overview
+https://docs.gameye.com/active-containers,/active-containers,active-containers,Active Containers,2026-01-08T12:04:26.312Z,17ed-untitled,/guides/active-containers
+https://docs.gameye.com/regions-and-locations,/regions-and-locations,regions-and-locations,Regions and locations,2024-08-15T10:54:18.078Z,api,/api/regions-and-locations
+https://docs.gameye.com/using-photon-fusion,/using-photon-fusion,using-photon-fusion,Using Photon Fusion,2024-09-20T12:50:36.441Z,guides,/guides/using-photon-fusion
+https://docs.gameye.com/using-container-labels,/using-container-labels,using-container-labels,Using container labels,2023-07-06T00:19:59.256Z,guides,/guides/using-container-labels
+https://docs.gameye.com/AwP7-faqs,/AwP7-faqs,awp7-faqs,FAQs,2023-07-04T15:46:58.661Z,faqs,/faq
+https://docs.gameye.com/cloud,/cloud,cloud,Cloud,2023-07-04T16:03:54.624Z,glossary,/guides/cloud
+https://docs.gameye.com/image-registry,/image-registry,image-registry,Image Registry,2023-07-06T12:04:16.470Z,glossary,/guides/image-registry
+https://docs.gameye.com/container,/container,container,Container,2023-07-06T12:07:48.632Z,glossary,/guides/container
+https://docs.gameye.com/flex-metal,/flex-metal,flex-metal,Flex metal,2023-07-04T16:04:35.009Z,glossary,/guides/flex-metal
+https://docs.gameye.com/session,/session,session,/session,2025-04-08T15:47:35.702Z,untitled,/api/session
+https://docs.gameye.com/matchmaker,/matchmaker,matchmaker,Matchmaker,2023-07-04T16:13:51.979Z,glossary,/guides/matchmaker
+https://docs.gameye.com/sessionid,/sessionid,sessionid,/session/\{id\},2025-04-08T15:45:41.886Z,untitled,/api/sessionid
+https://docs.gameye.com/how-does-gameye-scale,/how-does-gameye-scale,how-does-gameye-scale,How does Gameye scale?,2023-07-07T15:46:37.151Z,faqs,/faq/how-does-gameye-scale
+https://docs.gameye.com/3-sort-and-push-your-docker-file,/3-sort-and-push-your-docker-file,3-sort-and-push-your-docker-file,3. Sort and push your Docker file,2023-06-22T17:31:56.000Z,getting-started,/getting-started/3-sort-and-push-your-docker-file
+https://docs.gameye.com/1-set-up-your-docker-hub-account,/1-set-up-your-docker-hub-account,1-set-up-your-docker-hub-account,1. Set up your Docker Hub account,2024-09-16T10:13:49.196Z,getting-started,/getting-started/1-set-up-your-docker-hub-account
+https://docs.gameye.com/users,/users,users,Users,2026-01-08T12:07:42.319Z,17ed-untitled,/guides/users
+https://docs.gameye.com/external-links,/external-links,external-links,External Links,2026-01-05T22:34:07.502Z,17ed-untitled,/guides/external-links
+https://docs.gameye.com/session-management,/session-management,session-management,Session Management,2026-01-05T11:48:54.970Z,untitled,/api/session-management
+https://docs.gameye.com/layout-and-navigation,/layout-and-navigation,layout-and-navigation,Layout and navigation,2026-01-05T12:33:24.896Z,17ed-untitled,/guides/layout-and-navigation
+https://docs.gameye.com/dashboard,/dashboard,dashboard,Dashboard,2026-01-08T12:03:32.247Z,17ed-untitled,/guides/dashboard
+https://docs.gameye.com/common-screen-patterns,/common-screen-patterns,common-screen-patterns,Common screen patterns,2026-01-05T12:34:46.559Z,17ed-untitled,/guides/common-screen-patterns
+https://docs.gameye.com/port-bindings,/port-bindings,port-bindings,Port Bindings,2026-01-06T10:08:22.688Z,17ed-untitled,/guides/port-bindings
+https://docs.gameye.com/launch-a-session,/launch-a-session,launch-a-session,Launch a session,2025-04-08T15:32:53.621Z,api,/api/launch-a-session
+https://docs.gameye.com/open-api-spec,/open-api-spec,open-api-spec,Open API spec,2023-06-22T16:03:27.000Z,api,/api/open-api-spec
+https://docs.gameye.com/integrations,/integrations,integrations,Integrations,2023-05-16T14:07:41.000Z,guides,/guides/integrations
+https://docs.gameye.com/getting-support,/getting-support,getting-support,Getting support,2023-07-04T10:55:18.983Z,support,/guides/getting-support
+https://docs.gameye.com/giving-feedback,/giving-feedback,giving-feedback,Giving feedback,2023-06-22T16:34:40.000Z,support,/guides/giving-feedback
+https://docs.gameye.com/4-configure-your-ports,/4-configure-your-ports,4-configure-your-ports,4. Configure your ports,2023-11-01T07:40:55.596Z,getting-started,/getting-started/4-configure-your-ports
+https://docs.gameye.com,/,,What is Gameye?,2025-10-30T16:59:59.592Z,,/
+https://docs.gameye.com/getting-ready-to-start,/getting-ready-to-start,getting-ready-to-start,Getting ready to start,2023-06-19T14:19:32.000Z,getting-started,/getting-started/getting-ready-to-start
+https://docs.gameye.com/5-start-the-api-call,/5-start-the-api-call,5-start-the-api-call,5. Start the API call,2023-06-22T16:26:00.000Z,getting-started,/getting-started/5-start-the-api-call
+https://docs.gameye.com/2-set-up-your-organization-on-gameye,/2-set-up-your-organization-on-gameye,2-set-up-your-organization-on-gameye,2: Set up your organization on Gameye,2023-06-19T14:27:26.000Z,getting-started,/getting-started/2-set-up-your-organization-on-gameye
+https://docs.gameye.com/artifacts,/artifacts,artifacts,Artifacts,2025-10-30T16:59:13.150Z,untitled,/api/artifacts
+https://docs.gameye.com/check-if-tag-exists-in-the-gameye-fleet,/check-if-tag-exists-in-the-gameye-fleet,check-if-tag-exists-in-the-gameye-fleet,Check if tag exists in the Gameye fleet,2025-04-08T15:45:41.886Z,untitled,/api/check-if-tag-exists-in-the-gameye-fleet
+https://docs.gameye.com/sessionplayerjoin,/sessionplayerjoin,sessionplayerjoin,/session/player/join,2025-04-08T15:45:41.886Z,untitled,/api/sessionplayerjoin
+https://docs.gameye.com/get-logs,/get-logs,get-logs,Get logs,2025-04-08T15:45:41.886Z,untitled,/api/get-logs
+https://docs.gameye.com/sessionplayerleave,/sessionplayerleave,sessionplayerleave,/session/player/leave,2025-04-08T15:45:41.886Z,untitled,/api/sessionplayerleave
+https://docs.gameye.com/1thL-open-api-spec,/1thL-open-api-spec,1thl-open-api-spec,Open API spec,2025-10-30T16:55:06.071Z,untitled,/api/open-api-spec
+https://docs.gameye.com/UyLw-troubleshooting,/UyLw-troubleshooting,uylw-troubleshooting,Troubleshooting,2026-01-05T12:45:01.305Z,17ed-untitled,/troubleshooting
+https://docs.gameye.com/tags,/tags,tags,Tags,2026-01-08T12:06:24.448Z,17ed-untitled,/guides/tags
+https://docs.gameye.com/regions,/regions,regions,Regions,2026-01-05T22:28:22.989Z,17ed-untitled,/guides/regions
+https://docs.gameye.com/images,/images,images,Images,2026-01-08T12:05:32.184Z,17ed-untitled,/guides/images
+https://docs.gameye.com/profile,/profile,profile,Profile,2026-01-08T12:07:59.572Z,17ed-untitled,/guides/profile
+https://docs.gameye.com/rZVy-getting-started,/rZVy-getting-started,rzvy-getting-started,Getting Started,2026-01-06T10:02:52.524Z,17ed-untitled,/getting-started
+https://docs.gameye.com/containers-history,/containers-history,containers-history,Containers History,2026-01-08T12:04:44.981Z,17ed-untitled,/guides/containers-history
+https://docs.gameye.com/customer-dashboard,/customer-dashboard,customer-dashboard,Customer dashboard,2023-07-07T15:07:52.781Z,guides,/guides/customer-dashboard
+https://docs.gameye.com/working-with-docker,/working-with-docker,working-with-docker,Working with Docker,2023-05-17T15:51:31.000Z,guides,/guides/working-with-docker
+https://docs.gameye.com/using-variables,/using-variables,using-variables,Using variables,2023-09-19T17:08:37.818Z,guides,/guides/using-variables
+https://docs.gameye.com/generating-logs,/generating-logs,generating-logs,Generating logs,2023-06-14T16:22:08.000Z,guides,/guides/generating-logs
+https://docs.gameye.com/guides,/guides,guides,Guides,2023-05-16T14:05:11.000Z,guides,/guides
+https://docs.gameye.com/using-gameye,/using-gameye,using-gameye,Using Gameye,2023-05-17T15:52:15.000Z,guides,/guides/using-gameye
+https://docs.gameye.com/support,/support,support,Support,2023-05-17T16:03:37.000Z,support,/guides/support
+https://docs.gameye.com/troubleshooting-problems,/troubleshooting-problems,troubleshooting-problems,Troubleshooting problems,2025-04-08T15:34:40.848Z,troubleshooting,/troubleshooting/troubleshooting-problems
+https://docs.gameye.com/is-gameye-free-to-use,/is-gameye-free-to-use,is-gameye-free-to-use,Is Gameye free to use?,2023-07-07T15:30:38.305Z,faqs,/faq/is-gameye-free-to-use
+https://docs.gameye.com/do-you-require-authorisation-to-use-the-api,/do-you-require-authorisation-to-use-the-api,do-you-require-authorisation-to-use-the-api,Do you require authorisation to use the API?,2024-09-17T10:35:07.467Z,faqs,/faq/do-you-require-authorisation-to-use-the-api
+https://docs.gameye.com/how-do-i-start-using-gameye,/how-do-i-start-using-gameye,how-do-i-start-using-gameye,How do I start using Gameye?,2025-04-08T15:25:32.679Z,faqs,/faq/how-do-i-start-using-gameye
+https://docs.gameye.com/what-is-the-difference-between-a-location-and-a-region,/what-is-the-difference-between-a-location-and-a-region,what-is-the-difference-between-a-location-and-a-region,What is the difference between a location and a region?,2023-07-07T15:31:01.648Z,faqs,/faq/what-is-the-difference-between-a-location-and-a-region
+https://docs.gameye.com/region,/region,region,Region,2023-07-04T15:55:32.819Z,glossary,/guides/region
+https://docs.gameye.com/docker,/docker,docker,Docker,2023-07-06T12:07:33.642Z,glossary,/guides/docker
+https://docs.gameye.com/glossary,/glossary,glossary,Glossary,2023-05-16T14:12:04.000Z,glossary,/guides/glossary
+https://docs.gameye.com/changelogs,/changelogs,changelogs,Changelogs,2023-07-05T10:13:42.428Z,changelogs,/changelog

@@ -1,0 +1,25 @@
+---
+title: 'List available locations'
+description: 'Migrated from legacy Archbee docs path /list-available-locations.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/list-available-locations](https://docs.gameye.com/list-available-locations)
+>
+> Source last updated: 2023-06-22T21:15:36.000Z
+
+Get all the locations that can currently host your image, including an IP that you can ping to find out the latency to the location.
+
+> **INFO:** Don't bother cacheing this list as it's always changing.
+
+## List locations
+
+```http
+
+GET https://api.gameye.io/available-location/\{image\}
+
+```
+
+### Body Parameters
+- `image` (string, required): The ID of the image.

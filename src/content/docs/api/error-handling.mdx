@@ -1,0 +1,29 @@
+---
+title: 'Error handling'
+description: 'Migrated from legacy Archbee docs path /error-handling.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/error-handling](https://docs.gameye.com/error-handling)
+>
+> Source last updated: 2023-07-06T11:56:30.746Z
+
+Our API returns standard HTTP success or error status codes.
+
+If we can, we'll also include extra information about what went wrong in the response as JSON. The various HTTP status codes are:
+
+| **Code **|** Title **|** Description** |
+| --- | --- | --- |
+| 200 | OK | The request succeeded. |
+| 201 | OK | The request succeeded. |
+| 204 | OK | The request has succeeded - No content (only relevant for the stop session API endpoint. |
+| 400 | Bad Request | The request was bad. |
+| 401 | Unauthorized | You're not allowed to do that. Make sure your bearer token is correct. |
+| 404 | Not Found | That location, image or organization doesn't seem to exist. |
+| 409 | Container ID has been used | The Container ID has already been used. Try a different one. (We recommend using a UUID.) |
+| 420 | Session not started | We can't start the session. Usually, this is because there have been too many sessions in a short period. Try again in a minute or so. |
+| 422 | Bad Request | Invalid data provided. |
+| 500 | Internal Server Error | Our API has hit an error. |
+| 503 | Service Unavailable | Our API has hit an error - unable to forward a request to an internal service. |
+| 504 | Gateway Timeout | We couldn't reach one of our internal services. |

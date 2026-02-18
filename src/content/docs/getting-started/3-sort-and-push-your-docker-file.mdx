@@ -1,0 +1,75 @@
+---
+title: '3. Sort and push your Docker file'
+description: 'Migrated from legacy Archbee docs path /3-sort-and-push-your-docker-file.'
+---
+
+_GAM-15 curated migration page._
+
+> Migrated from legacy URL: [/3-sort-and-push-your-docker-file](https://docs.gameye.com/3-sort-and-push-your-docker-file)
+>
+> Source last updated: 2023-06-22T17:31:56.000Z
+
+## 1. Create Your Dockerfile
+
+Build an image that starts your game server reliably and includes required runtime files.
+
+- [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+- [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+
+```dockerfile
+FROM ubuntu:20.04
+
+COPY . /home/MyGame/
+RUN useradd -m gameuser
+RUN chmod 777 /home/MyGame/GameServer.sh
+
+USER gameuser
+ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
+
+EXPOSE 1024/udp
+EXPOSE 7777/udp
+```
+
+> **Info:** This base image is only a starting point. Use a custom base if your runtime requires it.
+
+### Bridge Networking Example
+
+```dockerfile
+FROM ubuntu:focal
+COPY . /home/MyGame/
+RUN useradd -m gameuser
+RUN chmod 777 /home/MyGame/GameServer.sh
+USER gameuser
+ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
+EXPOSE 1024/udp
+EXPOSE 7777/udp
+```
+
+### Host Networking Example
+
+```dockerfile
+FROM ubuntu:focal
+COPY . /home/MyGame/
+RUN useradd -m gameuser
+RUN chmod 777 /home/MyGame/GameServer.sh
+USER gameuser
+ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
+```
+
+### Entrypoint Example
+
+```bash
+#!/bin/sh
+UE4_TRUE_SCRIPT_NAME=$(echo "$0" | xargs readlink -f)
+UE4_PROJECT_ROOT=$(dirname "$UE4_TRUE_SCRIPT_NAME")
+chmod +x "$UE4_PROJECT_ROOT/MyGame/Binaries/Linux/GameServer"
+"$UE4_PROJECT_ROOT/MyGame/Binaries/Linux/GameServer" MyGame $@ -port=7777 -GameServerQueryPort=1024
+```
+
+## 2. Push to Docker Hub
+
+Push your image and test on sandbox before production traffic.
+
+- [Docker push command reference](https://docs.docker.com/engine/reference/commandline/push/)
+
+> **Info:** Large images can take a few minutes to propagate and unpack.

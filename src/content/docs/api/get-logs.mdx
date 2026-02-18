@@ -1,0 +1,32 @@
+---
+title: 'Get logs'
+description: 'Migrated from legacy Archbee docs path /get-logs.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/get-logs](https://docs.gameye.com/get-logs)
+>
+> Source last updated: 2025-04-08T15:45:41.886Z
+
+## Get logs
+
+```http
+
+GET https://api.sandbox-gameye.gameye.net/logs
+
+```
+
+Streams the output that the game server writes. You can use it to debug server issues.
+
+### Query Parameters
+- `id` (string, required): The unique ID of the session you want logs from.
+- `follow` (boolean, optional): Whether to keep the stream open or to get all available logs up to what the container has written to stdout/stderr so far.
+
+### Responses
+
+- `200`
+
+- `401`: You are not authorized. Make sure your bearer token is correct.
+
+- `404`: That session doesn't seem to exist. Double-check the ID.

@@ -1,0 +1,32 @@
+---
+title: 'Download an artifact file from the underlying container.'
+description: 'Migrated from legacy Archbee docs path /download-an-artifact-file-from-the-underlying-container.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/download-an-artifact-file-from-the-underlying-container](https://docs.gameye.com/download-an-artifact-file-from-the-underlying-container)
+>
+> Source last updated: 2025-04-08T15:45:41.886Z
+
+## Download an artifact file from the underlying container.
+
+```http
+
+GET https://api.sandbox-gameye.gameye.net/artifacts
+
+```
+
+Initiates a download of an artifact which could be a file or a folder inside the underlying container. The path should be an absolute Unix path to a specific file or folder. The artifact will be provided in the form of a .tar.gz archive that contains your requested file or folder. Please limit your download in size to a maximum of 100mb. Please note that the artifact is only available for download after the session has been terminated and will be downloaded directly from the container itself. The artifacts are available for download from the underlying container up until the container is removed from its host machine. This means that your logs may or may not be available post-termination.
+
+### Query Parameters
+- `session` (string, required): The id of the session to download an artifact from.
+- `path` (string, required): The local path inside the container to the target file or folder requested for download.
+
+### Responses
+
+- `200`: A download of the artifact in .tar.gz format has been initiated.
+
+- `401`: You are not authorized to fetch an artifact. Please make sure that the included bearer token is correct.
+
+- `404`: Could not find a session with the given session id. It is possible that either the session has never existed at all or the container's lifespan on the machine has expired.

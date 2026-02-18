@@ -1,0 +1,23 @@
+---
+title: 'List current sessions'
+description: 'Migrated from legacy Archbee docs path /list-current-sessions.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/list-current-sessions](https://docs.gameye.com/list-current-sessions)
+>
+> Source last updated: 2023-06-22T20:31:25.000Z
+
+Gives you a list of all the active sessions linked to your API token. (Note: It only shows active sessions, not those that have already been stopped.)
+
+## List sessions
+
+```http
+
+GET https://api.gameye.io/session
+
+```
+
+### Query Parameters
+- `filter` (Object, optional): Give us a list of tags to use to filter your sessions. If none of the sessions meet the criteria, you'll get an empty list of sessions.

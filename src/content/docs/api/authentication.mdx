@@ -1,0 +1,61 @@
+---
+title: 'Authentication'
+description: 'Migrated from legacy Archbee docs path /authentication.'
+---
+
+_GAM-15 curated migration page._
+
+> Migrated from legacy URL: [/authentication](https://docs.gameye.com/authentication)
+>
+> Source last updated: 2025-10-30T16:13:36.977Z
+
+All Gameye Session API endpoints require bearer token authentication.
+
+## Header Format
+
+```txt
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+## Example
+
+```http
+GET /session HTTP/1.1
+Host: api.gameye.io
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+## Token Handling Guidelines
+
+- Store tokens in server-side environment variables.
+- Do not expose tokens in client-side code.
+- Rotate tokens periodically based on your security policy.
+- Use sandbox credentials for testing workloads.
+
+## Common Auth Errors
+
+Authentication failures return `401 Unauthorized`.
+
+Typical causes:
+
+- Missing token
+- Invalid token format
+- Expired token
+- Token not scoped for requested action
+
+```json
+{
+  "statusCode": 401,
+  "code": "UNAUTHORIZED",
+  "message": "Authentication failed",
+  "details": "Invalid bearer token",
+  "path": "/session",
+  "identifier": "abc123",
+  "timestamp": "2023-04-01T12:00:00Z"
+}
+```
+
+## Next
+
+- [Create your first game session](/api/launch-a-session)
+- [Check available locations](/api/available-locations)

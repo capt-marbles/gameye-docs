@@ -1,0 +1,41 @@
+---
+title: 'Gameye Session API Overview'
+description: 'Migrated from legacy Archbee docs path /gameye-session-api-overview.'
+---
+
+_GAM-15 curated migration page._
+
+> Migrated from legacy URL: [/gameye-session-api-overview](https://docs.gameye.com/gameye-session-api-overview)
+>
+> Source last updated: 2025-10-30T16:16:30.796Z
+
+The Gameye Session API provides a consistent way to run containerized game sessions across multiple regions and infrastructure providers.
+
+## Core Capabilities
+
+- **Global deployment**: run sessions in multiple geographic regions.
+- **Session lifecycle control**: create, list, inspect, and stop sessions.
+- **Artifact and log access**: retrieve runtime output and post-session files.
+- **Tag/version checks**: verify image availability before launch.
+- **Operational error detail**: structured failures with identifiers for support.
+
+## High-Level Flow
+
+1. Authenticate with a bearer token.
+2. Create a session in a target location.
+3. Receive host/port assignment.
+4. Monitor logs and status.
+5. Stop the session and optionally download artifacts.
+
+## Key References
+
+- [Authentication](/api/authentication)
+- [Launch a session](/api/launch-a-session)
+- [Session management](/api/session-management)
+- [Available locations](/api/available-locations)
+- [Artifacts](/api/artifacts)
+- [Log streaming](/api/log-streaming)
+
+## Notes on V2
+
+Recent API behavior includes improved filtering, structured errors, enhanced status visibility, and region model refinements. Review the migration guide for release-specific changes.

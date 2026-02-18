@@ -1,0 +1,53 @@
+---
+title: '4. Configure your ports'
+description: 'Migrated from legacy Archbee docs path /4-configure-your-ports.'
+---
+
+_GAM-15 curated migration page._
+
+> Migrated from legacy URL: [/4-configure-your-ports](https://docs.gameye.com/4-configure-your-ports)
+>
+> Source last updated: 2023-11-01T07:40:55.596Z
+
+Gameye supports both Docker bridge mode and host mode. Your choice affects how ports are assigned and exposed.
+
+## Bridge Networking
+
+Bridge mode is the default model. Containers can expose the same container ports while using different host ports behind the scenes.
+
+- [Docker bridge network docs](https://docs.docker.com/network/bridge/)
+
+In this mode, your Dockerfile can keep explicit `EXPOSE` directives.
+
+> **Info:** Bridge networking is the recommended default for most teams.
+
+## Host Networking
+
+Host mode shares the host networking stack directly, so port coordination matters more.
+
+- [Docker host network docs](https://docs.docker.com/network/host/)
+
+In this mode, Gameye allocates environment-variable based ports (for example `GAMEYE_PORT_TCP_8080`) and your server process should bind accordingly.
+
+> **Danger:** If you choose host mode, update both your Dockerfile and entrypoint logic to consume Gameye-assigned ports.
+
+```dockerfile
+FROM ubuntu:20.04
+COPY . /home/MyGame/
+RUN useradd -m gameuser
+RUN chmod 777 /home/MyGame/GameServer.sh
+USER gameuser
+ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
+```
+
+```bash
+#!/bin/bash
+./GameServer.x86_64 -batchmode -nographics -start -name "Gameye Server" -overrideEditorArgs -sessionName $GAMEYE_SESSION_ID -port $GAMEYE_PORT_UDP_7777 log.txt -timeout 30 "$@"
+
+status=$?
+if test $status -eq 0; then
+  echo "Server exited normally"
+else
+  echo "Server exited with code: $status"
+fi
+```

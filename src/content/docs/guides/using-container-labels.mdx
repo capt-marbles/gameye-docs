@@ -1,0 +1,86 @@
+---
+title: 'Using container labels'
+description: 'Migrated from legacy Archbee docs path /using-container-labels.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/using-container-labels](https://docs.gameye.com/using-container-labels)
+>
+> Source last updated: 2023-07-06T00:19:59.256Z
+
+A label is a form of metadata on your container. It comes in the form of a key and value pair.
+
+When you start a container on a machine, you can add multiple labels to the container. But it’s worth noting that they’re static and last throughout the container’s lifetime, which means you can’t change the labels once the container is running.
+
+> **INFO:** ** Learn more about labels**. For more information about how labels work with Docker, [check out their website](https://docs.docker.com/config/labels-custom-metadata/#label-keys-and-values).
+
+With our orchestrator, you can pass down a collection of labels to a container through a labels object.
+
+```json
+{  
+   "id": "this_is_my_unique_id",  
+   "location": "amsterdam_test",  
+   "image": "nginx",  
+   "env": {},  
+   "args": [],  
+   "restart": true,  
+   "labels": {    
+     "org.opencontainers.image.ref.name": "ubuntu",    
+     "org.opencontainers.image.version": "18.04"  
+ }
+}
+```
+
+### We have a few standard labels
+
+Your custom labels aren’t the only ones our orchestrator passes down to the container. We also include some metadata that anyone with list access can use.
+
+```json
+{    "sessions": [        
+				 {            
+						"id": "this_is_my_unique_id",            
+						"location": "amsterdam_test",            
+						"image": "nginx",            
+						"host": "23.11.111.111",            
+						"created": 1678710749000,            
+						"port": {                
+								"80/tcp": 33950            
+						},            
+						"labels": {                
+								"env": "{\"GAMEYE_SESSION_ID\":\"letstestitalright123\",\"GAMEYE_HOST\":\"23.11.111.111\",\"GAMEYE_PORT_TCP_80\":\"33950\"}",                
+								"gameye": "{\"organization\":\"myorg\",\"session\":\"this_is_my_unique_id\",\"image\":\"nginx\",\"region\":\"amsterdam_test\",\"tag\":\"1.23\",\"enableMetrics\":\"false\"}",                
+								"maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>",                
+								"tags": "{\"org.opencontainers.image.ref.name\":\"ubuntu\",\"org.opencontainers.image.version\":\"18.04\"}"            
+						},            
+						"enableMetrics": false        
+				}    
+		]
+}
+```
+
+### Images can create labels, too
+
+The image itself can also pass down labels when you create it as a container.
+
+If we look at the [Dockerfile](https://github.com/nginxinc/docker-nginx/blob/5ce65c3efd395ee2d82d32670f233140e92dba99/mainline/debian/Dockerfile) of nginx, we can clearly see this:
+
+LABEL maintainer="NGINX Docker Maintainers &lt;docker-maint@nginx.com&gt;"
+
+Our API then returns:
+
+"maintainer": "NGINX Docker Maintainers &lt;dockermaint@nginx.com&gt;",.
+
+### Using our API with labels
+
+Within the labels object, all:
+
+- Environment variables are JSON packed inside an env field
+- Gameye-defined labels are JSON packed inside a gameye field
+- User-defined labels are JSON packed inside a tags field.
+
+Our API lets you filter the list of sessions using the OpenAPI deepObject style:
+
+https://api.gameye.io/session?filter[org.opencontainers.image.ref.name]=ubuntu
+
+We only support equality comparisons right now. That means the API can’t filter based on other criteria, like whether the value of a label starts with X or Y. Equality comparisons are also **case-sensitive**.

@@ -1,0 +1,38 @@
+---
+title: 'Open API spec'
+description: 'Migrated from legacy Archbee docs path /open-api-spec.'
+---
+
+_GAM-15 curated migration page._
+
+> Migrated from legacy URL: [/open-api-spec](https://docs.gameye.com/open-api-spec)
+>
+> Source last updated: 2023-06-22T16:03:27.000Z
+
+Use the OpenAPI definition for typed client generation and endpoint contract review.
+
+## OpenAPI File
+
+- [Download `openapi.yaml`](https://api.gameye.io/openapi.yaml)
+
+## Authentication Model
+
+All endpoints use bearer token authentication.
+
+```txt
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+
+## Example Request
+
+```bash
+curl \
+ -X GET https://api.gameye.io/session \
+ -H "Authorization: Bearer $ACCESS_TOKEN"
+```
+
+## Related
+
+- [API overview](/api)
+- [Authentication details](/api/authentication)
+- [Session endpoint](/api/session)

@@ -1,0 +1,35 @@
+---
+title: 'Launch a session'
+description: 'Migrated from legacy Archbee docs path /launch-a-session.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/launch-a-session](https://docs.gameye.com/launch-a-session)
+>
+> Source last updated: 2025-04-08T15:32:53.621Z
+
+Start a new game session in a specific region. Each session needs a unique ID, which you'll need to create yourself.
+
+> **WARNING:** Each call to the API to launch a session must be a UUID to avoid any issues.
+
+## Launch a session
+
+```http
+
+POST https://api.gameye.io/session
+
+```
+
+### Body Parameters
+- `id` (string, required): The unique ID for the session. (use a UUID.)
+- `location` (string, required): The location or region that you'd prefer to host the game session in. (Check our regions and locations page.)
+- `image` (string, required): The name of the image for your game, hosted inside a container.
+- `env` (Object, required): The list of environment variables you want to feed the container when it starts. [can be left blank]
+- `args` (String, required): The list of program console arguments to feed to the application that's hosted inside the container. [can be left blank]
+- `restart` (Boolean, required): Tells us whether we must automatically restart this session if it fails to launch. (We won't restart if you manually shut it down.)
+- `labels` (Object, optional): Add your own metadata about the session that we'll store inside the configuration.
+- `version` (string, optional): Tag of the image that the session will run. This tag needs to be available or it'll throw a 404. If you don't specify a priority, we'll run it with the highest priority.
+- `enableMetrics` (string, optional): Use this to collect details like CPU, memory and network information. Useful for debugging.
+
+>**INFO:** although not depicted in the API responses, 420 is still returned for sessions that failed to start.

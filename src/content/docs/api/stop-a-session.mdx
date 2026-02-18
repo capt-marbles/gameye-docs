@@ -1,0 +1,25 @@
+---
+title: 'Stop a session'
+description: 'Migrated from legacy Archbee docs path /stop-a-session.'
+---
+
+_Legacy migration generated file._
+
+> Migrated from legacy URL: [/stop-a-session](https://docs.gameye.com/stop-a-session)
+>
+> Source last updated: 2023-12-04T17:59:53.654Z
+
+Forces a session to stop by killing the underlying container. (We do this by sending a SIGTERM signal.)
+
+## Stop session
+
+```http
+
+DELETE https://api.gameye.io/session/\{id\}
+
+```
+
+### Path Parameters
+- `id` (string, required): The id of the session.
+
+> **DANGER:** Gameye doesn't stop any containers/sessions once it has been started, this endpoint must be called once a game server is no longer needed.

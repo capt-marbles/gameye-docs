@@ -1,0 +1,51 @@
+---
+title: '1. Set up your Docker Hub account'
+description: 'Migrated from legacy Archbee docs path /1-set-up-your-docker-hub-account.'
+---
+
+_GAM-15 curated migration page._
+
+> Migrated from legacy URL: [/1-set-up-your-docker-hub-account](https://docs.gameye.com/1-set-up-your-docker-hub-account)
+>
+> Source last updated: 2024-09-16T10:13:49.196Z
+
+Gameye currently uses Docker Hub as the primary registry source for image updates.
+
+## 1. Create a Docker Hub Team Account
+
+Use a Docker Hub Team plan for collaboration and repository permissions:
+
+- [Docker pricing](https://www.docker.com/pricing/)
+
+If you need help during setup, contact us on [Discord](https://bit.ly/3oZZaGR) or by email at [support@gameye.com](mailto:support@gameye.com).
+
+## 2. Create Your Repository
+
+Create the repository that will store your game server images.
+
+- [Docker Hub repository guide](https://docs.docker.com/docker-hub/)
+
+Include any required dependencies in your image (for example anti-cheat files or third-party runtime libraries).
+
+## 3. Grant Gameye Read-Only Access
+
+Grant read-only access to the Docker Hub user `gameyedocker` so Gameye can pull images.
+
+- [Docker Hub members and repository permissions](https://docs.docker.com/docker-hub/members/)
+
+## 4. Add the Image Updater Webhook
+
+Add this webhook URL in Docker Hub:
+
+- `https://image-updater-docker-hub.gameye.com/webhook`
+
+Without this webhook, image pushes will not propagate to Gameye automatically.
+
+## 5. Choose Your Networking Model
+
+You can use either:
+
+- **Bridge networking**: standard Docker port mapping flow.
+- **Host networking**: direct host stack usage with environment-variable driven ports.
+
+You’ll configure this in detail in the next step.

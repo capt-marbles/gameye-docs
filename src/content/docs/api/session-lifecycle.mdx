@@ -1,0 +1,20 @@
+---
+title: Session Lifecycle
+description: Placeholder session lifecycle flow from request through teardown.
+---
+
+This page outlines a canonical session lifecycle for API consumers.
+
+## Lifecycle Stages
+
+1. Create session request.
+2. Environment provisioning and health validation.
+3. Session-ready callback and connection handoff.
+4. Live session monitoring and policy enforcement.
+5. Session termination and infrastructure teardown.
+
+## Operational Notes
+
+- All lifecycle transitions should be idempotent.
+- Retries should use bounded backoff and explicit timeout policies.
+- Final state transitions should emit observability events.

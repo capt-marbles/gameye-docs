@@ -1,0 +1,42 @@
+---
+title: Gameye Docs
+description: Entry point for Gameye developer and operations documentation.
+template: splash
+hero:
+  tagline: Technical documentation for Gameye orchestration workflows.
+  actions:
+    - text: Start with Quickstart
+      link: /getting-started/quickstart
+      icon: right-arrow
+    - text: Open API section
+      link: /api
+      icon: open-book
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Documentation Information Architecture
+
+This scaffold is aligned to GAM-8 URL governance and uses stable, lowercase, hyphenated routes with one canonical path per page.
+
+<CardGrid stagger>
+  <Card title="Getting Started" icon="rocket">
+    Setup basics, prerequisites, and first-session launch flow.
+  </Card>
+  <Card title="Guides" icon="document">
+    Migration and operational implementation guides.
+  </Card>
+  <Card title="API" icon="seti:http">
+    Session lifecycle concepts and API usage patterns.
+  </Card>
+  <Card title="FAQ" icon="help-circle">
+    Answers to recurring implementation and rollout questions.
+  </Card>
+  <Card title="Troubleshooting" icon="warning">
+    Diagnostics paths and incident-response checks.
+  </Card>
+  <Card title="Changelog" icon="list">
+    Release history and documentation updates.
+  </Card>
+</CardGrid>

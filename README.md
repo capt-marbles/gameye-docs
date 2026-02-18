@@ -2,7 +2,7 @@
 
 Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
 
-## Scope (GAM-14 to GAM-21)
+## Scope (GAM-14 to GAM-22)
 
 - Starlight docs app scaffolded and runnable locally.
 - Top-level information architecture implemented:
@@ -48,6 +48,10 @@ Documentation scaffold for `docs.gameye.com`, built with Astro + Starlight.
   - custom docs header includes shared global links to key `gameye.com` routes
   - docs entry pages include reciprocal links back to marketing paths
   - bidirectional navigation pattern aligns with the marketing site header/footer docs links
+- llms/sitemap/docs parity automation:
+  - `public/llms.txt` published for AI-ingestion anchors
+  - sitemap + llms + reciprocal link checks via `npm run check:parity`
+  - CI gate added to prevent cross-site parity regressions
 
 ## AI Chatbot Configuration
 
@@ -74,6 +78,7 @@ Open `http://localhost:4321`.
 npm run build
 npm run check:seo
 npm run check:quality
+npm run check:parity
 npm run preview
 ```
 
@@ -128,6 +133,20 @@ Checks include:
 - no stale migration boilerplate text
 - no duplicate doc titles
 - minimum content depth for non-index pages
+
+## Parity Workflow
+
+```bash
+npm run build
+npm run check:parity
+```
+
+Checks include:
+
+- required `llms.txt` URLs for docs + marketing cross-links
+- sitemap coverage for docs home and canonical API reference
+- reciprocal links in docs index/getting-started/api pages
+- shared global links present in the custom docs header
 
 ## Repository Conventions
 

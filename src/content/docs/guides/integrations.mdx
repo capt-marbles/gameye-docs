@@ -1,12 +1,26 @@
 ---
 title: 'Integrations'
-description: 'Migrated from legacy Archbee docs path /integrations.'
+description: "Integration patterns for engines, deployment pipelines, and observability tooling with Gameye."
 ---
 
-_Legacy migration generated file._
+Most teams integrate Gameye with three systems: game server build pipelines, matchmaking/orchestration logic, and telemetry tooling.
 
-> Migrated from legacy URL: [/integrations](https://docs.gameye.com/integrations)
->
-> Source last updated: 2023-05-16T14:07:41.000Z
+## Common Integration Targets
 
-Legacy content could not be extracted automatically for this page.
+- **Game engine runtimes**: Unity and Unreal dedicated server builds.
+- **CI/CD pipelines**: image build, scan, publish, and rollout gates.
+- **Matchmaking services**: pass target region/mode and map metadata into session creation.
+- **Observability systems**: collect session status and logs for incident response.
+
+## Recommended Integration Sequence
+
+1. Automate Docker image publishing from CI.
+2. Validate image tags before launch using API checks.
+3. Wire session lifecycle calls into matchmaking flow.
+4. Forward runtime logs to your existing monitoring stack.
+
+## Related Docs
+
+- [Using variables](/guides/using-variables)
+- [Tag verification](/api/tag-verification)
+- [Log streaming](/api/log-streaming)

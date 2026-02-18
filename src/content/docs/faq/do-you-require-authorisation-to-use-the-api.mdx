@@ -1,12 +1,16 @@
 ---
 title: 'Do you require authorisation to use the API?'
-description: 'Migrated from legacy Archbee docs path /do-you-require-authorisation-to-use-the-api.'
+description: "Authentication requirements for Gameye API access."
 ---
 
-_Legacy migration generated file._
+Yes. Gameye API endpoints require a valid bearer token.
 
-> Migrated from legacy URL: [/do-you-require-authorisation-to-use-the-api](https://docs.gameye.com/do-you-require-authorisation-to-use-the-api)
->
-> Source last updated: 2024-09-17T10:35:07.467Z
+## What You Need
 
-Yes, an API key is required to use the Gameye platform, please reach out to the support team about onboarding if you are already not in the process.
+- Organization access to the Gameye platform.
+- API credentials provisioned during onboarding.
+- `Authorization: Bearer <token>` header on requests.
+
+If you need access or token rotation support, contact `support@gameye.com`.
+
+For implementation details, see [Authentication](/api/authentication).

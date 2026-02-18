@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightOpenAPI, { createOpenAPISidebarGroup } from 'starlight-openapi';
 import { legacyRedirects } from './redirects/legacy-redirects.mjs';
+import { qualityRedirects } from './redirects/quality-redirects.mjs';
 
 const canonicalOpenAPISidebarGroup = createOpenAPISidebarGroup();
 
@@ -10,7 +11,10 @@ const canonicalOpenAPISidebarGroup = createOpenAPISidebarGroup();
 export default defineConfig({
   site: 'https://docs.gameye.com',
   trailingSlash: 'never',
-  redirects: legacyRedirects,
+  redirects: {
+    ...legacyRedirects,
+    ...qualityRedirects,
+  },
   integrations: [
     starlight({
       title: 'Gameye Docs',

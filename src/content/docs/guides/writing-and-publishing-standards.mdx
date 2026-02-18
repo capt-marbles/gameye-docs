@@ -1,0 +1,33 @@
+---
+title: Writing and publishing standards
+description: "Content quality rules and publishing checklist for Gameye docs contributors."
+---
+
+This page defines the minimum quality bar for docs updates.
+
+## Writing standards
+
+- Use task-focused titles and direct descriptions.
+- Keep language concrete and implementation-oriented.
+- Prefer short sections with clear headings.
+- Use API paths, payload examples, and expected outcomes where relevant.
+- Avoid placeholder phrases such as "coming soon" or migration boilerplate.
+
+## Publishing standards
+
+Before merging, verify all of the following:
+
+1. The page has a clear `title` and `description`.
+2. Canonical route is stable and lowercase/hyphenated.
+3. Internal links resolve to existing docs routes.
+4. No duplicate page exists for the same concept.
+5. `npm run build`, `npm run check:seo`, and `npm run check:quality` pass.
+
+## Quality gates
+
+The repository includes automated checks for:
+
+- placeholder/untitled content patterns
+- stale migration boilerplate
+- duplicated doc titles
+- missing title/description frontmatter

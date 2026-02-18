@@ -79,6 +79,7 @@ npm run build
 npm run check:seo
 npm run check:quality
 npm run check:parity
+npm run check:launch
 npm run preview
 ```
 
@@ -147,6 +148,20 @@ Checks include:
 - sitemap coverage for docs home and canonical API reference
 - reciprocal links in docs index/getting-started/api pages
 - shared global links present in the custom docs header
+
+## Launch Readiness Workflow (GAM-23)
+
+```bash
+npm run build
+npm run check:launch
+```
+
+Checks include:
+
+- broken internal links and missing asset references in built docs pages
+- redirect validity across legacy + quality redirect maps (no self loops/chains, targets exist)
+- required launch routes exist (`/` and `/api/reference`)
+- chatbot analytics instrumentation and required event names
 
 ## Repository Conventions
 

@@ -1,0 +1,75 @@
+---
+title: "AI assistant API contract"
+description: "Request/response contract for the Gameye chatbot, including citations, confidence gates, and fallback behavior."
+---
+
+Use this contract when wiring the production RAG backend behind the shared chatbot launcher used on `gameye.com` and `docs.gameye.com`.
+
+## Request shape
+
+`POST` JSON payload:
+
+```json
+{
+  "query": "How do I launch a session?",
+  "history": [
+    { "role": "user", "content": "How do I launch a session?" }
+  ],
+  "context": {
+    "site": "docs",
+    "pageUrl": "https://docs.gameye.com/api/session-management",
+    "pageTitle": "Session Management | Gameye Docs",
+    "language": "en"
+  }
+}
+```
+
+## Response shape
+
+```json
+{
+  "answer": "Use the session run operation in the canonical OpenAPI reference.",
+  "confidence": 0.83,
+  "requestId": "chat_01J5...",
+  "lowConfidence": false,
+  "citations": [
+    {
+      "title": "Session run operation",
+      "url": "https://docs.gameye.com/api/reference/operations/session-run",
+      "snippet": "Launch a new session using container image, region, and metadata."
+    }
+  ],
+  "fallback": {
+    "primaryLabel": "Open troubleshooting",
+    "primaryUrl": "/troubleshooting",
+    "secondaryLabel": "Contact support",
+    "secondaryUrl": "https://gameye.com/contact-us/"
+  }
+}
+```
+
+## Confidence gate behavior
+
+- Frontend compares `confidence` against `PUBLIC_CHATBOT_MIN_CONFIDENCE`.
+- If confidence is below threshold (or `lowConfidence: true`), chatbot presents fallback links instead of a high-certainty answer flow.
+- This protects users from uncertain guidance on production-impacting operations.
+
+## Citation expectations
+
+- Always return at least one citation for confident responses.
+- Prefer canonical docs URLs (`https://docs.gameye.com/...`) for technical answers.
+- Include short snippets that justify the answer and help users verify context quickly.
+
+## Analytics events emitted
+
+The launcher pushes these events to `window.dataLayer` when available:
+
+- `gy_chatbot_opened`
+- `gy_chatbot_question_submitted`
+- `gy_chatbot_response_received`
+- `gy_chatbot_citation_clicked`
+- `gy_chatbot_fallback_routed`
+- `gy_chatbot_fallback_link_clicked`
+- `gy_chatbot_error`
+
+Use these events in the shared taxonomy to monitor answer quality, fallback rate, and source engagement.

@@ -6,7 +6,7 @@ import { legacyRedirects } from './redirects/legacy-redirects.mjs';
 import { qualityRedirects } from './redirects/quality-redirects.mjs';
 
 const canonicalOpenAPISidebarGroup = createOpenAPISidebarGroup();
-const chatbotEnabled = (process.env.PUBLIC_CHATBOT_ENABLED ?? 'true').toLowerCase() === 'true';
+const chatbotEnabled = (process.env.PUBLIC_CHATBOT_ENABLED ?? 'false').toLowerCase() === 'true';
 const chatbotApiEndpoint = process.env.PUBLIC_CHATBOT_API_ENDPOINT ?? '';
 const chatbotMinConfidence = process.env.PUBLIC_CHATBOT_MIN_CONFIDENCE ?? '0.62';
 

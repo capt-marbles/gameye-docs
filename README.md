@@ -59,7 +59,7 @@ The docs site injects `/public/chatbot/chatbot-loader.js` through Starlight `hea
 
 Environment variables:
 
-- `PUBLIC_CHATBOT_ENABLED` (default: `true`)
+- `PUBLIC_CHATBOT_ENABLED` (default: `false`)
 - `PUBLIC_CHATBOT_API_ENDPOINT` (optional; if empty, local fallback knowledge mode is used)
 - `PUBLIC_CHATBOT_MIN_CONFIDENCE` (default: `0.62`)
 

@@ -1,17 +1,23 @@
 ---
 title: 'Authentication'
-description: "Documentation for Authentication in Gameye."
+description: 'Legacy Archbee documentation page for Authentication.'
 ---
 
-All Gameye Session API endpoints require bearer token authentication.
+All endpoints in the Gameye Session API require authentication. This guide explains how to properly authenticate your requests.
 
-## Header Format
+## Bearer Token Authentication
 
-```txt
+The Gameye Session API uses Bearer Token Authentication, which means you need to include an API token in the header of every request.
+
+### How to Use Your Token
+
+Add your token to the `Authorization` header in this format:
+
+```text
 Authorization: Bearer YOUR_TOKEN_HERE
 ```
 
-## Example
+### Example
 
 ```http
 GET /session HTTP/1.1
@@ -19,23 +25,33 @@ Host: api.gameye.io
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
-## Token Handling Guidelines
+## Obtaining a Token
 
-- Store tokens in server-side environment variables.
-- Do not expose tokens in client-side code.
-- Rotate tokens periodically based on your security policy.
-- Use sandbox credentials for testing workloads.
+To get an API token:
 
-## Common Auth Errors
+1. Contact Gameye to set up an account
+2. Request an API token for your account
+3. Store your token securely - treat it like a password!
 
-Authentication failures return `401 Unauthorized`.
+## Token Security
 
-Typical causes:
+Here are some best practices for keeping your token secure:
+
+- Never share your token in public repositories or client-side code
+- Use environment variables to store your token in your applications
+- Consider rotating your token periodically
+- Use the sandbox environment for testing
+
+## Authentication Errors
+
+If authentication fails, you'll receive a `401 Unauthorized` response with details about the error. Common reasons for authentication failure include:
 
 - Missing token
 - Invalid token format
 - Expired token
-- Token not scoped for requested action
+- Token doesn't have permission for the requested resource
+
+### Example Error Response
 
 ```json
 {
@@ -49,7 +65,9 @@ Typical causes:
 }
 ```
 
-## Next
+## Next Steps
 
-- [Create your first game session](/api/launch-a-session)
-- [Check available locations](/api/available-locations)
+Once you've set up authentication, you can:
+
+- [**Create your first game session**]()
+- [**Check available locations**]() for hosting your game

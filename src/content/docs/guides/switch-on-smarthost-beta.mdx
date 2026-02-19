@@ -1,0 +1,47 @@
+---
+title: 'Switch on Smarthost (BETA)'
+description: 'Legacy Archbee documentation page for Switch on Smarthost (BETA).'
+---
+
+If you want to use Smarthost, you need to expose an endpoint that our platform can use to get the information we need. For this example, we’ll call this `metrics`.
+
+> **INFO:** **We need to speak with you first.** There are a few values we need from you so we can set up our platform to work with your game. Speak with our support team to get everything ready.
+
+## Configuring the `metrics` endpoint
+
+Typically, people set this to `/metrics` on port 80. This is an `http` endpoint (not `https`).
+
+>**WARNING:** You must use port 80.
+
+The endpoint exposes a Prometheus gauge metric named `occupancy` with just one label `slot`. This label uniquely identifies the "seat" that a player can fill.
+
+When this value is 1 (or `1.0`), that means a player is present in that chair. When this value is 0 (or `0.0`), there’s no player.
+
+Here’s an example of a response to `GET /metrics`:
+
+```json
+occupancy{slot="1"} 1  // There's a player in slot number 1
+occupancy{slot="2"} 0  // There isn't a player in slot number 2
+occupancy{slot="3"} 1
+occupancy{slot="4"} 1
+occupancy{slot="5"} 0
+occupancy{slot="6"} 0
+```
+
+Here’s a simple Python script to do this:
+
+```python
+from prometheus_client import start_http_server, Gauge
+
+g = Gauge("occupancy", "Occupied slots", ["slot"])
+
+if __name__ == '__main__':
+    start_http_server(80) #exposes the metrics to /, /metrics/, and /metric path
+    while True:
+        g.labels("1").set(1) # player exists in slot 1
+        g.labels("2").set(1)
+        g.labels("3").set(0) # player does not exist in slot 3
+        g.labels("4").set(1)
+```
+
+With that done, Smarthost can now use that information to predict how many sessions you'll need and load them up ready for new players.

@@ -1,0 +1,39 @@
+---
+title: 'Get all logs'
+description: 'Legacy Archbee documentation page for Get all logs.'
+---
+
+Get all the logs of a session from its underlying container. We'll send both STDOUT and STDERR. This is useful to get secure access to debug server-related issues.
+
+Logs are only available after the session has stopped. You'll take them directly from the container itself. We'll remove these logs when we remove the container from the host machine. That means you could lose them if you don't grab them in time.
+
+Unlike `/logs`, this doesn't stream new logs from the container. Once you get all the logs, the underlying connection closes.
+
+## Get logs
+
+```http
+
+GET https://api.gameye.io/query/log
+
+```
+
+### Body Parameters
+- `matchKey` (string, required): The unique ID of the session to get the logs .
+
+### Example
+
+```ruby
+require "uri"
+require "net/http"
+
+url = URI("https://api.gameye.io/query/log?matchKey=string")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Get.new(url)
+request["Accept"] = "application/json"
+
+response = https.request(request)
+puts response.read_body
+```

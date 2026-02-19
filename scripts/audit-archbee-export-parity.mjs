@@ -187,7 +187,73 @@ async function loadLegacyNormalizationMap() {
   }
 }
 
-function parseArchbeeApiObject(body) {
+function collectSchemaFieldNames(schemaItems = [], into = new Set()) {
+  for (const item of schemaItems) {
+    if (item?.name) into.add(decodeEntities(item.name));
+    if (Array.isArray(item?.schema)) collectSchemaFieldNames(item.schema, into);
+  }
+  return into;
+}
+
+function selectCodeLanguage(group) {
+  if (!group || !Array.isArray(group.languages) || group.languages.length === 0) return null;
+  return group.languages.find((entry) => entry.id === group.selectedLanguageId) || group.languages[0];
+}
+
+function renderApiComparisonText(source, fallbackTitle = 'API Endpoint') {
+  const data = source?.data || source || {};
+  const lines = [];
+
+  const name = decodeEntities(data.name || fallbackTitle || '');
+  const method = decodeEntities(data.method || '');
+  const url = decodeEntities(data.url || '');
+  const description = decodeEntities(data.description || '');
+
+  if (name) lines.push(name);
+  if (method || url) lines.push(`${method} ${url}`.trim());
+  if (description) lines.push(description);
+
+  const request = data.request || {};
+  const sections = [
+    request.pathParameters || [],
+    request.queryParameters || [],
+    request.headerParameters || [],
+    request.formDataParameters || [],
+    request.bodyDataParameters || [],
+  ];
+
+  for (const section of sections) {
+    for (const item of section) {
+      const pName = decodeEntities(item.name || '');
+      const pType = decodeEntities(item.type || '');
+      const pKind = decodeEntities(item.kind || '');
+      const pDesc = decodeEntities(item.description || '');
+      lines.push([pName, pType, pKind, pDesc].filter(Boolean).join(' '));
+    }
+  }
+
+  const responses = Array.isArray(data.responses) ? data.responses : [];
+  for (const response of responses) {
+    const code = decodeEntities(response.statusCode || response.code || '');
+    const desc = decodeEntities(response.description || response.summary || '');
+    lines.push([code, desc].filter(Boolean).join(' '));
+
+    const schemaFields = collectSchemaFieldNames(response.schema || []);
+    if (schemaFields.size > 0) {
+      lines.push([...schemaFields].join(' '));
+    }
+  }
+
+  const selectedExample = selectCodeLanguage(data.examples);
+  if (selectedExample) {
+    lines.push(decodeEntities(selectedExample.language || ''));
+    lines.push(decodeEntities(selectedExample.code || ''));
+  }
+
+  return lines.filter(Boolean).join('\n');
+}
+
+function parseArchbeeApiObject(body, fallbackTitle) {
   const trimmed = body.trim();
   if (!trimmed.startsWith('{')) return null;
 
@@ -196,46 +262,34 @@ function parseArchbeeApiObject(body) {
     if (!parsed || !parsed.type || !String(parsed.type).includes('api')) {
       return null;
     }
-    const data = parsed.data || {};
-    const lines = [];
-    const name = decodeEntities(data.name || '');
-    const method = decodeEntities(data.method || '');
-    const url = decodeEntities(data.url || '');
-    const description = decodeEntities(data.description || '');
-
-    if (name) lines.push(name);
-    if (method || url) lines.push(`${method} ${url}`.trim());
-    if (description) lines.push(description);
-
-    const request = data.request || {};
-    const sections = [
-      request.pathParameters || [],
-      request.queryParameters || [],
-      request.headerParameters || [],
-      request.formDataParameters || [],
-      request.bodyDataParameters || [],
-    ];
-
-    for (const section of sections) {
-      for (const item of section) {
-        const pName = decodeEntities(item.name || '');
-        const pType = decodeEntities(item.type || '');
-        const pDesc = decodeEntities(item.description || '');
-        lines.push([pName, pType, pDesc].filter(Boolean).join(' '));
-      }
-    }
-
-    const responses = Array.isArray(data.responses) ? data.responses : [];
-    for (const response of responses) {
-      const code = decodeEntities(response.statusCode || response.code || '');
-      const desc = decodeEntities(response.description || response.summary || '');
-      lines.push([code, desc].filter(Boolean).join(' '));
-    }
-
-    return lines.filter(Boolean).join('\n');
+    return renderApiComparisonText(parsed, fallbackTitle);
   } catch {
     return null;
   }
+}
+
+function parseApiMethodComponents(body, fallbackTitle) {
+  const pattern = /<ApiMethodV2\s+data="([\s\S]*?)">\s*<\/ApiMethodV2>/gi;
+  const matches = [...body.matchAll(pattern)];
+  if (matches.length === 0) return null;
+
+  const sections = [];
+  const bodyWithoutComponents = body.replace(pattern, ' ');
+  const intro = decodeEntities(bodyWithoutComponents).replace(/<[^>]+>/g, ' ').trim();
+  if (intro) sections.push(intro);
+
+  for (const match of matches) {
+    const rawData = match[1];
+    try {
+      const parsed = JSON.parse(decodeEntities(rawData));
+      const rendered = renderApiComparisonText(parsed, fallbackTitle);
+      if (rendered) sections.push(rendered);
+    } catch {
+      // ignore invalid payloads
+    }
+  }
+
+  return sections.filter(Boolean).join('\n');
 }
 
 function normalizeMarkdownForComparison(body) {
@@ -306,6 +360,7 @@ function inferExpectedRoutes(exportRelPath, exportMeta, legacyMap) {
       add(`/api/reference/${slug}`);
       add('/api/reference');
     } else {
+      if (slug === 'open-api-spec') add('/api/open-api-spec-v2');
       add(`/api/${slug}`);
     }
   }
@@ -400,8 +455,9 @@ async function buildExportIndex(exportDir, legacyMap) {
     const fileStem = path.basename(relPath, '.mdx');
     const fallbackTitle = fileStem;
     const title = extractTitle(data.title, fallbackTitle);
-    const apiText = parseArchbeeApiObject(body);
-    const compareBody = apiText || body;
+    const apiText = parseArchbeeApiObject(body, title);
+    const apiMethodText = apiText ? null : parseApiMethodComponents(body, title);
+    const compareBody = apiText || apiMethodText || body;
     const normalizedBody = normalizeMarkdownForComparison(compareBody);
     const expectedRoutes = inferExpectedRoutes(relPath, data, legacyMap);
 

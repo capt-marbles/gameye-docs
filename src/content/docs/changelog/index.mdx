@@ -1,16 +1,54 @@
 ---
-title: Changelog Index
-description: "Release notes and material documentation changes."
+title: 'Changelogs'
+description: 'Legacy Archbee documentation page for Changelogs.'
 ---
 
-All meaningful documentation updates are recorded here.
+**Before**
 
-## Policy
+```json
+{
+  "labels": {
+    "env": " ",
+    "tags": " "
+  }
+}
+```**After**
 
-- Every release includes a dated changelog entry.
-- Entries summarize user-visible content changes.
-- Breaking IA or URL changes reference migration guidance.
+```json
+{
+  "labels": {
+    "env": " ",
+    "tags": " "
+    "gameye": " "
+  }
+}
+```***
 
-## Entries
+As an example, you can setup a custom environment variable called `MY_SPECIAL_ENV_VAR` and point it to a Gameye variable like below:
 
-- [2026-02-18 Scaffold Release](/changelog/2026-02-18-scaffold-release)
+```json
+{
+  "id": "my-super-nginx-test-session-1",
+  "location": "europe",
+  "image": "nginx",
+  "env": {
+      "MY_SPECIAL_ENV_VAR": "$GAMEYE_PORT_TCP_80",
+      "MY_NOT_SO_SPECIAL_ENV_VAR": "CAKE"
+  },
+  "args": [],
+  "restart": false
+}
+```
+
+***
+
+▶️ Note that all endpoints are using the \[match] keyword are currently deprecated and will be removed in future versions. This includes \[/query/get-match] and \[/command/stop-match]
+
+▶️ You can access our latest APIs using this [**link**](https://docs.gameye.com/launch-a-session).***
+
+***
+***
+
+▶️ You can access our latest APIs using this [**link**](https://docs.gameye.com/launch-a-session).***
+
+▶️ You can access our latest APIs using this [**link**](https://docs.gameye.com/launch-a-session).

@@ -1,35 +1,60 @@
 ---
 title: 'Gameye Session API Overview'
-description: "Documentation for Gameye Session API Overview in Gameye."
+description: 'Legacy Archbee documentation page for Gameye Session API Overview.'
 ---
 
-The Gameye Session API provides a consistent way to run containerized game sessions across multiple regions and infrastructure providers.
+The Gameye Session API provides a simple, agnostic way to host containerized game sessions. It handles all the complexity of geographic distribution, capacity management, and scaling so you can focus on delivering great gaming experiences.
 
-## Core Capabilities
+## Key Features
 
-- **Global deployment**: run sessions in multiple geographic regions.
-- **Session lifecycle control**: create, list, inspect, and stop sessions.
-- **Artifact and log access**: retrieve runtime output and post-session files.
-- **Tag/version checks**: verify image availability before launch.
-- **Operational error detail**: structured failures with identifiers for support.
+- **Global Deployment** - Host sessions in various regions worldwide to minimize latency
+-**Containerized Sessions** - Each game session runs in its own isolated container
+-**Easy Scaling** - No need to worry about server capacity or hardware management
+-**Session Management** - Start, list, and stop game sessions with simple API calls
+-**Artifact Collection** - Download files (like logs or save data) from game servers
+-**Location Monitoring** - Check which regions are available for hosting your game
+-**Tag Verification** - Verify if specific image versions are available in the fleet
+-**Log Streaming** - Access server logs for debugging and monitoring
+-**Enhanced Error Handling** - Detailed error responses with correlation IDs
 
-## High-Level Flow
+## V2 Improvements
 
-1. Authenticate with a bearer token.
-2. Create a session in a target location.
-3. Receive host/port assignment.
-4. Monitor logs and status.
-5. Stop the session and optionally download artifacts.
+The latest version of our API includes significant improvements:
 
-## Key References
+-**Standardized Region Names** - Using a mix of standardized region names including both cloud regions (like `eu-west-1`) and data center locations for clearer geographic understanding
+-**Advanced Session Filtering** - New filtering options including the ability to exclude sessions based on specific criteria
+-**Detailed Container States** - More granular status information for containers
+-**Improved Error Responses** - Structured error format with correlation IDs for better debugging
+-**Dedicated Port Range** - Updated port range (20000-30000) to prevent conflicts with Linux ephemeral ports
+-**Optional Session IDs** - System can generate RFC4122-compliant UUIDs when session ID is not provided
+-**Enhanced Logging Options** - Standard API access and advanced Elastic-based solution
 
-- [Authentication](/api/authentication)
-- [Launch a session](/api/launch-a-session)
-- [Session management](/api/session-management)
-- [Available locations](/api/available-locations)
-- [Artifacts](/api/artifacts)
-- [Log streaming](/api/log-streaming)
+## How It Works
 
-## Notes on V2
+1.**Authentication** - Every request requires a bearer token for authentication
+2.**Session Creation** - You request a session in a specific region with your game image
+3.**Session Allocation** - Gameye finds an available server in the requested region
+4.**Container Deployment** - Your game server is deployed as a container
+5.**Session Management** - You can list active sessions and stop them when needed
+6.**Cleanup** - After stopping a session, you can download artifacts if needed
 
-Recent API behavior includes improved filtering, structured errors, enhanced status visibility, and region model refinements. Review the migration guide for release-specific changes.
+## Use Cases
+
+-**Multiplayer Game Servers** - Host game matches in containers
+-**Tournament Infrastructure** - Scale up for esports events
+-**Global Gaming** - Provide low-latency experiences worldwide
+-**Development & Testing** - Use the sandbox environment for testing
+
+## Getting Started
+
+To start using the API:
+
+1. Obtain an API token from Gameye
+2. Choose which environment to use (production or sandbox)
+3. Make your first API call to create a session
+
+Check the [**Authentication**]() guide to learn how to properly authenticate your requests.
+
+## API Versioning
+
+This documentation covers version 1.2.1 of the Gameye Session API, which incorporates the enhanced features described in our migration guide.

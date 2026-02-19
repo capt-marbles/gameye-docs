@@ -1,0 +1,37 @@
+---
+title: '/session/player/join'
+description: 'Legacy Archbee documentation page for /session/player/join.'
+---
+
+## /session/player/join
+
+```http
+
+PUT https://api.sandbox-gameye.gameye.net/session/player/join
+
+```
+
+### Body Parameters
+- `body` (object, required)
+
+### Responses
+- `200`: One or more player IDs have been registered as having joined this session.
+  - fields: count, players
+- `401`: You are not authorized to start a session. Please make sure that the included bearer token is correct.
+  - fields: statusCode, code, message, details, path, timestamp, identifier, violations, field, description
+- `404`: The provided session does not exist.
+  - fields: statusCode, code, message, details, path, timestamp, identifier, violations, field, description
+- `422`: Bad request. This may imply that the given request has invalid syntax.
+  - fields: statusCode, code, message, details, path, timestamp, identifier, violations, field, description
+
+### Example
+
+```bash
+curl --location --request PUT 'https://api.sandbox-gameye.gameye.net/session/player/join' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data '{
+  "session": "",
+  "players": []
+}'
+```

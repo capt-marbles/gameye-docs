@@ -14,7 +14,8 @@
     "astro": "astro",
     "migrate:archbee": "node scripts/migrate-archbee-docs.mjs",
     "sync:openapi": "node scripts/sync-openapi-schema.mjs --version=v1",
-    "audit:archbee-parity": "node scripts/audit-archbee-export-parity.mjs"
+    "audit:archbee-parity": "node scripts/audit-archbee-export-parity.mjs",
+    "reconcile:archbee-low-similarity": "node scripts/reconcile-archbee-low-similarity.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",

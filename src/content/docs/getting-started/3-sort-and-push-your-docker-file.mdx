@@ -1,69 +1,93 @@
 ---
 title: '3. Sort and push your Docker file'
-description: "Documentation for 3. Sort and push your Docker file in Gameye."
+description: 'Legacy Archbee documentation page for 3. Sort and push your Docker file.'
 ---
 
-## 1. Create Your Dockerfile
+## 1: Create your Docker fileSomeone in your team will have to [**code your Docker file**](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/). This should only take about ten minutes as it’s fairly straightforward. But you’ll need to test this with your game binary, which can take some time to get right.
 
-Build an image that starts your game server reliably and includes required runtime files.
+Your [**Dockerfile**](https://docs.docker.com/engine/reference/builder/)should contain either [**ENTRYPOINT**](https://docs.docker.com/engine/reference/builder/#entrypoint) or something similar that the user you’ve created will launch. Make sure everything is correct, otherwise it’ll cause issues when starting the container.
 
-- [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
-- [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+Here’s a code block you can use as a template. It’s a basic [**Dockerfile**](https://docs.docker.com/engine/reference/builder/) that will work for most situations.
 
 ```dockerfile
 FROM ubuntu:20.04
 
+# copy your server files here
+# for example:
 COPY . /home/MyGame/
+
+# add user to run the container
 RUN useradd -m gameuser
+
+# set permissions
 RUN chmod 777 /home/MyGame/GameServer.sh
 
 USER gameuser
+
+# set your game binary as the entrypoint
+ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
+
+# add port number(s) needed for your game
+EXPOSE 1024/udp
+EXPOSE 7777/udp
+```
+
+>**INFO:** This base image should do the trick. But if you need something more specific or advanced, it might be better to create the container from scratch.
+
+### Your networking method might affect the file
+
+Depending on the networking method you pick in the next step, you might need to change your Dockerfile. For now, here are a couple of examples:
+
+### Bridge networking Docker file:
+
+```dockerfile
+FROM ubuntu:focal
+
+#copy server files
+COPY . /home/MyGame/
+
+RUN useradd -m gameuser
+
+# set permissions
+RUN chmod 777 /home/MyGame/GameServer.sh
+
+USER gameuser
+
 ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
 
 EXPOSE 1024/udp
 EXPOSE 7777/udp
 ```
 
-> **Info:** This base image is only a starting point. Use a custom base if your runtime requires it.
-
-### Bridge Networking Example
+### Host networking Dockerfile:
 
 ```dockerfile
 FROM ubuntu:focal
-COPY . /home/MyGame/
-RUN useradd -m gameuser
-RUN chmod 777 /home/MyGame/GameServer.sh
-USER gameuser
-ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
-EXPOSE 1024/udp
-EXPOSE 7777/udp
-```
 
-### Host Networking Example
-
-```dockerfile
-FROM ubuntu:focal
+#copy server files
 COPY . /home/MyGame/
+
 RUN useradd -m gameuser
+
+# set permissions
 RUN chmod 777 /home/MyGame/GameServer.sh
+
 USER gameuser
+
 ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
 ```
 
-### Entrypoint Example
+### Entrypoint:
 
-```bash
+```shell
 #!/bin/sh
-UE4_TRUE_SCRIPT_NAME=$(echo "$0" | xargs readlink -f)
+UE4_TRUE_SCRIPT_NAME=$(echo \"$0\" | xargs readlink -f)
 UE4_PROJECT_ROOT=$(dirname "$UE4_TRUE_SCRIPT_NAME")
 chmod +x "$UE4_PROJECT_ROOT/MyGame/Binaries/Linux/GameServer"
 "$UE4_PROJECT_ROOT/MyGame/Binaries/Linux/GameServer" MyGame $@ -port=7777 -GameServerQueryPort=1024
 ```
 
-## 2. Push to Docker Hub
+## 2: Push your new Docker image to Dockerhub
+Now that everything is packaged together as an image, [**push it to Dockerhub**](https://docs.docker.com/engine/reference/commandline/push/). This is a good time to test if everything works by using our sandbox environment.
 
-Push your image and test on sandbox before production traffic.
-
-- [Docker push command reference](https://docs.docker.com/engine/reference/commandline/push/)
-
-> **Info:** Large images can take a few minutes to propagate and unpack.
+>**INFO:** **Why hasn’t the server been updated?** It might just need some time. Keep in mind, a 5GB image takes up to three minutes for the server to download and extract. So give it a moment or two.

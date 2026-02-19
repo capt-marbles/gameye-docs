@@ -159,6 +159,18 @@ Checks include:
 - normalized content similarity scoring (exact/high/low)
 - must-fix list: missing pages and low-similarity pages
 
+Low-similarity reconciliation pass:
+
+```bash
+npm run reconcile:archbee-low-similarity
+```
+
+This rewrites currently low-similarity docs targets from the Archbee export source, then you should rerun:
+
+```bash
+npm run audit:archbee-parity
+```
+
 ## Parity Workflow
 
 ```bash

@@ -1,29 +1,39 @@
 ---
 title: '5. Start the API call'
-description: "Documentation for 5. Start the API call in Gameye."
+description: 'Legacy Archbee documentation page for 5. Start the API call.'
 ---
 
-After your image is available in Gameye, create a session using the Session API.
+We’ll distribute your new image behind the scenes and get the sessions running. You just need to check that it’s working. Once we’ve pushed the image onto our servers, you should be able to [**call our API**](https://docs.gameye.com/session).
 
-## Call the Session Endpoint
+If nothing happens, then there’s a problem. We can work together to figure this out, just message our support team on [**Discord**](https://bit.ly/3oZZaGR).
 
-Use the session endpoint and include your bearer token:
+## How do you know it’s working?
+Whenever you successfully start a container through our API, it should return with an IP address and port for that container, which will let your players join the game.
 
-```bash
-curl \
- -X POST https://api.gameye.io/session \
- -H "Authorization: Bearer $ACCESS_TOKEN" \
- -H "Content-Type: application/json" \
- -d '{"id":"f7965a22-e327-4541-a30e-8262890d3a29","location":"europe","image":"my-very-special-game","env":{"my-secret":"<my_secret_value>"},"args":["--max-players=8"],"labels":{"my-example-tag":"1","another-example-tag":"3"},"restart":false}'
-```
+### Your API call should look like this:
 
-## Confirm It Started
+    ```curl
+    curl \
+     -X POST https://api.gameye.io/session \
+     -H "Authorization: Bearer $ACCESS_TOKEN" \
+     -H "Content-Type: application/json" \
+     -d '{"id":"f7965a22-e327-4541-a30e-8262890d3a29","location":"europe","image":"my-very-special-game","env":{"my-secret":"\u003cmy_secret_value"},"args":["--max-players=8"],"labels":{"my-example-tag":"1","another-example-tag":"3"},"restart":false}'
+    ```
 
-A successful response should include host and port allocation for the containerized session. Use that response data to connect players.
-
-If startup fails, contact support on [Discord](https://bit.ly/3oZZaGR) with the error payload and identifier.
-
-## Next
-
-- [Session endpoint reference](/api/session)
-- [Session management guide](/api/session-management)
+    ```javascript
+    {
+      "host": "a.b.c.d",
+      "ports": [
+        {
+          "type": "tcp",
+          "container": 80,
+          "host": 49159
+        },
+        {
+          "type": "tcp",
+          "container": 80,
+          "host": 49159
+        }
+      ]
+    }
+    ```

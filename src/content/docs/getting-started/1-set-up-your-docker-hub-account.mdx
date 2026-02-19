@@ -1,45 +1,33 @@
 ---
 title: '1. Set up your Docker Hub account'
-description: "Documentation for 1. Set up your Docker Hub account in Gameye."
+description: 'Legacy Archbee documentation page for 1. Set up your Docker Hub account.'
 ---
 
-Gameye currently uses Docker Hub as the primary registry source for image updates.
+You need a Docker Hub account to upload new images of your game. At the moment, we use Docker Hub as the main container repository service. This lets us know about any build updates you push to your created repository.
 
-## 1. Create a Docker Hub Team Account
+## 1. Create your Docker Hub accountYou’ll want to get a ‘[**Team Docker account**](https://www.docker.com/pricing/)’ to work with us. And you’ll need to install this on either a Linux or Windows OS. Reach out to our team on [**Discord**](https://bit.ly/3oZZaGR) if you have any issues (or email [**support@gameye.com**]()).
 
-Use a Docker Hub Team plan for collaboration and repository permissions:
+This is necessary as we typically work solely with Docker Hub. It lets us know when your new images are pushed to a repository, so we can then pull this onto the relevant servers.
 
-- [Docker pricing](https://www.docker.com/pricing/)
+## 2. Set up your repositoryFirst, you need to set up the registry that will have the relevant container images. [**Here’s Docker’s repository guide**](https://docs.docker.com/docker-hub/). Please be aware, you'll need to dockerize your game binary as part of the process. If you have any third-party tools, make sure you include their libraries and files in this repository. (That could be anything from your anti-cheat software to your Steam libraries.)
 
-If you need help during setup, contact us on [Discord](https://bit.ly/3oZZaGR) or by email at [support@gameye.com](mailto:support@gameye.com).
+## 3. Grant Gameye read-only access to Docker HubOnce you’ve created your repository, it’s important that you grant the following account gameyedocker read-only access to your repository. Here's how to give Gameye [**read-only access**](https://docs.docker.com/docker-hub/members/).
 
-## 2. Create Your Repository
+## 4. You need to add our webhookWhen you have a new image ready to push to our servers, you’ll need to give us a heads-up. Here’s the URL to add to Docker Hub:
+[**https://image-updater-docker-hub.gameye.com/webhook**](https://image-updater-docker-hub.gameye.com/webhook).
 
-Create the repository that will store your game server images.
+Now, along with step three, every time you push a build to Docker, it’ll trigger the webhook. Which will activate the pull request and push them onto the servers.**If you miss this step, your new builds won’t go to the servers.** By default, Gameye will consider your newest image the live version. And that's what we'll launch on our servers.
 
-- [Docker Hub repository guide](https://docs.docker.com/docker-hub/)
+## 5. Pick which networking method you would like to useNow we need to make sure your players can connect to the game. So we need to sort out which ports you want to use. You have two routes to go down.**Bridge Networking:**
+This is the standard option. Just add the ports you’d like to use to your Docker file. (Where to find those ports varies – it depends on which engine you’re using.) And then you’re sorted.**Host Networking:**
+There are a few reasons why studios use host networking. For example, you might have certain variables in your games that you’re already working with. So it could make things more consistent with your current setup. As we’re not adding the ports in your Docker file, you’ll need to add in the variables when you start your game server. Where you add your variables depends on your set-up (for example, you could use an entrypoint.sh file, but it’s up to you). And then let us know which ports you’re using, so we can add it to your image in our platform.
 
-Include any required dependencies in your image (for example anti-cheat files or third-party runtime libraries).
+Here’s an example of how an environment variable would look like:
 
-## 3. Grant Gameye Read-Only Access
+```json
+GAMEYE_PORT_{type}_{container}
+$GAMEYE_PORT_UDP_5000
+$GAMEYE_PORT_TCP_80
+```
 
-Grant read-only access to the Docker Hub user `gameyedocker` so Gameye can pull images.
-
-- [Docker Hub members and repository permissions](https://docs.docker.com/docker-hub/members/)
-
-## 4. Add the Image Updater Webhook
-
-Add this webhook URL in Docker Hub:
-
-- `https://image-updater-docker-hub.gameye.com/webhook`
-
-Without this webhook, image pushes will not propagate to Gameye automatically.
-
-## 5. Choose Your Networking Model
-
-You can use either:
-
-- **Bridge networking**: standard Docker port mapping flow.
-- **Host networking**: direct host stack usage with environment-variable driven ports.
-
-You’ll configure this in detail in the next step.
+If you’re unsure what networking method to use, read the more detailed section regarding docker networking options or ping us on [**Discord**](https://bit.ly/3oZZaGR).

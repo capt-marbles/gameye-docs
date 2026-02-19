@@ -1,0 +1,55 @@
+---
+title: 'Integrate a matchmaker'
+description: 'Legacy Archbee documentation page for Integrate a matchmaker.'
+---
+
+Syncing your matchmaker is as easy as calling our API. However, you’ll need complete control over your matchmaker so that you can easily add the code. If you’re using a matchmaker like FlexMatch, there are a few extra steps to add those code snippets. We’ll go into that in a separate guide.
+
+### You need somewhere to host your matchmaker
+You can host your matchmaker wherever you like, even a static server on your own premises. But if you’d like to use our platform, let us know. We can host your matchmaker around the world, close to the players, which would cut down on your latency.
+
+> **INFO:** **It’s best to set up your matchmaker on a separate server** For security reasons, we recommend keeping your matchmaker separate from your game client. If you don’t, you’ll expose the API key to your players, and they could call sessions without your permission.
+
+### Step one: Add an API call to your matchmaker
+The first step is to send our orchestrator some key information. We usually recommend telling us the following information:
+
+- `session` – A unique session ID**.**We recommend using UUIDs. You’ll need to automatically generate these.
+- `region` – This is where you want the session to launch. Your matchmaker should get this information from the players.
+- `image` – The image you’d like to launch.
+- `label` – Labels are metadata that you can add to the container, which you can use later. If you have any labels, make sure to add them in here.
+
+If you need any help with these parameters, we recommend checking the API endpoints section of these docs. But the code snippet usually looks something like this:
+
+```javascript
+//add code snippet here
+```
+
+### Step two: Receive our response
+Now you’ve called the API, our orchestrator will find a session that’s in your region for the players and launch the session.
+
+We’ll then return:
+
+- `session` – The session ID you made.
+- `ip` – The IP address to send to your players.
+- `port` – The port number your players should use.
+
+All that's left is to pass that information over to your players.
+
+### Step three: Forward that information to your clients
+Now, your matchmaker needs to send the IP address and port to each player. Usually, that code looks somewhat like this:
+
+```javascript
+//add code snippet here
+```
+
+### Step four: The client connects
+Inside your client image, you’ll need to have a way to receive the information from the matchmaker and then connect to the correct IP address. Typically, the matchmaker will need a piece of code like this:
+
+```javascript
+//add code snippet here
+```
+
+That’s it. You’ve integrated your matchmaker with our platform.
+
+### Using specific matchmakers
+Some matchmakers are a little more difficult to add those code snippets than others. If you need help finding how and where to add the API call, let us know.

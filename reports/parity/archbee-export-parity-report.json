@@ -1,0 +1,1592 @@
+{
+  "generatedAt": "2026-02-19T19:55:29.838Z",
+  "exportDir": "/Users/awalker/Documents/Code Project/archbee-export",
+  "docsDir": "/Users/awalker/Documents/Code Project/gameye-docs/src/content/docs",
+  "summary": {
+    "exportPages": 89,
+    "docsPages": 82,
+    "matched": 68,
+    "exact": 11,
+    "high": 29,
+    "low": 28,
+    "missingInDocs": 21,
+    "extraInDocs": 16,
+    "minSimilarity": 0.72
+  },
+  "missingInDocs": [
+    {
+      "exportRelPath": "Admin Panel/User Manual.mdx",
+      "title": "User Manual",
+      "expectedRoutes": [
+        "/guides/user-manual"
+      ]
+    },
+    {
+      "exportRelPath": "API V2/API Reference/_session__id_.mdx",
+      "title": "/session/{id}",
+      "expectedRoutes": [
+        "/api/session-id",
+        "/api/reference/session-id",
+        "/api/reference"
+      ]
+    },
+    {
+      "exportRelPath": "API V2/API Reference/_session_player_join.mdx",
+      "title": "/session/player/join",
+      "expectedRoutes": [
+        "/api/session-player-join",
+        "/api/reference/session-player-join",
+        "/api/reference"
+      ]
+    },
+    {
+      "exportRelPath": "API V2/API Reference/_session_player_leave.mdx",
+      "title": "/session/player/leave",
+      "expectedRoutes": [
+        "/api/session-player-leave",
+        "/api/reference/session-player-leave",
+        "/api/reference"
+      ]
+    },
+    {
+      "exportRelPath": "API V2/API Reference/Describes a single session_.mdx",
+      "title": "Describes a single session.",
+      "expectedRoutes": [
+        "/api/describes-a-single-session",
+        "/api/reference/describes-a-single-session",
+        "/api/reference"
+      ]
+    },
+    {
+      "exportRelPath": "API V2/API Reference/Get a list of available locations.mdx",
+      "title": "Get a list of available locations",
+      "expectedRoutes": [
+        "/api/get-a-list-of-available-locations",
+        "/api/reference/get-a-list-of-available-locations",
+        "/api/reference"
+      ]
+    },
+    {
+      "exportRelPath": "API V2/API Reference/Lists a collection of active sessions_.mdx",
+      "title": "Lists a collection of active sessions.",
+      "expectedRoutes": [
+        "/api/lists-a-collection-of-active-sessions",
+        "/api/reference/lists-a-collection-of-active-sessions",
+        "/api/reference"
+      ]
+    },
+    {
+      "exportRelPath": "Guides/Integrations/Integrate a matchmaker.mdx",
+      "title": "Integrate a matchmaker",
+      "expectedRoutes": [
+        "/guides/integrate-a-matchmaker"
+      ]
+    },
+    {
+      "exportRelPath": "Guides/Integrations/Integrate a matchmaker/Integrating AWS FlexMatch.mdx",
+      "title": "Integrating AWS FlexMatch",
+      "expectedRoutes": [
+        "/guides/integrating-aws-flexmatch"
+      ]
+    },
+    {
+      "exportRelPath": "Guides/Integrations/Integrate a matchmaker/Integrating PlayFab.mdx",
+      "title": "Integrating PlayFab",
+      "expectedRoutes": [
+        "/guides/integrating-playfab"
+      ]
+    },
+    {
+      "exportRelPath": "Guides/Integrations/Integrating a container registry.mdx",
+      "title": "Integrating a container registry",
+      "expectedRoutes": [
+        "/guides/integrating-a-container-registry"
+      ]
+    },
+    {
+      "exportRelPath": "Guides/Integrations/Integrating a container registry/Integrating Amazon ECR.mdx",
+      "title": "Integrating Amazon ECR",
+      "expectedRoutes": [
+        "/guides/integrating-amazon-ecr"
+      ]
+    },
+    {
+      "exportRelPath": "Guides/Using Gameye/Customer dashboard.mdx",
+      "title": "Customer dashboard",
+      "expectedRoutes": [
+        "/guides/customer-dashboard"
+      ]
+    },
+    {
+      "exportRelPath": "Guides/Using Gameye/Switch on Smarthost _BETA_.mdx",
+      "title": "Switch on Smarthost (BETA)",
+      "expectedRoutes": [
+        "/guides/switch-on-smarthost-beta"
+      ]
+    },
+    {
+      "exportRelPath": "Guides/Using Gameye/Switch on Smarthost _BETA_/How does Smarthost work_.mdx",
+      "title": "How does Smarthost work?",
+      "expectedRoutes": [
+        "/guides/how-does-smarthost-work"
+      ]
+    },
+    {
+      "exportRelPath": "Legacy API/API endpoints/Get all logs.mdx",
+      "title": "Get all logs",
+      "expectedRoutes": [
+        "/api/get-all-logs"
+      ]
+    },
+    {
+      "exportRelPath": "Legacy API/API endpoints/Get real-time logs.mdx",
+      "title": "Get real-time logs",
+      "expectedRoutes": [
+        "/api/get-real-time-logs"
+      ]
+    },
+    {
+      "exportRelPath": "Legacy API/API endpoints/Get your metrics.mdx",
+      "title": "Get your metrics",
+      "expectedRoutes": [
+        "/api/get-your-metrics"
+      ]
+    },
+    {
+      "exportRelPath": "Legacy API/API endpoints/List available locations.mdx",
+      "title": "List available locations",
+      "expectedRoutes": [
+        "/api/list-available-locations"
+      ]
+    },
+    {
+      "exportRelPath": "Legacy API/API endpoints/List current sessions.mdx",
+      "title": "List current sessions",
+      "expectedRoutes": [
+        "/api/list-current-sessions"
+      ]
+    },
+    {
+      "exportRelPath": "Legacy API/Examples.mdx",
+      "title": "Examples",
+      "expectedRoutes": [
+        "/api/examples"
+      ]
+    }
+  ],
+  "lowSimilarity": [
+    {
+      "exportRelPath": "FAQs/FAQs.mdx",
+      "docsRelPath": "faq/index.mdx",
+      "route": "/faq",
+      "title": "FAQs",
+      "docsTitle": "Frequently Asked Questions",
+      "similarity": 0.034782608695652174,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Admin Panel/User Manual/Troubleshooting.mdx",
+      "docsRelPath": "troubleshooting/index.mdx",
+      "route": "/troubleshooting",
+      "title": "Troubleshooting",
+      "docsTitle": "Operational Troubleshooting",
+      "similarity": 0.06451612903225806,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Changelogs.mdx",
+      "docsRelPath": "changelog/index.mdx",
+      "route": "/changelog",
+      "title": "Changelogs",
+      "docsTitle": "Changelog Index",
+      "similarity": 0.06896551724137931,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Admin Panel/User Manual/Getting Started.mdx",
+      "docsRelPath": "getting-started/index.mdx",
+      "route": "/getting-started",
+      "title": "Getting Started",
+      "docsTitle": "Getting Started",
+      "similarity": 0.06976744186046512,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Glossary/Docker.mdx",
+      "docsRelPath": "guides/docker.mdx",
+      "route": "/guides/docker",
+      "title": "Docker",
+      "docsTitle": "Docker",
+      "similarity": 0.09836065573770492,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Admin Panel/User Manual/Regions.mdx",
+      "docsRelPath": "guides/regions.mdx",
+      "route": "/guides/regions",
+      "title": "Regions",
+      "docsTitle": "Regions",
+      "similarity": 0.09876543209876543,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Admin Panel/User Manual/External Links.mdx",
+      "docsRelPath": "guides/external-links.mdx",
+      "route": "/guides/external-links",
+      "title": "External Links",
+      "docsTitle": "External Links",
+      "similarity": 0.11290322580645161,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "FAQs/How do I start using Gameye_.mdx",
+      "docsRelPath": "faq/how-do-i-start-using-gameye.mdx",
+      "route": "/faq/how-do-i-start-using-gameye",
+      "title": "How do I start using Gameye?",
+      "docsTitle": "How do I start using Gameye?",
+      "similarity": 0.11666666666666667,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "What is Gameye_.mdx",
+      "docsRelPath": "index.mdx",
+      "route": "/",
+      "title": "What is Gameye?",
+      "docsTitle": "Gameye Docs",
+      "similarity": 0.1554054054054054,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "FAQs/What is the difference between a location and a region_.mdx",
+      "docsRelPath": "faq/what-is-the-difference-between-a-location-and-a-region.mdx",
+      "route": "/faq/what-is-the-difference-between-a-location-and-a-region",
+      "title": "What is the difference between a location and a region?",
+      "docsTitle": "What is the difference between a location and a region?",
+      "similarity": 0.15714285714285714,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Glossary/Region.mdx",
+      "docsRelPath": "guides/regions.mdx",
+      "route": "/guides/regions",
+      "title": "Region",
+      "docsTitle": "Regions",
+      "similarity": 0.16049382716049382,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Glossary/Container.mdx",
+      "docsRelPath": "guides/container.mdx",
+      "route": "/guides/container",
+      "title": "Container",
+      "docsTitle": "Container",
+      "similarity": 0.18032786885245902,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Legacy API/API endpoints/Open API spec.mdx",
+      "docsRelPath": "api/open-api-spec.mdx",
+      "route": "/api/open-api-spec",
+      "title": "Open API spec",
+      "docsTitle": "Open API spec",
+      "similarity": 0.21568627450980393,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "API V2/Open API spec.mdx",
+      "docsRelPath": "api/open-api-spec.mdx",
+      "route": "/api/open-api-spec",
+      "title": "Open API spec",
+      "docsTitle": "Open API spec",
+      "similarity": 0.23655913978494625,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "API V2/Session Management.mdx",
+      "docsRelPath": "api/session-management.mdx",
+      "route": "/api/session-management",
+      "title": "Session Management",
+      "docsTitle": "Session Management",
+      "similarity": 0.2508038585209003,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "FAQs/Do you require authorisation to use the API_.mdx",
+      "docsRelPath": "faq/do-you-require-authorisation-to-use-the-api.mdx",
+      "route": "/faq/do-you-require-authorisation-to-use-the-api",
+      "title": "Do you require authorisation to use the API?",
+      "docsTitle": "Do you require authorisation to use the API?",
+      "similarity": 0.2702702702702703,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "API V2/Gameye Session API Overview.mdx",
+      "docsRelPath": "api/gameye-session-api-overview.mdx",
+      "route": "/api/gameye-session-api-overview",
+      "title": "Gameye Session API Overview",
+      "docsTitle": "Gameye Session API Overview",
+      "similarity": 0.27586206896551724,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Support/Getting support.mdx",
+      "docsRelPath": "guides/getting-support.mdx",
+      "route": "/guides/getting-support",
+      "title": "Getting support",
+      "docsTitle": "Getting support",
+      "similarity": 0.2804878048780488,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Getting started/2_ Set up your organization on Gameye.mdx",
+      "docsRelPath": "getting-started/2-set-up-your-organization-on-gameye.mdx",
+      "route": "/getting-started/2-set-up-your-organization-on-gameye",
+      "title": "2: Set up your organization on Gameye",
+      "docsTitle": "2: Set up your organization on Gameye",
+      "similarity": 0.29914529914529914,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Getting started/1_ Set up your Docker Hub account.mdx",
+      "docsRelPath": "getting-started/1-set-up-your-docker-hub-account.mdx",
+      "route": "/getting-started/1-set-up-your-docker-hub-account",
+      "title": "1. Set up your Docker Hub account",
+      "docsTitle": "1. Set up your Docker Hub account",
+      "similarity": 0.33617021276595743,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Admin Panel/User Manual/Dashboard.mdx",
+      "docsRelPath": "guides/dashboard.mdx",
+      "route": "/guides/dashboard",
+      "title": "Dashboard",
+      "docsTitle": "Dashboard",
+      "similarity": 0.33707865168539325,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Getting started/Getting ready to start.mdx",
+      "docsRelPath": "getting-started/getting-ready-to-start.mdx",
+      "route": "/getting-started/getting-ready-to-start",
+      "title": "Getting ready to start",
+      "docsTitle": "Getting ready to start",
+      "similarity": 0.3384615384615385,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Legacy API/API endpoints/Launch a session.mdx",
+      "docsRelPath": "api/launch-a-session.mdx",
+      "route": "/api/launch-a-session",
+      "title": "Launch a session",
+      "docsTitle": "Launch a session",
+      "similarity": 0.35555555555555557,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Getting started/4_ Configure your ports.mdx",
+      "docsRelPath": "getting-started/4-configure-your-ports.mdx",
+      "route": "/getting-started/4-configure-your-ports",
+      "title": "4. Configure your ports",
+      "docsTitle": "4. Configure your ports",
+      "similarity": 0.4088888888888889,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "API V2/Authentication.mdx",
+      "docsRelPath": "api/authentication.mdx",
+      "route": "/api/authentication",
+      "title": "Authentication",
+      "docsTitle": "Authentication",
+      "similarity": 0.42016806722689076,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Getting started/3_ Sort and push your Docker file.mdx",
+      "docsRelPath": "getting-started/3-sort-and-push-your-docker-file.mdx",
+      "route": "/getting-started/3-sort-and-push-your-docker-file",
+      "title": "3. Sort and push your Docker file",
+      "docsTitle": "3. Sort and push your Docker file",
+      "similarity": 0.42021276595744683,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Getting started/5_ Start the API call.mdx",
+      "docsRelPath": "getting-started/5-start-the-api-call.mdx",
+      "route": "/getting-started/5-start-the-api-call",
+      "title": "5. Start the API call",
+      "docsTitle": "5. Start the API call",
+      "similarity": 0.42424242424242425,
+      "mappingSource": "route"
+    },
+    {
+      "exportRelPath": "Legacy API/API endpoints/Stop a session.mdx",
+      "docsRelPath": "api/stop-a-session.mdx",
+      "route": "/api/stop-a-session",
+      "title": "Stop a session",
+      "docsTitle": "Stop a session",
+      "similarity": 0.449438202247191,
+      "mappingSource": "route"
+    }
+  ],
+  "extraInDocs": [
+    {
+      "relPath": "api/index.mdx",
+      "route": "/api",
+      "title": "API Overview"
+    },
+    {
+      "relPath": "api/session-lifecycle.mdx",
+      "route": "/api/session-lifecycle",
+      "title": "Session Lifecycle"
+    },
+    {
+      "relPath": "api/sessionid.mdx",
+      "route": "/api/sessionid",
+      "title": "/session/\\{id\\}"
+    },
+    {
+      "relPath": "api/sessionplayerjoin.mdx",
+      "route": "/api/sessionplayerjoin",
+      "title": "/session/player/join"
+    },
+    {
+      "relPath": "api/sessionplayerleave.mdx",
+      "route": "/api/sessionplayerleave",
+      "title": "/session/player/leave"
+    },
+    {
+      "relPath": "api/versioning-and-openapi-flow.mdx",
+      "route": "/api/versioning-and-openapi-flow",
+      "title": "OpenAPI Versioning Flow"
+    },
+    {
+      "relPath": "changelog/2026-02-18-scaffold-release.mdx",
+      "route": "/changelog/2026-02-18-scaffold-release",
+      "title": "2026-02-18 Scaffold Release"
+    },
+    {
+      "relPath": "getting-started/quickstart.mdx",
+      "route": "/getting-started/quickstart",
+      "title": "Quickstart"
+    },
+    {
+      "relPath": "guides/ai-assistant-api-contract.mdx",
+      "route": "/guides/ai-assistant-api-contract",
+      "title": "AI assistant API contract"
+    },
+    {
+      "relPath": "guides/glossary.mdx",
+      "route": "/guides/glossary",
+      "title": "Glossary"
+    },
+    {
+      "relPath": "guides/integrations.mdx",
+      "route": "/guides/integrations",
+      "title": "Integrations"
+    },
+    {
+      "relPath": "guides/migration-from-archbee.mdx",
+      "route": "/guides/migration-from-archbee",
+      "title": "Migration from Archbee"
+    },
+    {
+      "relPath": "guides/using-gameye.mdx",
+      "route": "/guides/using-gameye",
+      "title": "Using Gameye"
+    },
+    {
+      "relPath": "guides/versioning-and-release-policy.mdx",
+      "route": "/guides/versioning-and-release-policy",
+      "title": "Versioning and Release Policy"
+    },
+    {
+      "relPath": "guides/working-with-docker.mdx",
+      "route": "/guides/working-with-docker",
+      "title": "Working with Docker"
+    },
+    {
+      "relPath": "guides/writing-and-publishing-standards.mdx",
+      "route": "/guides/writing-and-publishing-standards",
+      "title": "Writing and publishing standards"
+    }
+  ],
+  "results": [
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Admin Panel/User Manual.mdx",
+      "title": "User Manual",
+      "expectedRoutes": [
+        "/guides/user-manual"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Active Containers.mdx",
+      "docsRelPath": "guides/active-containers.mdx",
+      "route": "/guides/active-containers",
+      "title": "Active Containers",
+      "docsTitle": "Active Containers",
+      "similarity": 0.9534883720930233,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/active-containers"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Applications.mdx",
+      "docsRelPath": "guides/applications.mdx",
+      "route": "/guides/applications",
+      "title": "Applications",
+      "docsTitle": "Applications",
+      "similarity": 0.9655172413793104,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/applications"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Admin Panel/User Manual/Common screen patterns.mdx",
+      "docsRelPath": "guides/common-screen-patterns.mdx",
+      "route": "/guides/common-screen-patterns",
+      "title": "Common screen patterns",
+      "docsTitle": "Common screen patterns",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/common-screen-patterns"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Containers History.mdx",
+      "docsRelPath": "guides/containers-history.mdx",
+      "route": "/guides/containers-history",
+      "title": "Containers History",
+      "docsTitle": "Containers History",
+      "similarity": 0.9210526315789473,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/containers-history"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Dashboard.mdx",
+      "docsRelPath": "guides/dashboard.mdx",
+      "route": "/guides/dashboard",
+      "title": "Dashboard",
+      "docsTitle": "Dashboard",
+      "similarity": 0.33707865168539325,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/dashboard"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Admin Panel/User Manual/External Links.mdx",
+      "docsRelPath": "guides/external-links.mdx",
+      "route": "/guides/external-links",
+      "title": "External Links",
+      "docsTitle": "External Links",
+      "similarity": 0.11290322580645161,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/external-links"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Getting Started.mdx",
+      "docsRelPath": "getting-started/index.mdx",
+      "route": "/getting-started",
+      "title": "Getting Started",
+      "docsTitle": "Getting Started",
+      "similarity": 0.06976744186046512,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/getting-started",
+        "/getting-started"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Images.mdx",
+      "docsRelPath": "guides/images.mdx",
+      "route": "/guides/images",
+      "title": "Images",
+      "docsTitle": "Images",
+      "similarity": 0.9310344827586207,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/images"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Admin Panel/User Manual/Layout and navigation.mdx",
+      "docsRelPath": "guides/layout-and-navigation.mdx",
+      "route": "/guides/layout-and-navigation",
+      "title": "Layout and navigation",
+      "docsTitle": "Layout and navigation",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/layout-and-navigation"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Nodes.mdx",
+      "docsRelPath": "guides/nodes.mdx",
+      "route": "/guides/nodes",
+      "title": "Nodes",
+      "docsTitle": "Nodes",
+      "similarity": 0.9473684210526315,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/nodes"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Port Bindings.mdx",
+      "docsRelPath": "guides/port-bindings.mdx",
+      "route": "/guides/port-bindings",
+      "title": "Port Bindings",
+      "docsTitle": "Port Bindings",
+      "similarity": 0.9333333333333333,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/port-bindings"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Profile.mdx",
+      "docsRelPath": "guides/profile.mdx",
+      "route": "/guides/profile",
+      "title": "Profile",
+      "docsTitle": "Profile",
+      "similarity": 0.8571428571428571,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/profile"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Regions.mdx",
+      "docsRelPath": "guides/regions.mdx",
+      "route": "/guides/regions",
+      "title": "Regions",
+      "docsTitle": "Regions",
+      "similarity": 0.09876543209876543,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/regions"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Tags.mdx",
+      "docsRelPath": "guides/tags.mdx",
+      "route": "/guides/tags",
+      "title": "Tags",
+      "docsTitle": "Tags",
+      "similarity": 0.9,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/tags"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Troubleshooting.mdx",
+      "docsRelPath": "troubleshooting/index.mdx",
+      "route": "/troubleshooting",
+      "title": "Troubleshooting",
+      "docsTitle": "Operational Troubleshooting",
+      "similarity": 0.06451612903225806,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/troubleshooting",
+        "/troubleshooting"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Admin Panel/User Manual/Users.mdx",
+      "docsRelPath": "guides/users.mdx",
+      "route": "/guides/users",
+      "title": "Users",
+      "docsTitle": "Users",
+      "similarity": 0.9318181818181818,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/users"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "API V2/API Reference/_session__id_.mdx",
+      "title": "/session/{id}",
+      "expectedRoutes": [
+        "/api/session-id",
+        "/api/reference/session-id",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "API V2/API Reference/_session_player_join.mdx",
+      "title": "/session/player/join",
+      "expectedRoutes": [
+        "/api/session-player-join",
+        "/api/reference/session-player-join",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "API V2/API Reference/_session_player_leave.mdx",
+      "title": "/session/player/leave",
+      "expectedRoutes": [
+        "/api/session-player-leave",
+        "/api/reference/session-player-leave",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "API V2/API Reference/_session.mdx",
+      "docsRelPath": "api/session.mdx",
+      "route": "/api/session",
+      "title": "/session",
+      "docsTitle": "/session",
+      "similarity": 0.9484536082474226,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/session",
+        "/api/reference/session",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "API V2/API Reference/Check if tag exists in the Gameye fleet.mdx",
+      "docsRelPath": "api/check-if-tag-exists-in-the-gameye-fleet.mdx",
+      "route": "/api/check-if-tag-exists-in-the-gameye-fleet",
+      "title": "Check if tag exists in the Gameye fleet",
+      "docsTitle": "Check if tag exists in the Gameye fleet",
+      "similarity": 0.9074074074074074,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/check-if-tag-exists-in-the-gameye-fleet",
+        "/api/reference/check-if-tag-exists-in-the-gameye-fleet",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "API V2/API Reference/Describes a single session_.mdx",
+      "title": "Describes a single session.",
+      "expectedRoutes": [
+        "/api/describes-a-single-session",
+        "/api/reference/describes-a-single-session",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "API V2/API Reference/Download an artifact file from the underlying container_.mdx",
+      "docsRelPath": "api/download-an-artifact-file-from-the-underlying-container.mdx",
+      "route": "/api/download-an-artifact-file-from-the-underlying-container",
+      "title": "Download an artifact file from the underlying container.",
+      "docsTitle": "Download an artifact file from the underlying container.",
+      "similarity": 0.954954954954955,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/download-an-artifact-file-from-the-underlying-container",
+        "/api/reference/download-an-artifact-file-from-the-underlying-container",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "API V2/API Reference/Get a list of available locations.mdx",
+      "title": "Get a list of available locations",
+      "expectedRoutes": [
+        "/api/get-a-list-of-available-locations",
+        "/api/reference/get-a-list-of-available-locations",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "API V2/API Reference/Get logs.mdx",
+      "docsRelPath": "api/get-logs.mdx",
+      "route": "/api/get-logs",
+      "title": "Get logs",
+      "docsTitle": "Get logs",
+      "similarity": 0.9154929577464789,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/get-logs",
+        "/api/reference/get-logs",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "API V2/API Reference/Lists a collection of active sessions_.mdx",
+      "title": "Lists a collection of active sessions.",
+      "expectedRoutes": [
+        "/api/lists-a-collection-of-active-sessions",
+        "/api/reference/lists-a-collection-of-active-sessions",
+        "/api/reference"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "API V2/Artifacts.mdx",
+      "docsRelPath": "api/artifacts.mdx",
+      "route": "/api/artifacts",
+      "title": "Artifacts",
+      "docsTitle": "Artifacts",
+      "similarity": 0.9753694581280788,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/artifacts"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "API V2/Authentication.mdx",
+      "docsRelPath": "api/authentication.mdx",
+      "route": "/api/authentication",
+      "title": "Authentication",
+      "docsTitle": "Authentication",
+      "similarity": 0.42016806722689076,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/authentication"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "API V2/Available Locations.mdx",
+      "docsRelPath": "api/available-locations.mdx",
+      "route": "/api/available-locations",
+      "title": "Available Locations",
+      "docsTitle": "Available Locations",
+      "similarity": 0.9795918367346939,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/available-locations"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "API V2/Gameye Session API Overview.mdx",
+      "docsRelPath": "api/gameye-session-api-overview.mdx",
+      "route": "/api/gameye-session-api-overview",
+      "title": "Gameye Session API Overview",
+      "docsTitle": "Gameye Session API Overview",
+      "similarity": 0.27586206896551724,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/gameye-session-api-overview"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "API V2/Log Streaming.mdx",
+      "docsRelPath": "api/log-streaming.mdx",
+      "route": "/api/log-streaming",
+      "title": "Log Streaming",
+      "docsTitle": "Log Streaming",
+      "similarity": 0.9864864864864865,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/log-streaming"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "API V2/Open API spec.mdx",
+      "docsRelPath": "api/open-api-spec.mdx",
+      "route": "/api/open-api-spec",
+      "title": "Open API spec",
+      "docsTitle": "Open API spec",
+      "similarity": 0.23655913978494625,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/open-api-spec"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "API V2/Session Management.mdx",
+      "docsRelPath": "api/session-management.mdx",
+      "route": "/api/session-management",
+      "title": "Session Management",
+      "docsTitle": "Session Management",
+      "similarity": 0.2508038585209003,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/session-management"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "API V2/Tag Verification.mdx",
+      "docsRelPath": "api/tag-verification.mdx",
+      "route": "/api/tag-verification",
+      "title": "Tag Verification",
+      "docsTitle": "Tag Verification",
+      "similarity": 0.994535519125683,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/tag-verification"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Changelogs.mdx",
+      "docsRelPath": "changelog/index.mdx",
+      "route": "/changelog",
+      "title": "Changelogs",
+      "docsTitle": "Changelog Index",
+      "similarity": 0.06896551724137931,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/changelog",
+        "/changelogs"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "FAQs/Do you require authorisation to use the API_.mdx",
+      "docsRelPath": "faq/do-you-require-authorisation-to-use-the-api.mdx",
+      "route": "/faq/do-you-require-authorisation-to-use-the-api",
+      "title": "Do you require authorisation to use the API?",
+      "docsTitle": "Do you require authorisation to use the API?",
+      "similarity": 0.2702702702702703,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/faq/do-you-require-authorisation-to-use-the-api"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "FAQs/FAQs.mdx",
+      "docsRelPath": "faq/index.mdx",
+      "route": "/faq",
+      "title": "FAQs",
+      "docsTitle": "Frequently Asked Questions",
+      "similarity": 0.034782608695652174,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/faq"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "FAQs/How do I start using Gameye_.mdx",
+      "docsRelPath": "faq/how-do-i-start-using-gameye.mdx",
+      "route": "/faq/how-do-i-start-using-gameye",
+      "title": "How do I start using Gameye?",
+      "docsTitle": "How do I start using Gameye?",
+      "similarity": 0.11666666666666667,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/faq/how-do-i-start-using-gameye"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "FAQs/How does Gameye scale_.mdx",
+      "docsRelPath": "faq/how-does-gameye-scale.mdx",
+      "route": "/faq/how-does-gameye-scale",
+      "title": "How does Gameye scale?",
+      "docsTitle": "How does Gameye scale?",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/faq/how-does-gameye-scale"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "FAQs/Is Gameye free to use_.mdx",
+      "docsRelPath": "faq/is-gameye-free-to-use.mdx",
+      "route": "/faq/is-gameye-free-to-use",
+      "title": "Is Gameye free to use?",
+      "docsTitle": "Is Gameye free to use?",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/faq/is-gameye-free-to-use"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "FAQs/What is the difference between a location and a region_.mdx",
+      "docsRelPath": "faq/what-is-the-difference-between-a-location-and-a-region.mdx",
+      "route": "/faq/what-is-the-difference-between-a-location-and-a-region",
+      "title": "What is the difference between a location and a region?",
+      "docsTitle": "What is the difference between a location and a region?",
+      "similarity": 0.15714285714285714,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/faq/what-is-the-difference-between-a-location-and-a-region"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Getting started/1_ Set up your Docker Hub account.mdx",
+      "docsRelPath": "getting-started/1-set-up-your-docker-hub-account.mdx",
+      "route": "/getting-started/1-set-up-your-docker-hub-account",
+      "title": "1. Set up your Docker Hub account",
+      "docsTitle": "1. Set up your Docker Hub account",
+      "similarity": 0.33617021276595743,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/getting-started/1-set-up-your-docker-hub-account"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Getting started/2_ Set up your organization on Gameye.mdx",
+      "docsRelPath": "getting-started/2-set-up-your-organization-on-gameye.mdx",
+      "route": "/getting-started/2-set-up-your-organization-on-gameye",
+      "title": "2: Set up your organization on Gameye",
+      "docsTitle": "2: Set up your organization on Gameye",
+      "similarity": 0.29914529914529914,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/getting-started/2-set-up-your-organization-on-gameye"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Getting started/3_ Sort and push your Docker file.mdx",
+      "docsRelPath": "getting-started/3-sort-and-push-your-docker-file.mdx",
+      "route": "/getting-started/3-sort-and-push-your-docker-file",
+      "title": "3. Sort and push your Docker file",
+      "docsTitle": "3. Sort and push your Docker file",
+      "similarity": 0.42021276595744683,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/getting-started/3-sort-and-push-your-docker-file"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Getting started/4_ Configure your ports.mdx",
+      "docsRelPath": "getting-started/4-configure-your-ports.mdx",
+      "route": "/getting-started/4-configure-your-ports",
+      "title": "4. Configure your ports",
+      "docsTitle": "4. Configure your ports",
+      "similarity": 0.4088888888888889,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/getting-started/4-configure-your-ports"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Getting started/5_ Start the API call.mdx",
+      "docsRelPath": "getting-started/5-start-the-api-call.mdx",
+      "route": "/getting-started/5-start-the-api-call",
+      "title": "5. Start the API call",
+      "docsTitle": "5. Start the API call",
+      "similarity": 0.42424242424242425,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/getting-started/5-start-the-api-call"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Getting started/Getting ready to start.mdx",
+      "docsRelPath": "getting-started/getting-ready-to-start.mdx",
+      "route": "/getting-started/getting-ready-to-start",
+      "title": "Getting ready to start",
+      "docsTitle": "Getting ready to start",
+      "similarity": 0.3384615384615385,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/getting-started/getting-ready-to-start"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Glossary/Bare metal.mdx",
+      "docsRelPath": "guides/bare-metal.mdx",
+      "route": "/guides/bare-metal",
+      "title": "Bare metal",
+      "docsTitle": "Bare metal",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/bare-metal"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Glossary/Cloud.mdx",
+      "docsRelPath": "guides/cloud.mdx",
+      "route": "/guides/cloud",
+      "title": "Cloud",
+      "docsTitle": "Cloud",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/cloud"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Glossary/Container.mdx",
+      "docsRelPath": "guides/container.mdx",
+      "route": "/guides/container",
+      "title": "Container",
+      "docsTitle": "Container",
+      "similarity": 0.18032786885245902,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/container"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Glossary/Docker.mdx",
+      "docsRelPath": "guides/docker.mdx",
+      "route": "/guides/docker",
+      "title": "Docker",
+      "docsTitle": "Docker",
+      "similarity": 0.09836065573770492,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/docker"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Glossary/Flex metal.mdx",
+      "docsRelPath": "guides/flex-metal.mdx",
+      "route": "/guides/flex-metal",
+      "title": "Flex metal",
+      "docsTitle": "Flex metal",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/flex-metal"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Glossary/Image Registry.mdx",
+      "docsRelPath": "guides/image-registry.mdx",
+      "route": "/guides/image-registry",
+      "title": "Image Registry",
+      "docsTitle": "Image Registry",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/image-registry"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Glossary/Matchmaker.mdx",
+      "docsRelPath": "guides/matchmaker.mdx",
+      "route": "/guides/matchmaker",
+      "title": "Matchmaker",
+      "docsTitle": "Matchmaker",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/matchmaker"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Glossary/Region.mdx",
+      "docsRelPath": "guides/regions.mdx",
+      "route": "/guides/regions",
+      "title": "Region",
+      "docsTitle": "Regions",
+      "similarity": 0.16049382716049382,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/region",
+        "/guides/regions"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Guides/Integrations/Integrate a matchmaker.mdx",
+      "title": "Integrate a matchmaker",
+      "expectedRoutes": [
+        "/guides/integrate-a-matchmaker"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Guides/Integrations/Integrate a matchmaker/Integrating AWS FlexMatch.mdx",
+      "title": "Integrating AWS FlexMatch",
+      "expectedRoutes": [
+        "/guides/integrating-aws-flexmatch"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Guides/Integrations/Integrate a matchmaker/Integrating PlayFab.mdx",
+      "title": "Integrating PlayFab",
+      "expectedRoutes": [
+        "/guides/integrating-playfab"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Guides/Integrations/Integrating a container registry.mdx",
+      "title": "Integrating a container registry",
+      "expectedRoutes": [
+        "/guides/integrating-a-container-registry"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Guides/Integrations/Integrating a container registry/Integrating Amazon ECR.mdx",
+      "title": "Integrating Amazon ECR",
+      "expectedRoutes": [
+        "/guides/integrating-amazon-ecr"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Integrations/Using Photon Fusion.mdx",
+      "docsRelPath": "guides/using-photon-fusion.mdx",
+      "route": "/guides/using-photon-fusion",
+      "title": "Using Photon Fusion",
+      "docsTitle": "Using Photon Fusion",
+      "similarity": 0.9646017699115044,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/using-photon-fusion"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Guides/Using Gameye/Customer dashboard.mdx",
+      "title": "Customer dashboard",
+      "expectedRoutes": [
+        "/guides/customer-dashboard"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Using Gameye/Generating logs.mdx",
+      "docsRelPath": "guides/generating-logs.mdx",
+      "route": "/guides/generating-logs",
+      "title": "Generating logs",
+      "docsTitle": "Generating logs",
+      "similarity": 0.9871794871794872,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/generating-logs"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Using Gameye/Orchestrator V2 Migration Guide.mdx",
+      "docsRelPath": "guides/orchestrator-v2-migration-guide.mdx",
+      "route": "/guides/orchestrator-v2-migration-guide",
+      "title": "Orchestrator V2 Migration Guide",
+      "docsTitle": "Orchestrator V2 Migration Guide",
+      "similarity": 0.9870689655172413,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/orchestrator-v2-migration-guide"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Using Gameye/Selecting the correct build.mdx",
+      "docsRelPath": "guides/selecting-the-correct-build.mdx",
+      "route": "/guides/selecting-the-correct-build",
+      "title": "Selecting the correct build",
+      "docsTitle": "Selecting the correct build",
+      "similarity": 0.9803921568627451,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/selecting-the-correct-build"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Guides/Using Gameye/Switch on Smarthost _BETA_.mdx",
+      "title": "Switch on Smarthost (BETA)",
+      "expectedRoutes": [
+        "/guides/switch-on-smarthost-beta"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Guides/Using Gameye/Switch on Smarthost _BETA_/How does Smarthost work_.mdx",
+      "title": "How does Smarthost work?",
+      "expectedRoutes": [
+        "/guides/how-does-smarthost-work"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Using Gameye/Using  variables.mdx",
+      "docsRelPath": "guides/using-variables.mdx",
+      "route": "/guides/using-variables",
+      "title": "Using  variables",
+      "docsTitle": "Using variables",
+      "similarity": 0.9855072463768116,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/using-variables"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Using Gameye/Using container labels.mdx",
+      "docsRelPath": "guides/using-container-labels.mdx",
+      "route": "/guides/using-container-labels",
+      "title": "Using container labels",
+      "docsTitle": "Using container labels",
+      "similarity": 0.993421052631579,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/using-container-labels"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Working with Docker/Creating a Dockerhub account.mdx",
+      "docsRelPath": "guides/creating-a-dockerhub-account.mdx",
+      "route": "/guides/creating-a-dockerhub-account",
+      "title": "Creating a Dockerhub account",
+      "docsTitle": "Creating a Dockerhub account",
+      "similarity": 0.9820359281437125,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/creating-a-dockerhub-account"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Working with Docker/Install Docker on CentOS.mdx",
+      "docsRelPath": "guides/install-docker-on-centos.mdx",
+      "route": "/guides/install-docker-on-centos",
+      "title": "Install Docker on CentOS",
+      "docsTitle": "Install Docker on CentOS",
+      "similarity": 0.9928571428571429,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/install-docker-on-centos"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Guides/Working with Docker/Install Docker on Ubuntu or Debian.mdx",
+      "docsRelPath": "guides/install-docker-on-ubuntu-or-debian.mdx",
+      "route": "/guides/install-docker-on-ubuntu-or-debian",
+      "title": "Install Docker on Ubuntu or Debian",
+      "docsTitle": "Install Docker on Ubuntu or Debian",
+      "similarity": 0.9941860465116279,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/install-docker-on-ubuntu-or-debian"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Legacy API/API endpoints/Download your artifacts.mdx",
+      "docsRelPath": "api/download-your-artifacts.mdx",
+      "route": "/api/download-your-artifacts",
+      "title": "Download your artifacts",
+      "docsTitle": "Download your artifacts",
+      "similarity": 0.75,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/download-your-artifacts"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Legacy API/API endpoints/Get all logs.mdx",
+      "title": "Get all logs",
+      "expectedRoutes": [
+        "/api/get-all-logs"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Legacy API/API endpoints/Get real-time logs.mdx",
+      "title": "Get real-time logs",
+      "expectedRoutes": [
+        "/api/get-real-time-logs"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Legacy API/API endpoints/Get your metrics.mdx",
+      "title": "Get your metrics",
+      "expectedRoutes": [
+        "/api/get-your-metrics"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Legacy API/API endpoints/Launch a session.mdx",
+      "docsRelPath": "api/launch-a-session.mdx",
+      "route": "/api/launch-a-session",
+      "title": "Launch a session",
+      "docsTitle": "Launch a session",
+      "similarity": 0.35555555555555557,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/launch-a-session"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Legacy API/API endpoints/List available locations.mdx",
+      "title": "List available locations",
+      "expectedRoutes": [
+        "/api/list-available-locations"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Legacy API/API endpoints/List current sessions.mdx",
+      "title": "List current sessions",
+      "expectedRoutes": [
+        "/api/list-current-sessions"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Legacy API/API endpoints/Open API spec.mdx",
+      "docsRelPath": "api/open-api-spec.mdx",
+      "route": "/api/open-api-spec",
+      "title": "Open API spec",
+      "docsTitle": "Open API spec",
+      "similarity": 0.21568627450980393,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/open-api-spec"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Legacy API/API endpoints/Stop a session.mdx",
+      "docsRelPath": "api/stop-a-session.mdx",
+      "route": "/api/stop-a-session",
+      "title": "Stop a session",
+      "docsTitle": "Stop a session",
+      "similarity": 0.449438202247191,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/stop-a-session"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Legacy API/Error handling.mdx",
+      "docsRelPath": "api/error-handling.mdx",
+      "route": "/api/error-handling",
+      "title": "Error handling",
+      "docsTitle": "Error handling",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/error-handling"
+      ]
+    },
+    {
+      "status": "missing_in_docs",
+      "exportRelPath": "Legacy API/Examples.mdx",
+      "title": "Examples",
+      "expectedRoutes": [
+        "/api/examples"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Legacy API/Regions and locations.mdx",
+      "docsRelPath": "api/regions-and-locations.mdx",
+      "route": "/api/regions-and-locations",
+      "title": "Regions and locations",
+      "docsTitle": "Regions and locations",
+      "similarity": 0.9946236559139785,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/api/regions-and-locations"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "Support/Getting support.mdx",
+      "docsRelPath": "guides/getting-support.mdx",
+      "route": "/guides/getting-support",
+      "title": "Getting support",
+      "docsTitle": "Getting support",
+      "similarity": 0.2804878048780488,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/getting-support"
+      ]
+    },
+    {
+      "status": "exact",
+      "exportRelPath": "Support/Giving feedback.mdx",
+      "docsRelPath": "guides/giving-feedback.mdx",
+      "route": "/guides/giving-feedback",
+      "title": "Giving feedback",
+      "docsTitle": "Giving feedback",
+      "similarity": 1,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/guides/giving-feedback"
+      ]
+    },
+    {
+      "status": "high_similarity",
+      "exportRelPath": "Troubleshooting/Troubleshooting problems.mdx",
+      "docsRelPath": "troubleshooting/troubleshooting-problems.mdx",
+      "route": "/troubleshooting/troubleshooting-problems",
+      "title": "Troubleshooting problems",
+      "docsTitle": "Troubleshooting problems",
+      "similarity": 0.9917355371900827,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/troubleshooting/troubleshooting-problems"
+      ]
+    },
+    {
+      "status": "low_similarity",
+      "exportRelPath": "What is Gameye_.mdx",
+      "docsRelPath": "index.mdx",
+      "route": "/",
+      "title": "What is Gameye?",
+      "docsTitle": "Gameye Docs",
+      "similarity": 0.1554054054054054,
+      "mappingSource": "route",
+      "expectedRoutes": [
+        "/",
+        "/what-is-gameye"
+      ]
+    }
+  ]
+}

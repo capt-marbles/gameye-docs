@@ -13,7 +13,8 @@
     "check:launch": "node scripts/check-launch-readiness.mjs",
     "astro": "astro",
     "migrate:archbee": "node scripts/migrate-archbee-docs.mjs",
-    "sync:openapi": "node scripts/sync-openapi-schema.mjs --version=v1"
+    "sync:openapi": "node scripts/sync-openapi-schema.mjs --version=v1",
+    "audit:archbee-parity": "node scripts/audit-archbee-export-parity.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",

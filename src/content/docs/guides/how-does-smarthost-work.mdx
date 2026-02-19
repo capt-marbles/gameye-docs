@@ -1,0 +1,24 @@
+---
+title: 'How does Smarthost work?'
+description: 'Legacy Archbee documentation page for How does Smarthost work?.'
+---
+
+> **DANGER:** This feature is still in BETA, please contact the support team for more information on what is required.
+
+Each game has a number of slots that determines how many players can join it. Smarthost predicts how many players will need a session and then preloads sessions to create a buffer. (Or shuts down sessions it knows you won't need.)
+
+It does this through "slots". Slots are just spaces for your players. A battle royale might need 64 slots for each session, while a fighting game might only need two. If Smarthost suspects that there won’t be enough slots to handle the demand (or too many slots), it’ll create new sessions to keep the buffer at the level you’ve set.
+
+## How Smarthost scales up
+
+If Smarthost believes you need more sessions, it starts spinning up new ones. Preloading sessions helps cut down your queue times, because your image might take a while to boot up. We want those sessions to be ready at exactly the moment we run out of slots.
+
+Smarthost makes these predictions by looking at how many sessions you've needed recently and then extrapolating from there. That could mean that we need to scale up immediately or that we need to come back later and recalculate.
+
+We also take into account the number of sessions that your game has requested. Because it can take a little time for Smarthost to know that a new session has started, it could conclude that you need more sessions, even though one is just starting up. By taking into account the number of requests, we make sure Smarthost doesn’t needlessly spin up a session.
+
+## How Smarthost scales down
+
+Smarthost deletes sessions that are vacant for a while. Vacant sessions are those with no occupied slots. Of course, we consider the buffer when scaling down. If killing a session would mean we don’t meet the buffer, then we don’t delete the session.
+
+We stop the oldest sessions first. That’s because we send players to the newest sessions first. (If we randomly killed a session — or the newest session — then we could shut down a session we just sent a player to join.)

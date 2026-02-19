@@ -1,11 +1,11 @@
 ---
 title: 'Launch a session'
-description: "Documentation for Launch a session in Gameye."
+description: 'Legacy Archbee documentation page for Launch a session.'
 ---
 
 Start a new game session in a specific region. Each session needs a unique ID, which you'll need to create yourself.
 
-> **WARNING:** Each call to the API to launch a session must be a UUID to avoid any issues.
+Each call to the API to launch a session must be a UUID to avoid any issues.
 
 ## Launch a session
 
@@ -26,4 +26,28 @@ POST https://api.gameye.io/session
 - `version` (string, optional): Tag of the image that the session will run. This tag needs to be available or it'll throw a 404. If you don't specify a priority, we'll run it with the highest priority.
 - `enableMetrics` (string, optional): Use this to collect details like CPU, memory and network information. Useful for debugging.
 
->**INFO:** although not depicted in the API responses, 420 is still returned for sessions that failed to start.
+### Example
+
+```bash
+curl --location --request POST 'https://api.gameye.io/session' \
+--header 'Accept: application/json' \
+--data-raw '{
+  "id": "f7965a22-e327-4541-a30e-8262890d3a29",
+  "location": "europe",
+  "image": "my-very-special-game",
+  "version": "buildversion",
+  "env": {
+    "my-secret": "<my_secret_value"
+  },
+  "args": [
+    "--max-players=8"
+  ],
+  "labels": {
+    "my-example-tag": "1",
+    "another-example-tag": "3"
+  },
+  "restart": false
+}'
+```
+
+although not depicted in the API responses, 420 is still returned for sessions that failed to start.

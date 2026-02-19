@@ -1,0 +1,33 @@
+---
+title: 'Get a list of available locations'
+description: 'Legacy Archbee documentation page for Get a list of available locations.'
+---
+
+## Get a list of available locations
+
+```http
+
+GET https://api.sandbox-gameye.gameye.net/available-location/\{image\}
+
+```
+
+Retrieve all locations that are currently able to host your image. This includes an IPV4 address that you may send ICMP ping messages to, to figure out the latency to this location. Please do not cache this list anywhere as it may change.
+
+### Path Parameters
+- `image` (string, required): The id of the image
+
+### Responses
+- `200`: Ok
+  - fields: locations, id, ips
+- `401`: You are not authorized to list available locations. Please make sure that the included bearer token is correct.
+  - fields: statusCode, code, message, details, path, timestamp, identifier, violations, field, description
+- `404`: Image not found or you are not authorized to use this image.
+  - fields: statusCode, code, message, details, path, timestamp, identifier, violations, field, description
+
+### Example
+
+```bash
+curl --location --globoff 'https://api.sandbox-gameye.gameye.net/available-location/{image}' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'
+```

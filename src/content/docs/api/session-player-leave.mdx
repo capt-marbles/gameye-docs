@@ -1,0 +1,36 @@
+---
+title: '/session/player/leave'
+description: 'Legacy Archbee documentation page for /session/player/leave.'
+---
+
+## /session/player/leave
+
+```http
+
+DELETE https://api.sandbox-gameye.gameye.net/session/player/leave
+
+```
+
+### Body Parameters
+- `body` (object, required)
+
+### Responses
+- `200`: One or more player IDs have been removed from the session.
+  - fields: count, players
+- `401`: You are not authorized to use this endpoint. Please make sure that the included bearer token is correct.
+  - fields: statusCode, code, message, details, path, timestamp, identifier, violations, field, description
+- `404`: The provided session does not exist.
+  - fields: statusCode, code, message, details, path, timestamp, identifier, violations, field, description
+- `422`: Bad request. This may imply that the given request has invalid syntax.
+  - fields: statusCode, code, message, details, path, timestamp, identifier, violations, field, description
+
+### Example
+
+```bash
+curl --location --request DELETE 'https://api.sandbox-gameye.gameye.net/session/player/leave' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data '{
+  "players": []
+}'
+```

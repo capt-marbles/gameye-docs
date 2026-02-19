@@ -1,0 +1,34 @@
+---
+title: 'List current sessions'
+description: 'Legacy Archbee documentation page for List current sessions.'
+---
+
+Gives you a list of all the active sessions linked to your API token. (Note: It only shows active sessions, not those that have already been stopped.)
+
+## List sessions
+
+```http
+
+GET https://api.gameye.io/session
+
+```
+
+### Query Parameters
+- `filter` (Object, optional): Give us a list of tags to use to filter your sessions. If none of the sessions meet the criteria, you'll get an empty list of sessions.
+
+### Example
+
+```nodejs
+var request = require('request');
+var options = {
+   'method': 'GET',
+   'url': 'https://api.gameye.io/session?Filter=Object',
+   'headers': {
+      'Accept': 'application/json'
+   }
+};
+request(options, function (error, response) {
+   if (error) throw new Error(error);
+   console.log(response.body);
+});
+```

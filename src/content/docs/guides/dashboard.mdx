@@ -1,29 +1,25 @@
 ---
 title: 'Dashboard'
-description: "Overview of key dashboard panels and how to interpret core signals."
+description: 'Legacy Archbee documentation page for Dashboard.'
 ---
 
-The Dashboard provides a quick operational overview of your Gameye environment.
+### Purpose
 
-## Core Panels
+The Dashboard gives an overview of your environment and helps you quickly spot trends.
 
-- **Applications**: Select the active application context used by other panels.
-- **Nodes**: Infrastructure node totals and availability indicators.
-- **Images**: Published image inventory used for launches.
-- **Regions**: Region-level capacity and distribution visibility.
-- **Resources used**: Current utilization summary.
+### What you see
 
-## Time-Series Charts
+- **Applications card**: Overview of applications. If you have multiple applications, you can select them using the navigation buttons inside the card. All the other cards are filtered based on the selected application.
+-**Nodes card**: Total nodes (availability is managed elsewhere).
+-**Images card**: Total images.
+-**Regions card**: Regions overview.
+-**Resources used**: A summary of resource usage.
+-**Charts**:
+  - Containers started over time
+  - Active containers over time
 
-Typical charts include:
+![](https://api.archbee.com/api/optimize/_em5a3TH-KfZcBHkdKiWt/pPG6IHbX1bi45O_GA4ycN_image.png)
 
-- Containers started over time.
-- Active containers over time.
+Tips
 
-Use these charts to validate launch behavior and identify demand spikes.
-
-## Operational Notes
-
-- Always confirm which application is selected before interpreting data.
-- Unexpected drops may indicate filtering, permission scope, or upstream launch failures.
-- Pair dashboard review with session/log views for root-cause analysis.
+- If the numbers look lower than expected, you may be limited to data you have access to.

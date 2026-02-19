@@ -135,6 +135,42 @@ Checks include:
 - no duplicate doc titles
 - minimum content depth for non-index pages
 
+## Archbee Export Parity Workflow (GAM-28)
+
+```bash
+npm run audit:archbee-parity
+```
+
+Optional flags:
+
+```bash
+node scripts/audit-archbee-export-parity.mjs --export-dir "/absolute/path/to/archbee-export" --min-similarity 0.75
+```
+
+Generated outputs:
+
+- `/reports/parity/archbee-export-parity-report.json`
+- `/reports/parity/archbee-export-parity-report.md`
+
+Checks include:
+
+- export page inventory vs current Starlight docs inventory
+- route mapping coverage from Archbee export pages to docs routes
+- normalized content similarity scoring (exact/high/low)
+- must-fix list: missing pages and low-similarity pages
+
+Low-similarity reconciliation pass:
+
+```bash
+npm run reconcile:archbee-low-similarity
+```
+
+This rewrites currently low-similarity docs targets from the Archbee export source, then you should rerun:
+
+```bash
+npm run audit:archbee-parity
+```
+
 ## Parity Workflow
 
 ```bash

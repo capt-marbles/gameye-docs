@@ -1,15 +1,6 @@
 ---
 title: 'What is the difference between a location and a region?'
-description: "Clarifies how Gameye models regions versus locations for traffic placement and scaling."
+description: 'Legacy Archbee documentation page for What is the difference between a location and a region?.'
 ---
 
-Gameye uses both **regions** and **locations** in placement decisions, but they represent different levels.
-
-- **Region**: a high-level geography or routing domain (for example, `eu-west`).
-- **Location**: a concrete deployment target within that region (for example, a specific provider/site).
-
-## How They Work Together
-
-Matchmaking or orchestration logic typically selects a region first based on player proximity and capacity policy. Gameye then chooses an available location within that region to satisfy the launch request.
-
-This model lets you balance latency, availability, and provider diversity without changing gameplay logic.
+For Gameye we use the **regions**to determine where players are placed when grouped together via your chosen matchmaker, we then utilise the **locations**as a way to load-balance the distribution of players across the region.

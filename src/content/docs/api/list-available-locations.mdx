@@ -1,0 +1,26 @@
+---
+title: 'List available locations'
+description: 'Legacy Archbee documentation page for List available locations.'
+---
+
+Get all the locations that can currently host your image, including an IP that you can ping to find out the latency to the location.
+
+Don't bother cacheing this list as it's always changing.
+
+## List locations
+
+```http
+
+GET https://api.gameye.io/available-location/\{image\}
+
+```
+
+### Body Parameters
+- `image` (string, required): The ID of the image.
+
+### Example
+
+```bash
+curl --location -g --request GET 'https://api.gameye.io/available-location/{image}' \
+--header 'Accept: application/json'
+```

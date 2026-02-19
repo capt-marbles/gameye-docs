@@ -1,27 +1,21 @@
 ---
 title: '2: Set up your organization on Gameye'
-description: "Documentation for 2: Set up your organization on Gameye in Gameye."
+description: 'Legacy Archbee documentation page for 2: Set up your organization on Gameye.'
 ---
 
-After Docker setup is complete, Gameye configures your organization and image mapping on our side.
+Once you’ve finished setting up your Docker account and repository, we’ll need to get you sorted on our side. Before you move on, there are a couple of things we need to do on our end. Let us know when you’re ready, and try to give us 24 hours to set this up.
 
-## What Gameye Sets Up
+We need to:
 
-- Your organization in the platform.
-- Your image/repository registration for orchestration.
+- **Create your organization.**
+-**Add your image’s name on our end.** Let us know what you’ve called your repository, so we can keep things consistent.
 
-## 1. Get Your Authentication Key
+## 1: Get your authentication key
+We’ll send you the key to use with our API. You’ll need to include this in your matchmaker code.
 
-We provide a bearer token for your matchmaker and backend integration.
+>**INFO:** **In case you didn't know** You can test your key at this point with tools like Postman, Hoppscotch, etc. We'll get around to testing in step five.
 
-> **Info:** You can validate this key early using tools like Postman or Hoppscotch.
+## 2: Test on our sandbox servers
+On our sandbox servers, you can test your setup and workload, as well as your ping and other fiddly details. We’ll tell you what locations we have ready in the sandbox, and then you can pick and choose which ones to use.
 
-## 2. Test on Sandbox
-
-Validate behavior in sandbox before production rollout:
-
-- Location availability
-- Connectivity and latency
-- Session startup behavior
-
-Sandbox does not auto-scale like production. If you need temporary capacity, contact support on [Discord](https://bit.ly/3oZZaGR).
+The only difference between our sandbox servers and live ones is that we don't automatically scale to meet demand on the sandbox servers. If our sandbox servers are full, [**let us know**](https://bit.ly/3oZZaGR), and we’ll try to mitigate where possible.

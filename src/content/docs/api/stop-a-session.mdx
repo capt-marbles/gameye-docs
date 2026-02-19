@@ -1,6 +1,6 @@
 ---
 title: 'Stop a session'
-description: "Documentation for Stop a session in Gameye."
+description: 'Legacy Archbee documentation page for Stop a session.'
 ---
 
 Forces a session to stop by killing the underlying container. (We do this by sending a SIGTERM signal.)
@@ -16,4 +16,22 @@ DELETE https://api.gameye.io/session/\{id\}
 ### Path Parameters
 - `id` (string, required): The id of the session.
 
-> **DANGER:** Gameye doesn't stop any containers/sessions once it has been started, this endpoint must be called once a game server is no longer needed.
+### Example
+
+```ruby
+require "uri"
+require "net/http"
+
+url = URI("https://api.gameye.io/session/{id}")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Delete.new(url)
+request["Accept"] = "application/json"
+
+response = https.request(request)
+puts response.read_body
+```
+
+Gameye doesn't stop any containers/sessions once it has been started, this endpoint must be called once a game server is no longer needed.

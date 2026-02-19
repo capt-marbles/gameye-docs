@@ -1,79 +1,239 @@
 ---
 title: 'Session Management'
-description: "Documentation for Session Management in Gameye."
+description: 'Legacy Archbee documentation page for Session Management.'
 ---
 
-Session management covers create, list, filter, and stop operations for game server containers.
+Session management is at the core of the Gameye Session API. These endpoints allow you to create new game sessions, list active sessions, and stop sessions when they're no longer needed.
 
-## Create a Session
+## Creating a Session
 
-`POST /session`
+To start a new game session, you'll need to make a POST request to the `/session` endpoint.
 
-Required payload fields:
+### Endpoint
 
-- `location` (string)
-- `image` (string)
+```text
+POST /session
+```
 
-Common optional fields:
+### Request Body
 
-- `id` (UUID)
-- `env` (object)
-- `args` (array)
-- `labels` (object)
-- `restart` (boolean)
-- `version` (string)
+The request requires a JSON body with the following fields:
+
+| Field      | Type    | Required | Description                                                                                         |
+| ---------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `location` | string  | Yes      | The region where you want to host the session (e.g., "eu-west-1", "eu-central-1")                   |
+| `image`    | string  | Yes      | The name of the game image to run in the container                                                  |
+| `id`       | string  | No       | A unique identifier for the session. If omitted, the system will generate an RFC4122-compliant UUID |
+| `env`      | object  | No       | Environment variables to pass to the container                                                      |
+| `args`     | array   | No       | Command-line arguments to pass to the game server                                                   |
+| `restart`  | boolean | No       | Whether to automatically restart the session on failure                                             |
+| `labels`   | object  | No       | Custom metadata key-value pairs for the session                                                     |
+| `version`  | string  | No       | Tag of the image to run (defaults to highest priority tag)                                          |
+
+### Example Request
 
 ```json
 {
   "location": "eu-central-1",
   "image": "my-game-server",
-  "args": ["--tickrate=128"],
+  "env": {
+    "MAX_PLAYERS": "16",
+    "MAP_ROTATION": "de_dust2,de_inferno,de_nuke"
+  },
+  "args": [
+    "--tickrate=128",
+    "--competitive=true"
+  ],
+  "labels": {
+    "game_mode": "competitive",
+    "tournament_id": "spring_cup_2023"
+  },
   "restart": false
 }
 ```
 
-## List Sessions
+### Success Response
 
-`GET /session`
+On success, you'll receive a `201 Created` response with details about the new session:
 
-Supported filters include:
+```json
+{
+  "id": "c5c7c507-f5de-443e-b772-af4b444cfc21",
+  "host": "203.0.113.42",
+  "ports": [
+    {
+      "type": "tcp",
+      "container": 80,
+      "host": 25159
+    },
+    {
+      "type": "tcp",
+      "container": 80,
+      "host": 25160
+    }
+  ]
+}
+```
 
-- `all=true` to include non-running sessions.
-- `filter[...]` to include matching sessions.
-- `filterNot[...]` to exclude matching sessions.
+  **Note**: Host ports are now allocated from the dedicated range of 20000-30000 to prevent conflicts with the Linux kernel's ephemeral port range, improving server startup reliability.
 
-```txt
+### Error Responses
+
+| Status Code | Description                                                               |
+| ----------- | ------------------------------------------------------------------------- |
+| 401         | Unauthorized - Invalid bearer token                                       |
+| 404         | Not Found - Requested location, image, or organization doesn't exist      |
+| 409         | Conflict - Session ID already exists                                      |
+| 420         | Enhance Your Calm - Location temporarily unavailable or too many requests |
+| 422         | Unprocessable Entity - Invalid request syntax                             |
+
+### Error Response Example
+
+```json
+{
+  "statusCode": 404,
+  "code": "RESOURCE_NOT_FOUND",
+  "message": "Unable to start session.",
+  "details": "Please make sure the correct image is specified.",
+  "identifier": "3bc545b7-4750-47e6-a918-c93debc58663",
+  "path": "/session",
+  "timestamp": "2023-04-01T12:00:00Z"
+}
+```
+
+  🔍**Tip**: Always include the `identifier` when contacting support about errors. This helps us quickly trace the exact issue in our systems.
+
+## Listing Sessions
+
+To get a list of your active sessions, use the GET request to the `/session` endpoint.
+
+### Endpoint
+
+```text
+GET /session
+```
+
+### Query Parameters
+
+| Parameter   | Type    | Required | Description                                                                                         |
+| ----------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `all`       | boolean | No       | Whether to return all sessions regardless of status (default: false, only returns running sessions) |
+| `filter`    | object  | No       | Filter sessions to include only those matching specific criteria (e.g., `?filter[tag]=v1.2.3`)      |
+| `filterNot` | object  | No       | Filter sessions to exclude those matching specific criteria (e.g., `?filterNot[status]=exited`)     |
+
+### Filtering Examples
+
+1.**Include Filter** (`filter`):
+
+  ```text
+  GET /session?filter[location]=eu-central-1&filter[tag]=latest
+  ```
+
+2. Returns sessions matching ALL specified criteria.
+3.**Exclude Filter** (`filterNot`):
+
+  ```text
+  GET /session?filterNot[status]=exited&filterNot[tag]=beta
+  ```
+
+4. Excludes sessions that match the specified criteria.
+5.**Historical Sessions** (`all`):
+
+  ```text
+  GET /session?all=true
+  ```
+
+6. Include non-running sessions (like `exited` ones) in the results.
+
+You can combine these filters for precise querying:
+
+```text
 GET /session?all=true&filter[location]=eu-central-1&filterNot[status]=dead
 ```
 
-## Stop a Session
+This would return all sessions (including exited ones) in eu-central-1, excluding dead sessions.
 
-`DELETE /session/{id}`
+### Example Response
 
-Use this when the match/server lifecycle is complete.
+```json
+{
+  "sessions": [
+    {
+      "id": "c595bc6f-8522-4a62-95cd-8742136643ea",
+      "image": "my-game-server",
+      "tag": "v1.2.3",
+      "location": "eu-central-1",
+      "host": "203.0.113.42",
+      "created": 1648472895000,
+      "port": {
+        "80/tcp": 25160
+      },
+      "status": "running",
+      "labels": {
+        "env": "{\"GAMEYE_SESSION_ID\":\"c595bc6f-8522-4a62-95cd-8742136643ea\",\"GAMEYE_HOST\":\"a.b.c.d\"}",
+        "tags": "{\"my-example-tag\":\"1\",\"another-example-tag\":\"3\"}"
+      }
+    }
+  ]
+}
+```
 
-## Status Values
+## Stopping a Session
 
-Typical status values returned by list operations:
+When a game session is over, you can stop it using the DELETE request.
 
-- `created`
-- `running`
-- `restarting`
-- `exited`
-- `dead`
-- `draining`
-- `shuttingdown`
-- `server_unreachable`
+### Endpoint
+
+```text
+DELETE /session/{id}
+```
+
+### Path Parameters
+
+| Parameter | Type   | Required | Description                                   |
+| --------- | ------ | -------- | --------------------------------------------- |
+| `id`      | string | Yes      | The unique ID of the session you want to stop |
+
+### Success Response
+
+On success, you'll receive a `204 No Content` response, indicating the session was successfully terminated.
+
+### Error Responses
+
+| Status Code | Description                           |
+| ----------- | ------------------------------------- |
+| 401         | Unauthorized - Invalid bearer token   |
+| 404         | Not Found - Session doesn't exist     |
+| 409         | Conflict - Session already terminated |
+
+## Session Lifecycle
+
+A typical session lifecycle looks like this:
+
+1.**Creation** - You create a session with POST `/session`
+2.**Running** - The session runs until you stop it or it crashes
+3.**Termination** - You stop the session with DELETE `/session/{id}`
+4.**Cleanup** - You can download artifacts if needed
+
+## Session Status Values
+
+When listing sessions, the `status` field will be one of:
+
+| Status               | Description                                              |
+| -------------------- | -------------------------------------------------------- |
+| `created`            | Session container is created but not started             |
+| `running`            | Session is running normally                              |
+| `restarting`         | Session is restarting after a failure                    |
+| `exited`             | Session has exited (gracefully or by error)              |
+| `dead`               | Session container is dead/unresponsive                   |
+| `draining`           | Host is preparing to shut down, session will be migrated |
+| `shuttingdown`       | Session is gracefully shutting down                      |
+| `server_unreachable` | Cannot reach the server running this session             |
 
 ## Best Practices
 
-- Let Gameye generate IDs unless your workflow requires custom IDs.
-- Apply labels for fleet filtering and analytics.
-- Stop inactive sessions promptly.
-- Capture `identifier` from error payloads for support escalation.
-
-## Related
-
-- [Launch a session](/api/launch-a-session)
-- [Stop a session](/api/stop-a-session)
-- [OpenAPI reference](/api/reference)
+- Let the system generate session IDs when possible
+- Use labels to organize and filter your sessions
+- Always stop sessions when they're no longer needed to free up resources
+- Check session status before performing operations on them
+- Use the combined filtering capabilities to efficiently manage many sessions

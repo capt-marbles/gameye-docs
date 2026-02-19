@@ -1,47 +1,68 @@
 ---
 title: '4. Configure your ports'
-description: "Documentation for 4. Configure your ports in Gameye."
+description: 'Legacy Archbee documentation page for 4. Configure your ports.'
 ---
 
-Gameye supports both Docker bridge mode and host mode. Your choice affects how ports are assigned and exposed.
+When spinning up containers on a machine, our orchestrator has to decide upfront which networking modes it puts a container in. This affects how external clients (your players) will connect to the game server application running inside the container.
 
-## Bridge Networking
+The Docker Engine has two built-in networking modes. As Gameye is a layer on top of the Docker Engine, our orchestrator can use them both and decide which is best according to your needs.
 
-Bridge mode is the default model. Containers can expose the same container ports while using different host ports behind the scenes.
+### Using bridge networking
 
-- [Docker bridge network docs](https://docs.docker.com/network/bridge/)
+> **INFO:** **Learn more about bridge networking**. For a more in-depth description of bridge networking, [**check Docker’s website**](https://docs.docker.com/network/bridge/).
 
-In this mode, your Dockerfile can keep explicit `EXPOSE` directives.
+Bridge networking lets multiple containers bind to any port without clogging up the networking stack of the host machine. For example, you have 10 different nginx containers and they should all bind to port `8080`.**How does traffic flow to these nginx instances?**
 
-> **Info:** Bridge networking is the recommended default for most teams.
+The bridge network opens up an ephemeral port and links it to port `8080` of a specific container. As Docker keeps track of these networks and containers, it can easily forward all traffic.
 
-## Host Networking
+When we create a new container, our orchestrator automatically allocates an ephemeral port (between `32768` and `60299`). As the orchestrator knows all the containers (and where they’re running), it searches for an available port in ascending order.
 
-Host mode shares the host networking stack directly, so port coordination matters more.
+>**INFO:** If you use bridge networking, your Dockerfile from step three will stay the same.
 
-- [Docker host network docs](https://docs.docker.com/network/host/)
+### Using host networking
 
-In this mode, Gameye allocates environment-variable based ports (for example `GAMEYE_PORT_TCP_8080`) and your server process should bind accordingly.
+>**INFO:** **Learn more about host networking**. For a more in-depth description of host networking, [**check Docker’s website**](https://docs.docker.com/network/host/).
 
-> **Danger:** If you choose host mode, update both your Dockerfile and entrypoint logic to consume Gameye-assigned ports.
+Host networking is where you keep reusing the networking stack of the host machine. When a container needs to reserve a specific port (like `8080`), it’ll block any other container from using that port. That means only one container on the whole machine uses port `8080`.
+
+That can obviously clog up the ports. So to prevent that, our orchestrator needs to allocate an ephemeral port to use instead (between `32768` and `60299`). As the orchestrator knows all the containers (and where they’re running), it searches for an available port in ascending order.
+
+Once we’ve chosen the port, we add it as an environment variable (like `GAMEYE_PORT_TCP_8080`). The container then has access to the port. It can then bind or publish the port as metadata to matchmakers, clients or other services.
+
+>**DANGER:** If you want to use host networking, there are a few tweaks you need to make to your Dockerfile from step three and your ENTRYPOINT. You can use the following code blocks to help you make those changes.
 
 ```dockerfile
 FROM ubuntu:20.04
+
+# copy server files here
+# for example:
 COPY . /home/MyGame/
+
+# add user to run the container
 RUN useradd -m gameuser
+
+# set permissions
 RUN chmod 777 /home/MyGame/GameServer.sh
+
 USER gameuser
+
+# set your game binary as the entrypoint
 ENTRYPOINT ["/home/MyGame/GameServer.sh", "-log"]
 ```
 
-```bash
+```shell
 #!/bin/bash
 ./GameServer.x86_64 -batchmode -nographics -start -name "Gameye Server" -overrideEditorArgs -sessionName $GAMEYE_SESSION_ID -port $GAMEYE_PORT_UDP_7777 log.txt -timeout 30 "$@"
 
+# Store server execution Exit Code
 status=$?
-if test $status -eq 0; then
-  echo "Server exited normally"
+
+if test $status -eq 0
+then
+    echo "Server exited normally"
 else
-  echo "Server exited with code: $status"
+    echo "Server exited with code: $status"
 fi
+
+echo "Done"
 ```
